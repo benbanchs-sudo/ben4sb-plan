@@ -3622,7 +3622,8 @@ function crumbs(){ const steps=['supt'].concat(path); const nm=s=>s==='supt'?'Su
 function tap(id){ const ch=chainOf(id).reverse(); const i=ch.indexOf('supt'); const below=i>=0?ch.slice(i+1):[];
   if(id==='board'||id==='supt'||id==='execasst'){ sel=sel===id?null:id; render(); return; }
   const k=kidsOf(id).length;
-  if(path.includes(id)){ path=below.slice(0,below.indexOf(id)); sel=id; }
+  if(path.includes(id)){ path=below.slice(0,below.indexOf(id)); sel=null; }
+  else if(!k && sel===id){ sel=null; }
   else { path=k?below:below.slice(0,-1); sel=id; }
   render(); setTimeout(()=>{ const el=can.querySelector(`.occ[data-id="${id}"]`); if(!el) return; const r=el.getBoundingClientRect(); if(r.top<130||r.top>window.innerHeight*.6) el.scrollIntoView({behavior:'smooth',block:'start'}); },60); }
 document.getElementById('occrumb').addEventListener('click',e=>{ const cb=e.target.closest('[data-crumb]'); if(!cb) return; const i=+cb.dataset.crumb; path=path.slice(0,i); sel=i?path[i-1]:null; render(); });
