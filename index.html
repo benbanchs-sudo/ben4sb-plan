@@ -1661,6 +1661,9 @@ draw();
 
 
 #chain .occ:hover{ box-shadow:0 4px 12px rgba(16,24,48,.16); }
+#chain .occ.dim{ opacity:.5; filter:grayscale(.7); box-shadow:none; transition:opacity .2s, filter .2s; }
+#chain .occ.dim:hover, #chain .occ.dim:focus-visible{ opacity:.85; filter:none; }
+#chain .oclines path.dim{ opacity:.35; }
 #chain .occ:focus-visible{ outline:3px solid var(--navy); outline-offset:2px; }
 #chain .occ.inf{ border-style:dashed; }
 #chain .occ.path{ border:1.5px solid var(--navy); }
@@ -3540,11 +3543,16 @@ function below(id){ if(id==='teachers') return 0; let s=0; (KIDS[id]||[]).forEac
 const ONE='<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="8" r="4.2"/><path d="M3.5 21c.6-4.6 4.1-7.2 8.5-7.2s7.9 2.6 8.5 7.2z"/></svg>';
 const MANY='<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="8.5" cy="8.5" r="3.4"/><circle cx="16.3" cy="7.6" r="2.9" opacity=".65"/><path d="M1.8 20.5c.5-3.8 3.3-6 6.7-6s6.2 2.2 6.7 6z"/><path d="M14.2 14.1c.7-.2 1.4-.3 2.1-.3 3 0 5.4 1.9 5.9 5.3h-5.4c-.5-2-1.4-3.6-2.6-5z" opacity=".65"/></svg>';
 const icon=id=>{ const n=BY[id]; return (n[3]&&n[3]>1)||n[3]==null?MANY:ONE; };
-let path=[], sel=null;
+let path=[], sel=null, ACT=null;
+function actSet(){ if(!sel) return null; const s=new Set(chainOf(sel)); s.add('board');
+  if(sel==='supt'){ kidsOf('supt').forEach(k=>s.add(k)); s.add('execasst'); }
+  else if(sel==='board') s.add('supt');
+  else if(path.includes(sel)) kidsOf(sel).forEach(k=>s.add(k));
+  return s; }
 function chainOf(id){ const c=[]; let n=BY[id]; while(n){ c.push(n[0]); n=n[1]?BY[n[1]]:null; } return c; }
 function card(id){ const n=BY[id]; const b=below(id); const al=Array.isArray(n[7])?n[7]:[]; const k=kidsOf(id).length;
   const top=id==='board'||id==='supt'; const open=path.includes(id);
-  const cls=['occ']; if(n[5]==='i') cls.push('inf'); if(top) cls.push('top'); if(sel===id) cls.push('sel'); else if(sel && chainOf(sel).includes(id)) cls.push('path');
+  const cls=['occ']; if(n[5]==='i') cls.push('inf'); if(ACT&&!ACT.has(id)) cls.push('dim'); if(top) cls.push('top'); if(sel===id) cls.push('sel'); else if(sel && chainOf(sel).includes(id)) cls.push('path');
   const alsoTxt= id==='asa' ? '<span class="cal note">Includes all 55 schools</span>' : (al.length?`<span class="cal">Also: ${AN(al[0])}</span>`:'<span class="cal"></span>');
   const m=(lab,val)=>`<span class="${val?'':'na'}">${lab}<b>${val||'—'}</b></span>`;
   const more= top||!k ? `<span class="cmore none">${top?'':'No jobs under this one'}</span>` : `<span class="cmore">${open?'Close ▲':'Open '+k+(k===1?' box':' boxes')+' ▼'}</span>`;
@@ -3573,7 +3581,7 @@ function level(parent,depth){ const ids=kidsSorted(parent); const ind=G.step*(de
     const oid=row.find(x=>x===path[depth]); if(oid && kidsOf(oid).length) h+=level(oid,depth+1); }
   return h; }
 function render(){
-  G=geom(); can.classList.toggle('mobile',!!G.mob); const nv=document.querySelector('nav.sections'); if(nv) document.documentElement.style.setProperty('--navh',nv.offsetHeight+'px'); can.style.setProperty('--th',G.th+'px'); can.style.setProperty('--ah',G.ah+'px'); can.style.setProperty('--cw',G.cw+'px'); can.style.setProperty('--chh',G.chh+'px'); can.style.setProperty('--gap',G.gap+'px');
+  G=geom(); ACT=actSet(); can.classList.toggle('mobile',!!G.mob); const nv=document.querySelector('nav.sections'); if(nv) document.documentElement.style.setProperty('--navh',nv.offsetHeight+'px'); can.style.setProperty('--th',G.th+'px'); can.style.setProperty('--ah',G.ah+'px'); can.style.setProperty('--cw',G.cw+'px'); can.style.setProperty('--chh',G.chh+'px'); can.style.setProperty('--gap',G.gap+'px');
   let h=`<div class="orow top">${card('board')}</div>`;
   if(sel==='board') h+=`<div style="--ind:0px">${det('board')}</div>`;
   h+=`<div class="orow top" data-parent="board">${card('supt')}${G.W>=G.cw*2+60?`<span style="width:44px;flex:none"></span>${card('execasst')}`:''}</div>`;
@@ -3598,23 +3606,23 @@ function placeDet(){ const d=can.querySelector('.ocdet'); if(!d) return; const C
 function rect(el){ const r=el.getBoundingClientRect(), c=can.getBoundingClientRect(); return {l:r.left-c.left,t:r.top-c.top,r:r.right-c.left,b:r.bottom-c.top,cx:(r.left+r.right)/2-c.left,cy:(r.top+r.bottom)/2-c.top}; }
 function lines(){ const svg=document.getElementById('oclines'); if(!svg) return; svg.setAttribute('width',can.scrollWidth); svg.setAttribute('height',can.scrollHeight);
   let d='', hd=''; const P=(cls,s)=>{ d+=`<path class="${cls}" d="${s}"/>`; }; const H=(cls,s)=>{ hd+=`<path class="hl ${cls}" d="${s}"/>`; };
-  const hl=new Set(sel?chainOf(sel):[]);
+  const hl=ACT||new Set(); const dm=id=>ACT&&!ACT.has(id)?' dim':'';
   const C=id=>can.querySelector(`.occ[data-id="${id}"]`);
   // board -> superintendent
-  const b=C('board'), s=C('supt'); if(b&&s){ const B=rect(b), S=rect(s); P('',`M${B.l+(G.mob?5:18)} ${B.b} V${S.t}`); if(sel&&sel!=='board') H('',`M${B.l+(G.mob?5:18)} ${B.b} V${S.t}`); }
+  const b=C('board'), s=C('supt'); if(b&&s){ const B=rect(b), S=rect(s); P('',`M${B.l+(G.mob?5:18)} ${B.b} V${S.t}`); if(ACT&&ACT.has('supt')) H('',`M${B.l+(G.mob?5:18)} ${B.b} V${S.t}`); }
   // superintendent -> executive assistant (side)
-  const e=C('execasst'); if(s&&e){ const S=rect(s), E=rect(e); const sp=Math.abs(E.cy-S.cy)<20?`M${S.r} ${S.cy} H${E.l}`:`M${S.l+(G.mob?5:18)} ${S.b} V${E.t+18} H${E.l}`; P('side',sp); if(sel==='execasst') H('side',sp); }
+  const e=C('execasst'); if(s&&e){ const S=rect(s), E=rect(e); const sp=Math.abs(E.cy-S.cy)<20?`M${S.r} ${S.cy} H${E.l}`:`M${S.l+(G.mob?5:18)} ${S.b} V${E.t+18} H${E.l}`; P('side'+dm('execasst'),sp); if(ACT&&ACT.has('execasst')) H('side',sp); }
   // every open parent -> its children, row by row
   const parents=['supt'].concat(path.filter(x=>kidsOf(x).length));
   parents.forEach(pid=>{ const pe=C(pid); if(!pe) return; const PR=rect(pe); const tx=G.mob?PR.l+5:PR.l+18; let lastY=null;
     const rows=[...can.querySelectorAll(`.orow[data-parent="${pid}"]`)];
     rows.forEach(row=>{ const cards=[...row.querySelectorAll(':scope > .occ')]; if(!cards.length) return; const R=cards.map(c=>({id:c.dataset.id,...rect(c)}));
-      if(G.mob){ R.forEach(r=>{ const y=r.t+18; const ty=BY[r.id][5]==='i'?'inf':''; P(ty,`M${tx} ${y} H${r.l}`); if(hl.has(r.id)) H(ty,`M${tx} ${PR.b} V${y} H${r.l}`); lastY=y; }); return; }
+      if(G.mob){ R.forEach(r=>{ const y=r.t+18; const ty=BY[r.id][5]==='i'?'inf':''; P(ty+dm(r.id),`M${tx} ${y} H${r.l}`); if(hl.has(r.id)) H(ty,`M${tx} ${PR.b} V${y} H${r.l}`); lastY=y; }); return; }
       const y=R[0].t-12;
       const allInf=R.every(r=>BY[r.id][5]==='i');
-      P(allInf?'inf':'',`M${tx} ${y} H${R[R.length-1].cx}`);
-      R.forEach(r=>{ const ty=BY[r.id][5]==='i'?'inf':''; P(ty,`M${r.cx} ${y} V${r.t}`); if(hl.has(r.id)) H(ty,`M${tx} ${PR.b} V${y} H${r.cx} V${r.t}`); }); lastY=y; });
-    if(lastY!=null){ const kids=kidsOf(pid); const allInf=kids.every(k=>BY[k][5]==='i'); P(allInf?'inf':'',`M${tx} ${PR.b} V${lastY}`); }
+      P((allInf?'inf':'')+(ACT&&R.every(r=>!ACT.has(r.id))?' dim':''),`M${tx} ${y} H${R[R.length-1].cx}`);
+      R.forEach(r=>{ const ty=BY[r.id][5]==='i'?'inf':''; P(ty+dm(r.id),`M${r.cx} ${y} V${r.t}`); if(hl.has(r.id)) H(ty,`M${tx} ${PR.b} V${y} H${r.cx} V${r.t}`); }); lastY=y; });
+    if(lastY!=null){ const kids=kidsOf(pid); const allInf=kids.every(k=>BY[k][5]==='i'); P((allInf?'inf':'')+(ACT&&kids.every(k=>!ACT.has(k))?' dim':''),`M${tx} ${PR.b} V${lastY}`); }
   });
   svg.innerHTML=d+hd; }
 function crumbs(){ const steps=['supt'].concat(path); const nm=s=>s==='supt'?'Superintendent':(COLS.includes(s)?SHORT[s]:SN(s));
