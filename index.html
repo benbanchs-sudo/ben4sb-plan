@@ -623,6 +623,16 @@ table.wgt td.wr.bad b{ color:#B3261E; } table.wgt td.wr.good b{ color:#1E7B3A; }
 table.blines thead th{ vertical-align:top; }
 table.blines thead th small.thsub{ margin-top:2px; }
 </style>
+<style id="folder-tabs">
+/* Folder-style tabs for every view switch: soft 1px edges, joined tabs, selected tab opens into the content */
+#scales .tabs, #bswitch .xbar, #cmpschools .seg.cmode{ display:flex !important; flex-wrap:nowrap; gap:0 !important; width:100%; max-width:100%; margin:10px 0 12px; padding:0; border:0 !important; border-bottom:1px solid var(--line) !important; border-radius:0 !important; overflow:visible !important; background:none !important; }
+#scales .tabs button, #bswitch .xbar button, #cmpschools .seg.cmode button{ position:relative; flex:0 1 auto; display:inline-flex; align-items:center; justify-content:center; font-family:var(--display) !important; font-weight:700 !important; text-transform:uppercase !important; letter-spacing:.04em !important; font-size:.92rem !important; line-height:1.15 !important; white-space:nowrap; padding:9px 16px 8px !important; margin:0 0 -1px -1px !important; border:1px solid var(--line) !important; border-top:3px solid transparent !important; border-radius:7px 7px 0 0 !important; background:#ECEEF2 !important; color:var(--muted) !important; cursor:pointer; box-shadow:none !important; transition:background .15s, color .15s; }
+#scales .tabs button:first-child, #bswitch .xbar button:first-child, #cmpschools .seg.cmode button:first-child{ margin-left:0 !important; }
+#scales .tabs button:hover, #bswitch .xbar button:hover, #cmpschools .seg.cmode button:hover{ background:#F5F6F9 !important; color:var(--head) !important; }
+#scales .tabs button[aria-selected="true"], #bswitch .xbar button[aria-pressed="true"], #cmpschools .seg.cmode button[aria-pressed="true"]{ background:var(--surface) !important; color:var(--head) !important; border-top-color:var(--gold) !important; border-bottom-color:var(--surface) !important; z-index:2; }
+#scales .tabs button:focus-visible, #bswitch .xbar button:focus-visible, #cmpschools .seg.cmode button:focus-visible{ outline:2px solid var(--gold); outline-offset:-2px; }
+@media (max-width:560px){ #scales .tabs button, #bswitch .xbar button, #cmpschools .seg.cmode button{ flex:1 1 0; min-width:0; white-space:normal; padding:8px 4px 7px !important; font-size:.76rem !important; } }
+</style>
 <div class="ticker" role="region" aria-label="Key points" aria-live="off">
   <div class="tlabel"><i aria-hidden="true"></i>The plan</div>
   <div class="tview">
@@ -1077,11 +1087,14 @@ table.blines .emp{ color:var(--muted); font-size:.85rem; }
 .eftiles .k{ font-family:var(--display); font-weight:700; text-transform:uppercase; letter-spacing:.04em; font-size:.9rem; margin-top:5px; }
 .eftiles .d{ font-size:.8rem; color:#C9CFE0; line-height:1.3; margin-top:2px; }
 @media (max-width:720px){ .eftiles{ grid-template-columns:repeat(2,minmax(0,1fr)); } .eftiles .v{ font-size:1.45rem; } }
-.eftabs{ display:flex; flex-wrap:wrap; gap:0; border-bottom:2px solid var(--navy); margin:14px 0 0; }
-.eftabs button{ font-family:var(--display); font-weight:700; text-transform:uppercase; letter-spacing:.04em; font-size:.98rem; padding:8px 14px; border:2px solid var(--navy); border-bottom:0; background:var(--surface); color:var(--head); border-radius:6px 6px 0 0; margin-right:4px; cursor:pointer; }
-.eftabs button[aria-selected="true"]{ background:var(--navy); color:#fff; }
-@media (max-width:560px){ .eftabs{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:3px; } .eftabs button{ margin:0; padding:7px 4px; font-size:.8rem; line-height:1.15; } }
-.efpanel{ background:var(--surface); border:1px solid var(--line); border-top:0; border-radius:0 0 8px 8px; padding:12px 14px 14px; }
+.eftabs{ display:flex; gap:0; margin:14px 0 0; padding-left:0; position:relative; z-index:1; }
+.eftabs button{ position:relative; font-family:var(--display); font-weight:700; text-transform:uppercase; letter-spacing:.04em; font-size:.95rem; padding:9px 16px 8px; margin:0 0 -1px -1px; border:1px solid var(--line); border-top:3px solid transparent; border-radius:7px 7px 0 0; background:#ECEEF2; color:var(--muted); cursor:pointer; transition:background .15s, color .15s; }
+.eftabs button:first-child{ margin-left:0; }
+.eftabs button:hover{ background:#F5F6F9; color:var(--head); }
+.eftabs button[aria-selected="true"]{ background:var(--surface); color:var(--head); border-top-color:var(--gold); border-bottom-color:var(--surface); z-index:2; }
+.eftabs button:focus-visible{ outline:2px solid var(--gold); outline-offset:-2px; }
+@media (max-width:560px){ .eftabs{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); } .eftabs button{ padding:8px 4px 7px; font-size:.76rem; line-height:1.15; } }
+.efpanel{ position:relative; background:var(--surface); border:1px solid var(--line); border-radius:0 8px 8px 8px; padding:12px 14px 14px; }
 .efgrp{ margin:6px 0 12px; }
 .efgrp h5{ display:flex; justify-content:space-between; gap:10px; margin:10px 0 6px; padding-bottom:4px; border-bottom:2px solid var(--line); font-family:var(--display); font-weight:800; text-transform:uppercase; letter-spacing:.04em; font-size:1.05rem; color:var(--head); }
 .efgrp h5 span{ color:var(--accent); font-variant-numeric:tabular-nums; }
