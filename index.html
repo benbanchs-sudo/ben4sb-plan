@@ -1132,6 +1132,103 @@ table.eftable td.pos{ color:#174A8F; }
 .efcards p{ margin:0 0 6px; font-size:.95rem; } .efcards p:last-child{ margin:0; }
 @media (max-width:700px){ .efcards{ grid-template-columns:1fr; } }
 h3.gfh{ margin-top:28px; padding-top:18px; border-top:2px solid var(--line); }
+/* ---- Every fund: drop-down rows ---- */
+.efhint{ margin:0 0 6px; font-size:.84rem; color:var(--muted); }
+.efhint b{ color:var(--accent); }
+.efitem{ border-top:1px solid #EEF0F4; }
+.efgrp .efitem:first-of-type{ border-top:0; }
+.efitem > .efrow{ border-top:0; }
+button.efrow{ font:inherit; color:inherit; text-align:left; background:none; border:0; cursor:pointer; border-radius:6px; padding:6px 6px; margin:0 -6px; width:calc(100% + 12px); }
+button.efrow:hover{ background:#F4F6FA; }
+button.efrow:focus-visible{ outline:3px solid var(--gold); outline-offset:-3px; }
+.efrow .car{ display:inline-block; width:1.05em; color:var(--accent); font-size:.9em; transition:transform .15s; }
+.efrow .nocar{ display:inline-block; width:1.05em; }
+.efitem.open .car{ transform:rotate(90deg); }
+.efitem.open > .efrow{ background:var(--tint); }
+.efrow .n small{ margin-left:1.05em; }
+.efdet{ margin:4px 0 12px 1.05em; padding:12px 14px 12px; background:#FAF9F5; border:1px solid var(--line); border-left:5px solid var(--gold); border-radius:6px; font-size:.93rem; }
+.efdet[hidden]{ display:none; }
+.efdet .dk{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:8px; margin:0 0 12px; }
+.efdet .dk > div{ background:var(--navy); border-top:3px solid var(--gold); border-radius:6px; padding:7px 10px 8px; color:#fff; min-width:0; }
+.efdet .dk b{ display:block; font-family:var(--display); font-weight:800; color:var(--gold); font-size:1.35rem; line-height:1.1; font-variant-numeric:tabular-nums; }
+.efdet .dk span{ display:block; font-size:.78rem; color:#C9CFE0; line-height:1.25; margin-top:2px; }
+.efdet h6{ font-family:var(--display); font-weight:800; text-transform:uppercase; letter-spacing:.04em; color:var(--head); font-size:1rem; margin:12px 0 4px; }
+.efdet h6:first-child{ margin-top:0; }
+ul.dl{ list-style:none; margin:0; padding:0; background:var(--surface); border:1px solid var(--line); border-radius:6px; }
+ul.dl li{ display:grid; grid-template-columns:minmax(0,1fr) auto; gap:4px 12px; align-items:baseline; padding:6px 10px; border-top:1px solid #EEF0F4; }
+ul.dl li:first-child{ border-top:0; }
+ul.dl .dn{ font-weight:600; color:var(--head); line-height:1.3; min-width:0; }
+ul.dl .dn small{ display:block; font-weight:400; color:var(--muted); font-size:.82rem; line-height:1.3; }
+ul.dl .dv{ font-family:var(--display); font-weight:800; color:var(--head); font-size:1.02rem; font-variant-numeric:tabular-nums; text-align:right; white-space:nowrap; }
+ul.dl li.tot{ border-top:2px solid var(--navy); background:var(--tint); border-radius:0 0 6px 6px; }
+ul.dl li.tot .dn{ font-family:var(--display); font-weight:800; text-transform:uppercase; letter-spacing:.03em; }
+.dnote{ margin:8px 0 0; font-size:.88rem; line-height:1.45; }
+.dnote.m{ color:var(--muted); font-size:.82rem; }
+.dbox{ background:var(--surface); border:1px solid var(--line); border-top:4px solid var(--navy); border-radius:6px; padding:10px 12px 11px; margin:12px 0 0; }
+.dbox.gold{ border-top-color:var(--gold); }
+.dbox h6{ margin:0 0 4px !important; }
+.dbox p{ margin:0 0 6px; font-size:.9rem; } .dbox p:last-child{ margin:0; }
+.dbox .pledge{ background:var(--navy); color:#fff; border-radius:5px; padding:7px 10px; font-weight:600; }
+.dbox .pledge b{ color:var(--gold); }
+.efdet .tbl{ margin:0; }
+table.mill{ font-size:.86rem; }
+table.mill th{ font-size:.84rem; padding:7px 9px; white-space:nowrap; }
+table.mill td{ padding:7px 9px; }
+table.mill td:first-child{ min-width:14em; }
+table.mill td small + small{ margin-top:2px; font-style:italic; }
+.millcards{ display:none; }
+.millcards .mc{ display:flex; flex-wrap:wrap; gap:2px 10px; margin-top:4px; font-weight:400; font-size:.82rem; color:var(--ink); }
+.millcards .mc .room{ color:#174A8F; }
+@media (max-width:640px){ .millwide{ display:none; } .millcards{ display:block; } }
+table.mill td small{ display:block; color:var(--muted); font-size:.78rem; line-height:1.3; }
+table.mill td.room{ color:#174A8F; font-weight:700; }
+table.mill tr.total td{ white-space:nowrap; }
+.split{ display:flex; height:26px; border-radius:6px; overflow:hidden; margin:6px 0 4px; }
+.split span{ display:flex; align-items:center; justify-content:center; color:#fff; font-size:.78rem; font-weight:700; white-space:nowrap; overflow:hidden; }
+.splitk{ display:flex; flex-wrap:wrap; gap:2px 14px; font-size:.82rem; color:var(--muted); }
+.splitk i{ display:inline-block; width:10px; height:10px; border-radius:2px; margin-right:5px; vertical-align:-1px; }
+.y3{ display:grid; gap:5px; margin:2px 0 0; }
+.y3 > div{ display:grid; grid-template-columns:9.5em minmax(0,1fr) 5.2em; gap:8px; align-items:center; font-size:.85rem; }
+.y3 .l{ color:var(--muted); white-space:nowrap; }
+.y3 .t{ height:14px; background:#EEF0F4; border-radius:7px; overflow:hidden; }
+.y3 .t span{ display:block; height:100%; border-radius:7px; background:var(--navy); }
+.y3 > div:last-child .t span{ background:var(--gold); }
+.y3 .v{ font-family:var(--display); font-weight:800; text-align:right; color:var(--head); font-variant-numeric:tabular-nums; }
+.efdet .go{ font:inherit; font-size:.88rem; font-weight:700; color:var(--navy); background:none; border:0; padding:0; text-decoration:underline; cursor:pointer; margin-top:8px; }
+@media (max-width:640px){
+  .efdet{ margin-left:0; padding:10px 10px 11px; }
+  .efdet .dk{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .efdet .dk b{ font-size:1.15rem; }
+  .y3 > div{ grid-template-columns:7.9em minmax(0,1fr) 4.4em; gap:6px; font-size:.78rem; }
+  button.efrow{ grid-template-columns:minmax(0,1fr) auto; }
+}
+
+/* ---- Every fund: fund cards ---- */
+.efcards{ gap:14px; margin:18px 0 8px; }
+.efcards > article{ background:var(--surface); border:1px solid var(--line); border-radius:8px; overflow:hidden; display:flex; flex-direction:column; box-shadow:0 1px 3px rgba(16,24,48,.07); min-width:0; }
+.efcards .fch{ display:flex; align-items:center; gap:12px; background:var(--navy); border-top:4px solid var(--gold); padding:12px 14px; }
+.efcards .fch .ic{ flex:none; width:42px; height:42px; border-radius:50%; border:2px solid var(--gold); background:rgba(231,155,3,.14); display:grid; place-items:center; }
+.efcards .fch .ic svg{ width:22px; height:22px; fill:none; stroke:var(--gold); stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+.efcards .fch .h{ font-family:var(--display); font-weight:700; text-transform:uppercase; letter-spacing:.06em; font-size:.9rem; color:#C9CFE0; margin:0; line-height:1.15; }
+.efcards .fch .big{ font-family:var(--display); font-weight:800; color:var(--gold); font-size:1.5rem; line-height:1.05; margin:2px 0 0; }
+.efcards .fcb{ padding:12px 14px 14px; display:flex; flex-direction:column; gap:10px; flex:1; }
+.efcards .fcb p{ margin:0; font-size:.94rem; line-height:1.5; }
+.efcards .fcb .take{ margin-top:auto; background:var(--tint); border-left:5px solid var(--gold); border-radius:4px; padding:8px 11px; font-weight:700; color:var(--head); font-size:.92rem; line-height:1.4; }
+.fviz{ display:grid; gap:6px; padding:9px 10px; background:#FAF9F5; border:1px solid #ECEAE3; border-radius:6px; }
+.fv{ display:grid; grid-template-columns:7.2em minmax(0,1fr) 4.4em; gap:8px; align-items:center; font-size:.84rem; }
+.fv .l{ font-weight:700; color:var(--head); white-space:nowrap; }
+.fv .t{ height:16px; background:#E9EBF0; border-radius:8px; overflow:hidden; display:flex; }
+.fv .t span{ display:block; height:100%; background:var(--navy); }
+.fv .t span:first-child{ border-radius:8px 0 0 8px; } .fv .t span:last-child{ border-radius:0 8px 8px 0; } .fv .t span:only-child{ border-radius:8px; }
+.fv .t span.g{ background:var(--gold); } .fv .t span.r{ background:#B3261E; } .fv .t span.s{ background:repeating-linear-gradient(45deg,#C9CFE0 0 5px,#E9EBF0 5px 10px); }
+.fv .t.empty{ background:transparent; border:2px dashed #B9C0D3; }
+.fv .v{ font-family:var(--display); font-weight:800; text-align:right; color:var(--head); font-variant-numeric:tabular-nums; white-space:nowrap; }
+.fv .v.r{ color:#B3261E; }
+.fvk{ display:flex; flex-wrap:wrap; gap:2px 12px; font-size:.78rem; color:var(--muted); }
+.fvk i{ display:inline-block; width:10px; height:10px; border-radius:2px; margin-right:4px; vertical-align:-1px; }
+@media (max-width:700px){ .efcards .fch .big{ font-size:1.35rem; } .fv{ grid-template-columns:8.2em minmax(0,1fr) 4.2em; gap:6px; font-size:.78rem; } }
+
+ul.dl li.tot .dn small{ text-transform:none; font-family:var(--body); font-weight:600; letter-spacing:0; }
 </style>
 
 <div class="efund" id="everyfund">
@@ -1151,10 +1248,56 @@ h3.gfh{ margin-top:28px; padding-top:18px; border-top:2px solid var(--line); }
   <div class="efpanel" id="efpanel" role="tabpanel"></div>
 
   <div class="efcards">
-    <div style="--c:#b3261e"><p class="h">School Security Fund</p><p class="big">$11.1M a year</p><p>Pays for the mental-health providers in our schools (62 positions, $3.7 million in salaries), the school resource officers and the security staff. It has its own 1.76-mill property tax ($5.7 million), and the General Fund covers the rest. This year the board cut the General Fund's share from $5.95 million to $4.45 million, so the fund spends $910,000 more than it takes in and its savings drop from $1.9 million to $981,000.</p><p><b>At this year's numbers, it would come up about $900,000 short again next year with only $981,000 left.</b> Safe schools can't run on a fund that's draining.</p></div>
-    <div style="--c:#E79B03"><p class="h">The November Surplus Stipend</p><p class="big">$8.0M last year. $0 set aside this year.</p><p>Board policy since 2021-22: when the General Fund ends a year with a surplus, half of it goes to every employee as a one-time stipend on November 15. Last year that was $8.0 million. For 2025-26, the district's own year-end projection shows no surplus, and nothing has gone into the stipend fund, which holds $243,000.</p><p><b>Unless the final audited books come in better, there's no surplus stipend this November.</b> One-time stipends aren't raises anyway, which is why this plan is about permanent ones.</p></div>
-    <div style="--c:#0f8ea0"><p class="h">BP Oil Spill Settlement</p><p class="big">$11.7M sitting in the bank</p><p>The district got this settlement in 2015 for revenue it lost after the 2010 spill. In 2024 the board committed it to safety and security. It's spending about $1 million a year, so $10.7 million is still there at the end of this year.</p><p><b>This is one-time money already set aside for safety.</b> Using it for security equipment and projects first would free General Fund money for people.</p></div>
-    <div style="--c:#16244F"><p class="h">The Bond Payment Cushion</p><p class="big">$26.1M to $41.3M in three years</p><p>The 13.6-mill debt tax brings in $44.9 million this year, and bond payments and charges take $38.6 million. The extra goes into the debt fund, which grows from $26.1 million (June 2024) to a planned $41.3 million (June 2027).</p><p><b>Some cushion makes sense as payments on the new 2025 bond start.</b> But the board should say how big it needs to be, because it's the same property tax that taxpayers pay.</p></div>
+    <article>
+      <div class="fch"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 8.4-7 10-4-1.6-7-5.5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></span><div><p class="h">School Security Fund</p><p class="big">$11.1M a year</p></div></div>
+      <div class="fcb">
+        <div class="fviz" role="img" aria-label="Coming in $10.2 million, going out $11.1 million, savings drop from $1.9 million to $981,000">
+          <div class="fv"><span class="l">Coming in</span><span class="t"><span style="width:51.6%"></span><span class="g" style="width:40.2%"></span></span><span class="v">$10.2M</span></div>
+          <div class="fv"><span class="l">Going out</span><span class="t"><span class="r" style="width:100%"></span></span><span class="v r">$11.1M</span></div>
+          <div class="fv"><span class="l">On hand July 1</span><span class="t"><span style="width:17.1%"></span></span><span class="v">$1.9M</span></div>
+          <div class="fv"><span class="l">Left June 30</span><span class="t"><span style="width:8.9%"></span></span><span class="v">$981K</span></div>
+          <div class="fvk"><span><i style="background:var(--navy)"></i>1.76-mill security tax</span><span><i style="background:var(--gold)"></i>General Fund transfer</span></div>
+        </div>
+        <p>Pays for the mental-health providers in our schools (62 positions, $3.7 million in salaries), the school resource officers and the security staff. This year the board cut the General Fund's share from $5.95 million to $4.45 million, so the fund spends $910,000 more than it takes in.</p>
+        <p class="take">At this year's numbers, it would come up about $900,000 short again next year with only $981,000 left. Safe schools can't run on a fund that's draining.</p>
+      </div>
+    </article>
+    <article>
+      <div class="fch"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/><path d="M9 15h6"/></svg></span><div><p class="h">The November Surplus Stipend</p><p class="big">$8.0M last year. $0 set aside this year.</p></div></div>
+      <div class="fcb">
+        <div class="fviz" role="img" aria-label="November 2025 stipend $8.0 million; November 2026 set aside $0">
+          <div class="fv"><span class="l">Nov. 2025</span><span class="t"><span class="g" style="width:100%"></span></span><span class="v">$8.0M</span></div>
+          <div class="fv"><span class="l">Nov. 2026</span><span class="t empty"></span><span class="v r">$0</span></div>
+          <div class="fv"><span class="l">In the fund</span><span class="t"><span style="width:3%"></span></span><span class="v">$243K</span></div>
+        </div>
+        <p>Board policy since 2021-22: when the General Fund ends a year with a surplus, half of it goes to every employee as a one-time stipend on November 15. For 2025-26, the district's own year-end projection shows no surplus, and nothing has gone into the stipend fund.</p>
+        <p class="take">Unless the final audited books come in better, there's no surplus stipend this November. One-time stipends aren't raises anyway, which is why this plan is about permanent ones.</p>
+      </div>
+    </article>
+    <article>
+      <div class="fch"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3c3.5 4.6 6 8 6 11a6 6 0 0 1-12 0c0-3 2.5-6.4 6-11z"/></svg></span><div><p class="h">BP Oil Spill Settlement</p><p class="big">$11.7M sitting in the bank</p></div></div>
+      <div class="fcb">
+        <div class="fviz" role="img" aria-label="$11.7 million on July 1; $1.03 million spent this year; $10.7 million left June 30">
+          <div class="fv"><span class="l">July 1, 2026</span><span class="t"><span style="width:100%"></span></span><span class="v">$11.7M</span></div>
+          <div class="fv"><span class="l">Spent this year</span><span class="t"><span class="g" style="width:8.8%"></span></span><span class="v">$1.03M</span></div>
+          <div class="fv"><span class="l">June 30, 2027</span><span class="t"><span style="width:92%"></span></span><span class="v">$10.7M</span></div>
+        </div>
+        <p>The district got this settlement in 2015 for revenue it lost after the 2010 spill. In 2024 the board committed it to safety and security. It's spending about $1 million a year.</p>
+        <p class="take">This is one-time money already set aside for safety. Using it for security equipment and projects first would free General Fund money for people.</p>
+      </div>
+    </article>
+    <article>
+      <div class="fch"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 10l9-6 9 6"/><path d="M5 10v8M9.5 10v8M14.5 10v8M19 10v8"/><path d="M3 20h18"/></svg></span><div><p class="h">The Bond Payment Cushion</p><p class="big">$26.1M to $41.3M in three years</p></div></div>
+      <div class="fcb">
+        <div class="fviz" role="img" aria-label="Bond payment fund balance: $26.1 million June 2024, $35.0 million June 2026, $41.3 million planned June 2027">
+          <div class="fv"><span class="l">June 2024</span><span class="t"><span style="width:63.2%"></span></span><span class="v">$26.1M</span></div>
+          <div class="fv"><span class="l">June 2026</span><span class="t"><span style="width:84.7%"></span></span><span class="v">$35.0M</span></div>
+          <div class="fv"><span class="l">June 2027 plan</span><span class="t"><span class="g" style="width:100%"></span></span><span class="v">$41.3M</span></div>
+        </div>
+        <p>The bond payment fund takes in $44.9 million this year, mostly from the 13.6-mill debt tax, and bond payments and charges take $38.6 million. The extra stays in the fund.</p>
+        <p class="take">Some cushion makes sense as payments on the new 2025 bond start. But the board should say how big it needs to be, because it's the same property tax that taxpayers pay.</p>
+      </div>
+    </article>
   </div>
   <div class="efnote" id="efgap"></div>
   <h3 class="parth gfh">The General Fund, Line by Line</h3>
@@ -1914,6 +2057,10 @@ ol.btime .dt{ display:block; font-family:var(--display); font-weight:800; text-t
     <li>The Bond Buyer, competitive sale results: <a href="https://www.bondbuyer.com/market-data/competitive-sales/2025/08/04/" target="_blank" rel="noopener">Series 2025, sold July 31, 2025</a>; <a href="https://www.bondbuyer.com/market-data/competitive-sales/2026/07/23" target="_blank" rel="noopener">Series 2026, sold July 21, 2026</a></li>
     <li><a href="https://www.stpsb.org/fs/resource-manager/view/7e1fb097-4879-49d4-9b07-0dc5d34ae382" target="_blank" rel="noopener">STPSB Budget Form A, FY2026-27</a> (General Fund and all special revenue funds, by source and function)</li>
     <li><a href="https://www.stpsb.org/fs/resource-manager/view/c9fe223a-36bc-45e0-ac6f-6c8a2ed4d074" target="_blank" rel="noopener">STPSB Grant Budget Report, August 2026</a> (FY2026-27 federal, state and local grant awards and salaries)</li>
+    <li>Louisiana Secretary of State, Nov. 13, 2021 school millage renewal propositions: <a href="https://voterportal.sos.la.gov/PropositionText/PropositionText/Detail?referendumId=12099" target="_blank" rel="noopener">No. 1 (4.42 mills)</a>, <a href="https://voterportal.sos.la.gov/PropositionText/PropositionText/Detail?referendumId=12100" target="_blank" rel="noopener">No. 2 (32.41 mills, with the 56.5% / 28.5% / 15% split)</a>, <a href="https://voterportal.sos.la.gov/PropositionText/PropositionText/Detail?referendumId=12101" target="_blank" rel="noopener">No. 3 (3.14 mills)</a>, <a href="https://voterportal.sos.la.gov/PropositionText/PropositionText/Detail?referendumId=12102" target="_blank" rel="noopener">No. 4 (2.75 mills)</a></li>
+    <li><a href="https://hallapproved.com/la/cases/appeals/1983/7595811/" target="_blank" rel="noopener"><i>Louisiana Ass'n of Educators v. St. Tammany Parish School Board</i> (La. App. 1983)</a>: wording of the 1966 sales tax dedication</li>
+    <li><a href="https://www.stpsb.org/connect/news/featured-news/~board/news/post/stpps-continues-to-save-money-for-taxpayers" target="_blank" rel="noopener">STPSB, "STPPS Continues to Save Money for Taxpayers" (April 2025)</a>: 2025 millage, 13.7 debt mills, 28.86 mills of net rollbacks since 1992</li>
+    <li><a href="https://legis.la.gov/Legis/ViewDocument.aspx?d=1471459" target="_blank" rel="noopener">HB 521 (2026 Regular Session), Constitutional Amendment 2</a> on rolling millage forward</li>
   </ul>
 </section>
 
@@ -2969,34 +3116,167 @@ const sch=document.getElementById('schools'); if(sch){ addBond(sch); new Mutatio
 <script>
 (function(){
 const M=v=>{ const a=Math.abs(v); const s=a>=1e6?'$'+(a/1e6).toFixed(1)+'M':a>=1e3?'$'+Math.round(a/1e3)+'K':'$'+a; return (v<0?'−':'')+s; };
+const M2=v=>{ const a=Math.abs(v); const s=a>=1e6?'$'+(a/1e6).toFixed(2)+'M':a>=1e3?'$'+Math.round(a/1e3).toLocaleString('en-US')+'K':'$'+a.toLocaleString('en-US'); return (v<0?'−':'')+s; };
+const dl=(rows,tot)=>`<ul class="dl">${rows.map(r=>`<li><span class="dn">${r[0]}${r[1]?`<small>${r[1]}</small>`:''}</span><span class="dv">${typeof r[2]==='string'?r[2]:M2(r[2])}</span></li>`).join('')}${tot?`<li class="tot"><span class="dn">${tot[0]}</span><span class="dv">${typeof tot[1]==='string'?tot[1]:M2(tot[1])}</span></li>`:''}</ul>`;
+const dk=items=>`<div class="dk">${items.map(i=>`<div><b>${i[0]}</b><span>${i[1]}</span></div>`).join('')}</div>`;
+const y3=(vals,labels,fmt)=>{ const L=labels||['2024-25 actual','2025-26 est.','2026-27 budget']; const f=fmt||M2; const mx=Math.max(...vals); return `<div class="y3">${vals.map((v,i)=>`<div><span class="l">${L[i]}</span><span class="t"><span style="width:${(v/mx*100).toFixed(1)}%"></span></span><span class="v">${f(v)}</span></div>`).join('')}</div>`; };
+const MILLV=3211156; // dollars per mill in 2026-27: each tax's budget divided by its mills
+const OPS=[
+ ['Constitutional tax','General operating money every parish school board may levy','Constitution','None',3.48,3.22,10339923],
+ ['Additional support tax','“Additional support to the public schools”','2021 renewal','2032',4.42,4.09,13133632],
+ ['Improving, maintaining and operating the schools','By law: 56.5% for employee wages and benefits, 28.5% for curriculum and instruction, 15% for custodial, utilities and upkeep','2021 renewal','2032',32.41,30.01,96366763],
+ ['Buildings, upkeep, wages and retirement','“Constructing, maintaining and operating schools” and employee wages and benefits, including retirement','2021 renewal','2032',3.14,2.91,9344483],
+ ['Additional support, including wages','Support for the schools, “including, but not limited to,” employee wages, benefits and retirement','2021 renewal','2032',2.75,2.55,8188469]
+];
+function opsTable(){ let mx=0, lv=0, amt=0, room=0;
+  const R=OPS.map(r=>{ const rm=+(r[4]-r[5]).toFixed(2), rv=Math.round(rm*MILLV); mx+=r[4]; lv+=r[5]; amt+=r[6]; room+=rv; return [r,rm,rv]; });
+  const rows=R.map(([r,rm,rv])=>`<tr><td><b>${r[0]}</b><small>${r[1]}</small><small>${r[2]==='Constitution'?'Set by the Constitution, no end date':'Voters renewed it in 2021, runs through '+r[3]}</small></td><td class="num">${r[4].toFixed(2)}</td><td class="num"><b>${r[5].toFixed(2)}</b></td><td class="num room">${rm.toFixed(2)}<small>${M2(rv)} a year</small></td><td class="num">${M2(r[6])}</td></tr>`).join('');
+  const cards=R.map(([r,rm,rv])=>`<li><span class="dn">${r[0]}<small>${r[1]}</small><small>${r[2]==='Constitution'?'Set by the Constitution, no end date':'Renewed by voters in 2021, runs through '+r[3]}</small><span class="mc"><span>Allowed <b>${r[4].toFixed(2)}</b></span><span>Charged <b>${r[5].toFixed(2)}</b></span><span class="room">Not charged <b>${rm.toFixed(2)}</b> = ${M2(rv)}/yr</span></span></span><span class="dv">${M2(r[6])}</span></li>`).join('');
+  return `<div class="tbl millwide"><table class="mill"><thead><tr><th>The five taxes</th><th class="num">Allowed</th><th class="num">Charged 2026</th><th class="num">Not charged</th><th class="num">Brings in 2026-27</th></tr></thead><tbody>${rows}<tr class="total"><td>All five (mills)</td><td class="num">${mx.toFixed(2)}</td><td class="num">${lv.toFixed(2)}</td><td class="num room">${(mx-lv).toFixed(2)}<small>${M2(room)} a year</small></td><td class="num">${M2(amt)}</td></tr></tbody></table></div>`+
+   `<ul class="dl millcards">${cards}<li class="tot"><span class="dn">All five: ${lv.toFixed(2)} of ${mx.toFixed(2)} mills charged<small style="color:var(--ink)">Not charged: ${(mx-lv).toFixed(2)} mills = ${M2(room)} a year</small></span><span class="dv">${M2(amt)}</span></li></ul>`; }
+const D={
+ sales:()=>dk([['2','one-cent sales taxes'],['$79.5M','each, this year'],['$159.2M','both, with penalties'],['+6.5%','since 2024-25']])+
+  `<h6>The two pennies</h6>`+dl([
+   ['1966 sales tax (1 cent)','Voters dedicated it first to teacher pay on the board’s salary schedule, next to lunchroom, custodial and bus driver pay, then to running the schools',79500000],
+   ['1977 sales tax (1 cent)','The second penny',79500000],
+   ['Late-payment penalties and interest','',180000]],['Sales tax',159180000])+
+  `<h6>Both pennies, year by year</h6>`+y3([149260056,156409172,159000000])+
+  `<p class="dnote">$1.49 million of it moves to school lunch: $1,083,000 from the 1966 penny and $404,000 from the 1977 penny.</p>`+
+  `<p class="dnote">A 1983 appeals court ruling (<i>LAE v. St. Tammany Parish School Board</i>) said the board has to fund its teacher salary schedule first from the 1966 tax, but it doesn’t have to spend any fixed share of that tax on teacher pay.</p>`+
+  `<p class="dnote m">State law (R.S. 47:338.120) would let the board ask voters for one more penny, worth about $79 million a year, but only for buildings and other capital costs. It could not pay salaries.</p>`,
+ ops:()=>dk([['42.78','mills charged in 2026'],['46.20','mills allowed by law'],['3.42','mills allowed but not charged'],['$11.0M','a year those 3.42 mills would bring']])+
+  `<h6>All five taxes, side by side</h6>`+opsTable()+
+  `<p class="dnote">Plus $284,000 in late-payment penalties and interest, for <b>$137.66 million</b>. Each mill brings in about <b>$3.21 million</b> this year. A mill is one-tenth of a cent for every dollar of assessed value.</p>`+
+  `<h6>Where the biggest tax has to go</h6><p class="dnote" style="margin-top:0">The 30.01-mill tax brings in $96.37 million. The ballot language voters approved splits it like this:</p>`+
+  `<div class="split" role="img" aria-label="56.5% wages and benefits $54.4 million, 28.5% curriculum and instruction $27.5 million, 15% custodial, utilities and upkeep $14.5 million"><span style="width:56.5%;background:#16244F">Wages and benefits · $54.4M</span><span style="width:28.5%;background:#0f8ea0">Instruction · $27.5M</span><span style="width:15%;background:#9a6a3a">Upkeep · $14.5M</span></div>`+
+  `<div class="splitk"><span><i style="background:#16244F"></i>56.5% employee wages and benefits</span><span><i style="background:#0f8ea0"></i>28.5% curriculum and instruction</span><span><i style="background:#9a6a3a"></i>15% custodial, utilities and upkeep</span></div>`+
+  `<div class="dbox gold"><h6>What a “roll-forward” is</h6>`+
+  `<p>Every four years the assessor reappraises property. When values go up, the Louisiana Constitution makes each tax roll its rate back so it brings in about the same money. After the 2024 reappraisal, the board rolled these five taxes back from 46.20 mills to 42.78 mills.</p>`+
+  `<p>The Constitution also lets a board go back up to its old maximum without a public vote: a two-thirds vote of the board after a public hearing. That’s the roll-forward. The board has not done it.</p>`+
+  `<p><b>What it would bring:</b> 3.42 mills × $3.21 million = about <b>$11.0 million a year</b>. On a $300,000 home with the homestead exemption, that’s about <b>$77 a year</b>.</p>`+
+  `<p>Under current law, that room is likely gone after the next reappraisal in 2028. Constitutional Amendment 2 on the Nov. 3, 2026 ballot would change that rule.</p>`+
+  `<p class="pledge"><b>Ben’s pledge:</b> not one more tax dollar until the budget is reviewed top to bottom. The roll-forward is on the list, and it’s last.</p></div>`+
+  `<div class="dbox"><h6>What a $300,000 home pays the schools</h6>`+
+  `<p>With Louisiana’s 10% assessment and the $75,000 homestead exemption, each school mill costs that homeowner about <b>$22.50 a year</b>. All 58.14 school mills in 2026 come to about <b>$1,308 a year</b>:</p>`+
+  dl([['Operations','42.78 mills','$963'],['Bond payments','13.6 mills','$306'],['School security','1.76 mills','$40']],['All school taxes','$1,308'])+
+  `<p class="dnote m">The board points out that it has rolled rates back 28.86 mills since 1992 (16.66 operating, 12.2 debt), which it says saves taxpayers $89.6 million a year at 2024 values.</p></div>`,
+ debt:()=>dk([['13.6','mills in 2026'],['$44.08M','this year, with penalties'],['$37.1M','in bond payments'],['No cap','rate set each year to cover payments']])+
+  `<h6>Which bonds the tax pays for</h6>`+dl([
+   ['Bonds approved April 17, 2004','2025 was the last year of this tax','0.48 mills'],
+   ['Bonds approved March 8, 2008','Tax ends 2027','1.87 mills'],
+   ['Bonds approved May 4, 2013','Tax ends 2032','3.51 mills'],
+   ['Bonds approved May 4, 2019','Tax ends 2038','7.84 mills'],
+   ['The $325M bond approved May 3, 2025','Tax runs to 2044. Payments grow as the bonds are sold ($50M so far)','starting']],['2025 total','13.70 mills'])+
+  `<p class="dnote m">The 2025 split is from the state’s 2026 Maximum Millage Report (0.48 + 1.87 + 3.51 + 7.84 = 13.70 mills). The district hasn’t published the 2026 rate bond by bond.</p>`+
+  `<h6>The rate, year by year</h6>`+y3([13.9,13.8,13.7,13.6],['2023','2024','2025','2026'],v=>v.toFixed(1)+' mills')+
+  `<h6>2026-27 money</h6>`+dl([['Debt tax (13.6 mills)','',43992850],['Late-payment penalties and interest','',90000]],['Property tax for bonds',44082850])+
+  `<p class="dnote">This year’s payments are $26.17 million of principal and $10.97 million of interest. Unlike the operating taxes, a bond tax has no fixed maximum: the board sets it each year at what the payments need. What’s left over builds the cushion in the card below.</p>`,
+ activity:()=>dk([['$9.9M','raised at schools this year'],['$8.0M','held by schools July 1']])+
+  dl([['2025-26 estimate','',9882617],['2026-27 budget','',9900000]])+
+  `<p class="dnote">Clubs, sports, field trips, yearbooks and school fundraisers. Each school raises and spends this money itself; the district budgets it as one line.</p>`,
+ sec:()=>dk([['1.76','mills charged in 2026'],['1.90','mills allowed'],['2.00','mills voters approved, May 4, 2019'],['2028','the year the tax ends']])+
+  dl([['Security tax (1.76 mills)','',5651631],['Late-payment penalties and interest','',12000]],['Property tax for security',5663631])+
+  `<p class="dnote">Rolled back from 1.90 mills after the 2024 reappraisal. Going back up to 1.90 would add 0.14 mills, about $450,000 a year. The tax ends in 2028, so it has to go back to voters by then.</p>`+
+  `<p class="dnote">The rest of the School Security Fund comes from a $4.45 million General Fund transfer and $50,000 of interest. See the card below.</p>`,
+ int:()=>`<h6>Which funds earn it</h6>`+dl([
+   ['General Fund','$1.5M interest plus $1.0M in investment gains',2500000],
+   ['Bond payment fund','$400K interest plus $420K in investment gains',820000],
+   ['2025 and 2026 bond construction funds','Borrowed money waiting for construction',1020000],
+   ['Leftover 2019 bond money','',250000],
+   ['BP settlement','',100000],
+   ['Parishwide Construction Fund','',75000],
+   ['2024 Chromebook bonds','',60000],
+   ['School Security, disaster loans and roofing','$50K each',150000],
+   ['School lunch','',45000],
+   ['Five small funds','Career development, outside courses, the bus and Chromebook loan fund, the salary reserve and special-ed cameras',81500]],['Interest',5101500])+
+  `<h6>General Fund interest, year by year</h6>`+y3([5079543,3842529,2500000])+
+  `<p class="dnote m">Interest plus investment gains or losses, from the General Fund budget book.</p>`,
+ medicaid:()=>`<h6>Year by year</h6>`+y3([9152834,4762392,4800000])+
+  `<p class="dnote">Medicaid pays the district back for health services it gives eligible students, like therapy and nursing. It fell almost by half after 2024-25 ($9.15 million to $4.76 million). The budget books don’t say why.</p>`,
+ othloc:()=>dl([
+   ['“Up to 1% collected by Sheriff on taxes”','The budget’s own name for this General Fund line',3875000],
+   ['Miscellaneous (General Fund)','',1432000],
+   ['Lunch sales','',580000],
+   ['Contributions and donations','',410000],
+   ['E-rate','Federal discount on internet service, booked as local money',315302],
+   ['Summer school and virtual tuition','',140200],
+   ['Sale of property','',58000],
+   ['School lunch miscellaneous','',40000],
+   ['Small local amounts in grant funds','',23075],
+   ['Rental of facilities','',9000],
+   ['Brick sales','Parishwide Construction Fund',600]],['Everything else local',6883177]),
+ mfp:()=>dk([['$181.8M','MFP this year'],['−$24.8M','vs. 2025-26 projected'],['$6.9M','goes straight to school lunch'],['~$5,100','state money per student']])+
+  `<h6>Year by year</h6>`+y3([210174748,206537676,181784642])+
+  `<h6>Why it dropped, per the district’s budget message</h6>`+dl([
+   ['Fewer students last year','',3600000],
+   ['Fewer students projected this year','',5000000],
+   ['A new K-8 charter school','State money follows its students',8600000],
+   ['State stipend money moved out of the formula','Now paid separately, under State stipends',9800000],
+   ['Other changes','Offsets',-2200000]],['Total drop the district explains',24800000])+
+  `<p class="dnote">The MFP (Minimum Foundation Program) is the state’s school funding formula. It sends money per student, which is why winning students back matters so much.</p>`,
+ stip:()=>dl([['State stipend money','Passed through to eligible teachers and support staff',9791371],['General Fund adds','For employees the state doesn’t cover',2210830]],['Stipends paid this year',12002201])+
+  `<h6>State stipend money, year by year</h6>`+y3([11369839,9791371],['2025-26 estimate','2026-27 budget'])+
+  `<p class="dnote">These are stipends, not raises on the salary schedule.</p>`,
+ othst:()=>dl([
+   ['State revenue sharing','$167K tied to the constitutional tax, $2.14M for other taxes',2306500],
+   ['JAG and agriculture programs','',487000],
+   ['Textbooks and library books for private-school students','',180000],
+   ['Special-ed classroom camera upkeep','',67000],
+   ['School lunch state money','',7665],
+   ['Professional Improvement Program (PIP)','A legacy state pay supplement for teachers',4870],
+   ['State grants in the grant funds','Tutoring, literacy, early childhood and others',1549441]],['Other state money',4602476]),
+ grants:()=>`<h6>The biggest federal grants this year</h6>`+dl([
+   ['Title I','For schools with more students from low-income families',10364513],
+   ['IDEA Part B','Special education',9807398],
+   ['Title II','Teacher training and support',1520861],
+   ['Title IV','Student support and enrichment',827853],
+   ['Title III','English learners',283324],
+   ['IDEA Preschool','Special education for 3- to 5-year-olds',256246],
+   ['Other federal grants','',1266312]],['Federal grants',24326507])+
+  `<p class="dnote m">Grant amounts are from the district’s August 2026 grant report. “Other federal grants” is the difference between those and the budget book’s total.</p>`,
+ meals:()=>dl([['Federal meal payments','',15500000],['Other federal money through the state','',1075000],['USDA food','Food the federal government sends instead of cash',1800000]],['School meals',18375000])+
+  `<p class="dnote">The school lunch fund also gets $6.9 million of the MFP, $580,000 in lunch sales and $2.29 million from the General Fund. See School lunch under Where It Goes.</p>`,
+ rotc:()=>`<p class="dnote" style="margin:0">Federal money for the Junior ROTC programs at Covington, Mandeville, Pearl River and Slidell high schools. 2025-26 projected: $691,745. 2026-27 budget: $692,000.</p>`,
+ odebt:()=>dl([['Principal on school bonds','',26170000],['Interest on school bonds','',10966836],['Pension and assessor charges','Charged against the debt tax',1459200],['Bus and Chromebook loan payments','Paid from a separate fund the General Fund transfers into',1313996]],['Bond and debt payments',39910032]),
+ ogrants:()=>`<h6>Where the grant money goes</h6>`+dl([
+   ['Title I','',10483673],['IDEA Part B (special education)','',9810398],['Education Excellence Fund','State money',3794423],['Title II (teacher training)','',1520861],['High-dose tutoring','',1150868],['Title IV','',827853],['All other grants','',1820905]],['Federal and state grants',29408981])+
+  `<p class="dnote m">From the district’s August 2026 grant report. “All other grants” is the difference to the budget book’s total, which also counts money carried over from last year.</p>`,
+ olunch:()=>`<h6>How school lunch is paid for</h6>`+dl([['Federal meal payments','',15500000],['MFP share','State formula money',6907665],['From the General Fund','$1.08M from the 1966 sales tax, $404K from the 1977 sales tax, $800K from the 2.91-mill property tax',2287000],['USDA food','',1800000],['Other federal money through the state','',1075000],['Lunch sales','',580000],['Interest and miscellaneous','',85000]],['Coming in',28234665])+
+  `<p class="dnote">It spends $27.74 million, so the lunch fund adds about $492,000 to its savings this year.</p>`,
+ obuild:()=>dl([['Leftover 2019 bond money','',7600000],['Parishwide Construction Fund','',4450000],['2025 bond','Mostly architects',3050000],['Roofing','',850000],['2024 Chromebook bonds','The last of it',543532],['2026 bond','Fees only',181000]],['Construction',16674532])+
+  `<button type="button" class="go" data-go="bond">See every 2025 bond project &rsaquo;</button>`,
+ ostip:()=>dl([['State stipend checks','',9791371],['General Fund adds','For employees the state doesn’t cover',2210830]],['State stipends',12002201]),
+ osec:()=>`<h6>How it’s paid for</h6>`+dl([['Security tax (1.76 mills)','With penalties',5663631],['From the General Fund','Cut from $5.95M last year',4450000],['Interest','',50000],['From the fund’s savings','',910640]],['School Security Fund',11074271])+
+  `<p class="dnote">Includes 62 mental-health provider positions ($3.7 million in salaries), plus school resource officers and security staff.</p>`
+};
 const IN=[
  ['Local',373268428,'#16244F',[
-  ['Sales tax','Two 1-cent sales taxes dedicated to the schools (approved in 1966 and 1977)',159180000],
-  ['Property tax for school operations','42.78 mills in five separate taxes',137657270],
-  ['Property tax for bond payments','13.6 mills, used only to repay school bonds',44082850],
-  ['School activity money','Fundraisers, fees and donations kept at each school',9900000],
-  ['Property tax for school security','1.76 mills, used only for the School Security Fund',5663631],
-  ['Interest on the district’s money','Earnings on money in the bank, across every fund',5101500],
-  ['Medicaid payments','For health services the district provides to students',4800000],
-  ['Everything else local','Including $3.9M the budget lists as “up to 1% collected by Sheriff on taxes,” $1.4M miscellaneous, $580K in lunch sales, $410K in donations and $315K in E-rate',6883177]]],
+  ['Sales tax','Two 1-cent sales taxes dedicated to the schools (approved in 1966 and 1977)',159180000,'sales'],
+  ['Property tax for school operations','42.78 mills in five separate taxes. See each tax and what’s allowed but not charged',137657270,'ops'],
+  ['Property tax for bond payments','13.6 mills, used only to repay school bonds',44082850,'debt'],
+  ['School activity money','Fundraisers, fees and donations kept at each school',9900000,'activity'],
+  ['Property tax for school security','1.76 mills, used only for the School Security Fund',5663631,'sec'],
+  ['Interest on the district’s money','Earnings on money in the bank, across every fund',5101500,'int'],
+  ['Medicaid payments','For health services the district provides to students',4800000,'medicaid'],
+  ['Everything else local','Sheriff’s tax line, lunch sales, donations, E-rate and more',6883177,'othloc']]],
  ['State',196178489,'#E79B03',[
-  ['MFP, the state school funding formula','Includes $6.9M that goes straight to school lunch',181784642],
-  ['State stipends for employees','Passed through to teachers and support staff',9791371],
-  ['Other state money','Revenue sharing, state grants, special-ed classroom cameras, JAG and more',4602476]]],
+  ['MFP, the state school funding formula','Includes $6.9M that goes straight to school lunch',181784642,'mfp'],
+  ['State stipends for employees','Passed through to teachers and support staff',9791371,'stip'],
+  ['Other state money','Revenue sharing, state grants, special-ed classroom cameras, JAG and more',4602476,'othst']]],
  ['Federal',43393507,'#0f8ea0',[
-  ['Federal grants','Title I, special education (IDEA), Title II and others',24326507],
-  ['School meals','Federal meal payments plus $1.8M in USDA food',18375000],
-  ['Junior ROTC','',692000]]]
+  ['Federal grants','Title I, special education (IDEA), Title II and others',24326507,'grants'],
+  ['School meals','Federal meal payments plus $1.8M in USDA food',18375000,'meals'],
+  ['Junior ROTC','',692000,'rotc']]]
 ];
 const TOTIN=612840424, TOTOUT=653604525;
 const OUT=[
  ['General Fund: running the schools every day',502441153,'#16244F','Salaries, benefits, buses, utilities, supplies. Broken down line by line below.','gf'],
- ['Bond and debt payments',39910032,'#5B6274','$26.2M principal and $11.0M interest on school bonds, $1.3M on the bus and Chromebook loans, and $1.45M in pension and assessor charges taken out of the debt tax.'],
- ['Federal and state grants',29408981,'#0f8ea0','Title I ($10.4M awarded this year), special education ($10.1M), Title II teacher training ($1.5M), tutoring ($1.2M) and more. Includes grant money carried over from last year.'],
- ['School lunch',27742607,'#1baf7a','About 336 positions. Serves 3.8 million lunches and 1.8 million breakfasts a year.'],
- ['Construction',16674532,'#9a6a3a','Leftover 2019 bond money ($7.6M), the Parishwide Construction Fund ($4.45M), the 2025 and 2026 bonds ($3.2M), roofs ($850K) and the last of the 2024 Chromebook loan ($544K).','bond'],
- ['State stipends',12002201,'#E79B03','The state’s stipend checks ($9.8M), plus $2.2M the General Fund adds for employees the state doesn’t cover.'],
- ['School Security Fund',11074271,'#b3261e','Mental-health providers, school resource officers and security staff.'],
+ ['Bond and debt payments',39910032,'#5B6274','Principal and interest on school bonds, the bus and Chromebook loans, and charges taken out of the debt tax.',null,'odebt'],
+ ['Federal and state grants',29408981,'#0f8ea0','Title I, special education, teacher training, tutoring and more. Includes grant money carried over from last year.',null,'ogrants'],
+ ['School lunch',27742607,'#1baf7a','About 336 positions. Serves 3.8 million lunches and 1.8 million breakfasts a year.',null,'olunch'],
+ ['Construction',16674532,'#9a6a3a','Leftover 2019 bond money, the Parishwide Construction Fund, the 2025 and 2026 bonds, roofs and Chromebooks.',null,'obuild'],
+ ['State stipends',12002201,'#E79B03','The state’s stipend checks, plus what the General Fund adds for employees the state doesn’t cover.',null,'ostip'],
+ ['School Security Fund',11074271,'#b3261e','Mental-health providers, school resource officers and security staff.',null,'osec'],
  ['School activity funds',9900000,'#6250d6','Money raised and spent at each school: clubs, sports, field trips, yearbooks.'],
  ['Career Development Fund',2262538,'#8a9a1b','Career and technical courses, from a set-aside in the state formula.'],
  ['Supplemental Course Allocation',1078210,'#a2479b','Courses from outside providers, such as dual enrollment and online classes, also set aside in the state formula.'],
@@ -3004,36 +3284,18 @@ const OUT=[
  ['Special-ed classroom cameras',80000,'#9AA0AE','State-funded cameras in special education classrooms.'],
  ['Employee surplus stipend',0,'#9AA0AE','Nothing budgeted. See the November stipend card below.']
 ];
-// rows: name, sub, starts, new, moved, spent, ends
-const T=[
- ['General Fund','Everyday operations',148576018,488931784,13509369,502441153,148576018],
- ['School Lunch','',2263258,25947665,2287000,27742607,2755316],
- ['Federal and State Grants','Grants pay back after the money is spent, so a balance below zero is normal',4716583,25899023,-1414230,29408981,-207605],
- ['State Stipends','',0,9791371,2210830,12002201,0],
- ['School Security','',1891935,5713631,4450000,11074271,981295],
- ['School Activity Funds','',8034245,9900000,0,9900000,8034245],
- ['Community Disaster Loans','Forgiven FEMA loans; closes this year',19750000,50000,-19800000,0,0],
- ['BP Oil Spill Settlement','',11675777,100000,0,1030000,10745777],
- ['Employee Salary Reserve','The November surplus stipend',242654,10000,0,0,252654],
- ['Career Development','',1711840,30000,1551604,2262538,1030906],
- ['Supplemental Course Allocation','',94435,15000,1078210,1078210,109435],
- ['Special-Ed Cameras','Two small funds',585358,78500,0,80000,583858],
- ['2025 Bond Construction','',23658022,510000,0,3050000,21118022],
- ['2026 Bond Construction','New money includes the $26.3M July bond sale',0,26850925,0,181000,26669925],
- ['Leftover 2019 Bond Money','2023 Bond Construction Fund',16498344,250000,0,7600000,9148344],
- ['Parishwide Construction','$5M moves to the General Fund',10583399,75600,-5000000,4450000,1208999],
- ['Roofing','',2106287,50000,0,850000,1306287],
- ['2024 Limited Revenue Bonds','Chromebooks',483532,60000,0,543532,0],
- ['Bond Payments (13.6 mills)','',35042202,44902850,0,38596036,41349016],
- ['Bus and Chromebook Loan Payments','',1253934,15000,1315987,1313996,1270925]
-];
 const pan=document.getElementById('efpanel');
-function bar(name,sub,amt,col,max,tot,extra){ return `<div class="efrow"><span class="n">${name}${sub?`<small>${sub}</small>`:''}${extra||''}</span><span class="t" aria-hidden="true"><span style="width:${Math.max(.4,amt/max*100).toFixed(2)}%;background:${col}"></span></span><span class="a">${M(amt)}<small>${amt&&amt/tot<.001?'&lt;0.1':(amt/tot*100).toFixed(amt/tot<.01?1:0)}%</small></span></div>`; }
+function pct(amt,tot){ return amt&&amt/tot<.001?'&lt;0.1':(amt/tot*100).toFixed(amt/tot<.01?1:0); }
+function bar(name,sub,amt,col,max,tot,extra){ return `<div class="efrow"><span class="n"><span class="nocar"></span>${name}${sub?`<small>${sub}</small>`:''}${extra||''}</span><span class="t" aria-hidden="true"><span style="width:${Math.max(.4,amt/max*100).toFixed(2)}%;background:${col}"></span></span><span class="a">${M(amt)}<small>${pct(amt,tot)}%</small></span></div>`; }
+let UID=0;
+function xbar(name,sub,amt,col,max,tot,key){ const id='efd'+(++UID);
+  return `<div class="efitem"><button type="button" class="efrow" aria-expanded="false" aria-controls="${id}" data-d="${key}"><span class="n"><span class="car" aria-hidden="true">&#9656;</span>${name}${sub?`<small>${sub}</small>`:''}</span><span class="t" aria-hidden="true"><span style="width:${Math.max(.4,amt/max*100).toFixed(2)}%;background:${col}"></span></span><span class="a">${M(amt)}<small>${pct(amt,tot)}%</small></span></button><div class="efdet" id="${id}" hidden></div></div>`; }
+const HINT=`<p class="efhint">Tap any line with a <b>&#9656;</b> to see what’s inside it.</p>`;
 function drawIn(){ const max=IN[0][3][0][2];
-  pan.innerHTML=IN.map(g=>`<div class="efgrp"><h5>${g[0]} <span>${M(g[1])} &middot; ${Math.round(g[1]/TOTIN*100)}%</span></h5>${g[3].map(r=>bar(r[0],r[1],r[2],g[2],max,TOTIN)).join('')}</div>`).join('')+
+  pan.innerHTML=HINT+IN.map(g=>`<div class="efgrp"><h5>${g[0]} <span>${M(g[1])} &middot; ${Math.round(g[1]/TOTIN*100)}%</span></h5>${g[3].map(r=>r[3]?xbar(r[0],r[1],r[2],g[2],max,TOTIN,r[3]):bar(r[0],r[1],r[2],g[2],max,TOTIN)).join('')}</div>`).join('')+
   `<div class="efnote"><p><b>Total new money: $612.8 million.</b> On top of that, the district borrows <b>$26.3 million</b> this year from its July 2026 bond sale ($25M plus a $1.3M premium from investors). That money can only go to buildings, buses and equipment.</p></div>`; }
 function drawOut(){ const max=OUT[0][1];
-  pan.innerHTML=`<div class="efgrp">${OUT.map(r=>bar(r[0],r[3],r[1],r[2],max,TOTOUT,r[4]?`<br><button type="button" class="go" data-go="${r[4]}">${r[4]==='gf'?'See it line by line &darr;':'See every bond project &rsaquo;'}</button>`:'')).join('')}</div>`+
+  pan.innerHTML=HINT+`<div class="efgrp">${OUT.map(r=>r[5]?xbar(r[0],r[3],r[1],r[2],max,TOTOUT,r[5]):bar(r[0],r[3],r[1],r[2],max,TOTOUT,r[4]?`<br><button type="button" class="go" data-go="${r[4]}">${r[4]==='gf'?'See it line by line &darr;':'See every bond project &rsaquo;'}</button>`:'')).join('')}</div>`+
   `<div class="efnote"><p><b>Total: $653.6 million.</b> Workers’ compensation and liability insurance run through two internal accounts that the funds above pay into (about $9.3 million in 2024-25), so that money is already counted here.</p></div>`; }
 function drawTbl(){ const c=v=>`<td class="num${v<0?' neg':''}">${M(v)}</td>`, cm=v=>`<td class="num${v<0?' neg':v>0?' pos':''}">${v>0?'+':''}${M(v)}</td>`;
   const s=i=>T.reduce((t,r)=>t+r[i],0);
@@ -3042,7 +3304,7 @@ function drawTbl(){ const c=v=>`<td class="num${v<0?' neg':''}">${M(v)}</td>`, c
 const tabs=[...document.querySelectorAll('.eftabs button')];
 function show(t){ tabs.forEach(b=>b.setAttribute('aria-selected',String(b.dataset.t===t))); (t==='in'?drawIn:t==='out'?drawOut:drawTbl)(); }
 tabs.forEach(b=>b.addEventListener('click',()=>show(b.dataset.t)));
-pan.addEventListener('click',e=>{ const g=e.target.closest('[data-go]'); if(!g) return; if(g.dataset.go==='gf'){ const h=document.querySelector('#everyfund h3.gfh'); if(h) h.scrollIntoView({behavior:'smooth',block:'start'}); } else { location.hash='bprojects'; } });
+pan.addEventListener('click',e=>{ const x=e.target.closest('button.efrow[data-d]'); if(x){ const it=x.parentElement, det=it.querySelector('.efdet'), op=x.getAttribute('aria-expanded')!=='true'; if(op && !det.dataset.f){ det.innerHTML=D[x.dataset.d](); det.dataset.f='1'; } x.setAttribute('aria-expanded',String(op)); it.classList.toggle('open',op); det.hidden=!op; return; } const g=e.target.closest('[data-go]'); if(!g) return; if(g.dataset.go==='gf'){ const h=document.querySelector('#everyfund h3.gfh'); if(h) h.scrollIntoView({behavior:'smooth',block:'start'}); } else { location.hash='bprojects'; } });
 show('in');
 document.getElementById('efgap').innerHTML=`<p><b>This year the district plans to spend $40.8 million more than the new money coming in.</b> It covers that from money it already has: the last $19.8 million of forgiven FEMA disaster loans, $9.4 million from the Parishwide Construction Fund, $7.4 million of leftover 2019 bond money, $4.9 million of grant money carried over from last year, and smaller amounts from other funds. Most of that is one-time money. Once it's gone, it's gone.</p><p>Meanwhile the July bond sale adds $26.3 million that mostly sits in the bank until construction starts, and the bond-payment fund grows by $6.3 million. Net, everything the district has on hand drops $14.2 million, from $289.2 million to $274.9 million.</p>`;
 })();
