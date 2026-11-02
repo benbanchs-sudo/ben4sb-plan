@@ -652,6 +652,7 @@ table.blines thead th small.thsub{ margin-top:2px; }
     <a class="ti" href="#cost"><span class="hl">Each 1% raise for General Fund employees: <b>about $3.13 million a year</b></span><span class="nar">That includes the retirement and Medicare costs that come with every raise.</span><span class="go">See the costs &rsaquo;</span></a>
     <a class="ti" href="#enroll"><span class="hl">Win back the <b>3,100 students</b> lost since 2019: worth about <b>$16 million a year</b></span><span class="nar">Every student we win back brings about $5,100 a year in state money.</span><span class="go">Read more &rsaquo;</span></a>
     <a class="ti" href="#everyfund"><span class="hl">Every fund, every dollar: <b>$653.6 million</b> spent this year</span><span class="nar">Where all of it comes from, where all of it goes, and what each fund has in the bank.</span><span class="go">See every fund &rsaquo;</span></a>
+    <a class="ti" href="#whos"><span class="hl">Who answers to whom: <b>every job from the School Board down</b></span><span class="nar">Tap through the district’s chain of command, with the positions and budget for every job.</span><span class="go">See the chart &rsaquo;</span></a>
     <a class="ti" href="#bond"><span class="hl">The $325 million school bond: <b>$50M borrowed, $3.2M spent</b></span><span class="nar">18 months after the vote, $17 million is promised to Lacombe schools and nothing has been bid.</span><span class="go">See every project &rsaquo;</span></a>
     <a class="ti" href="#paycalc"><span class="hl">See what a raise means <b>for your paycheck</b></span><span class="nar">Pick your job and years of service to see your pay today and under the proposal.</span><span class="go">Try the calculator &rsaquo;</span></a>
     <span class="ti"><span class="hl">Election Day: <b>Tuesday, Nov. 3</b> &middot; Ben Banchs <b>#94</b></span><span class="nar">Veteran Leadership for Stronger Schools.</span></span>
@@ -693,9 +694,10 @@ table.blines thead th small.thsub{ margin-top:2px; }
     <a href="#scales">Pay Scales</a>
     <a href="#compare">Compare</a>
     <a href="#budget">Budget</a>
+    <a href="#whos">Who’s in Charge</a>
     <a href="#bond">Bond</a>
     <a href="#raise">The Raise</a>
-    <a href="#money">Every Dollar</a>
+    <a href="#money" aria-label="Every Dollar" data-full="Every Dollar">Every $</a>
     <a href="#sources">Sources</a>
   </div>
   <div class="wrap totop-row"><a href="#top" class="totop" aria-label="Back to top">&#8593; Back to top</a></div>
@@ -1611,6 +1613,92 @@ draw();
 
 
 
+<style id="chain-css">
+/* Who answers to whom: staggered org chart */
+#chain p{ margin:0 0 12px; }
+#chain .ccpanel{ margin-top:14px; background:var(--surface); border:1px solid #9EA6B6; border-radius:8px; padding:12px 0 0; box-shadow:0 2px 8px rgba(16,24,48,.07); }
+#chain .occan{ border-radius:0 0 8px 8px; }
+#chain .cclegend{ display:flex; flex-wrap:wrap; gap:4px 16px; font-size:.8rem; color:var(--muted); padding:0 14px 8px; }
+#chain .cclegend i{ display:inline-block; width:24px; height:0; vertical-align:middle; margin-right:6px; border-top:2px solid #8C95A8; }
+#chain .cclegend i.inf{ border-top:2px dashed var(--gold); }
+#chain .cclegend em{ font-style:normal; color:#B3261E; font-weight:700; }
+#chain .occrumb{ position:sticky; top:calc(var(--tkh,40px) + var(--navh,46px)); z-index:4; display:flex; flex-wrap:wrap; align-items:center; gap:2px 4px; padding:8px 14px; border-top:1px solid var(--line); border-bottom:1px solid var(--line); background:#F8F9FB; font-size:.86rem; min-height:42px; }
+#chain .occrumb button{ font:inherit; font-weight:700; color:var(--navy); background:none; border:0; padding:2px 4px; border-radius:4px; cursor:pointer; text-decoration:underline; text-underline-offset:2px; }
+#chain .occrumb button:hover{ background:#EAF0F8; }
+#chain .occrumb span.cur{ font-weight:700; color:var(--ink); padding:2px 4px; }
+#chain .occrumb i{ font-style:normal; color:var(--muted); }
+#chain .occrumb .home{ margin-left:auto; text-decoration:none; border:1px solid #9EA6B6; background:#fff; font-size:.8rem; padding:3px 10px; }
+#chain .occan{ position:relative; padding:16px 14px 18px; background:radial-gradient(circle, #E6E8EE 1px, transparent 1.2px) 0 0/18px 18px; }
+#chain .oclines{ position:absolute; left:0; top:0; pointer-events:none; overflow:visible; }
+#chain .oclines path{ fill:none; stroke:#8C95A8; stroke-width:2; }
+#chain .oclines path.inf{ stroke:var(--gold); stroke-dasharray:6 4; }
+#chain .oclines path.side{ stroke:var(--gold); stroke-dasharray:6 4; }
+#chain .orow{ position:relative; display:flex; gap:var(--gap); margin-top:24px; }
+#chain .orow.top{ margin-top:0; align-items:center; }
+#chain .orow.top + .orow.top{ margin-top:24px; }
+#chain .occ{ position:relative; z-index:1; width:var(--cw); height:var(--chh); flex:none; display:grid; grid-template-rows:24px var(--th,32px) var(--ah,14px) 38px 16px; row-gap:4px; padding:9px 11px 8px; overflow:hidden; background:#fff; border:1.5px solid #E9B44C; border-radius:9px; font:inherit; font-size:15px; color:inherit; text-align:left; cursor:pointer; box-shadow:0 2px 5px rgba(16,24,48,.08); transition:box-shadow .15s, border-color .15s; }
+#chain .occ{ scroll-margin-top:calc(var(--tkh,40px) + var(--navh,46px) + 56px); }
+/* phones: compact cards, small indents, thin lines */
+#chain .occ.mob{ grid-template-columns:24px minmax(0,1fr) auto; grid-template-rows:auto 16px; column-gap:8px; row-gap:3px; padding:8px 10px 6px; align-items:start; }
+#chain .occ.mob .cav{ grid-column:1; grid-row:1; margin-top:1px; }
+#chain .occ.mob .mtl{ grid-column:2; grid-row:1; min-width:0; display:flex; flex-direction:column; }
+#chain .occ.mob .cnm{ display:block; -webkit-line-clamp:unset; height:var(--th); }
+#chain .occ.mob .msub{ display:block; font-size:.7rem; line-height:13px; height:13px; margin-top:2px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+#chain .occ.mob .msub b{ font-family:var(--display); font-weight:700; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); }
+#chain .occ.mob .msub em{ font-style:normal; font-weight:700; color:#B3261E; }
+#chain .occ.mob .msub em.note{ color:var(--navy); }
+#chain .occ.mob .mnum{ grid-column:3; grid-row:1; width:64px; display:flex; flex-direction:column; align-items:flex-end; font-size:.74rem; line-height:16px; color:var(--muted); white-space:nowrap; text-align:right; }
+#chain .occ.mob .mnum b{ color:var(--ink); font-weight:700; font-variant-numeric:tabular-nums; }
+#chain .occ.mob .cmore{ grid-column:1 / -1; grid-row:2; line-height:16px; }
+#chain .mobile .orow{ margin-top:8px; }
+#chain .mobile .orow.top + .orow.top{ margin-top:12px; }
+#chain .mobile .oclines path{ stroke-width:1.5; }
+@media (max-width:700px){ #chain .occrumb{ font-size:.78rem; padding:6px 112px 6px 10px; min-height:36px; } #chain .occrumb .home{ font-size:.74rem; padding:2px 8px; } }
+
+
+#chain .occ:hover{ box-shadow:0 4px 12px rgba(16,24,48,.16); }
+#chain .occ:focus-visible{ outline:3px solid var(--navy); outline-offset:2px; }
+#chain .occ.inf{ border-style:dashed; }
+#chain .occ.path{ border:1.5px solid var(--navy); }
+#chain .occ.sel{ border:2.5px solid var(--navy); box-shadow:0 0 0 4px rgba(231,155,3,.35), 0 4px 12px rgba(16,24,48,.16); }
+#chain .occ .chd{ display:flex; align-items:center; gap:7px; min-width:0; }
+#chain .occ .cav{ width:24px; height:24px; flex:none; border-radius:50%; background:#EEF1F7; border:1.5px solid #CBD2E0; display:grid; place-items:center; color:var(--navy); }
+#chain .occ .cav svg{ width:14px; height:14px; }
+#chain .occ.top .cav{ background:var(--navy); border-color:var(--navy); color:var(--gold); }
+#chain .occ .cdp{ font-family:var(--display); font-weight:700; text-transform:uppercase; letter-spacing:.04em; font-size:.72rem; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+#chain .occ .cnm{ font-weight:800; color:var(--head); font-size:.92rem; line-height:16px; display:-webkit-box; -webkit-line-clamp:5; -webkit-box-orient:vertical; overflow:hidden; }
+#chain .occ .cal{ font-size:.7rem; font-weight:700; color:#B3261E; line-height:13px; overflow:hidden; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; }
+#chain .occ .cal.note{ color:var(--navy); }
+#chain .occ .cmt{ display:grid; grid-template-rows:repeat(2,17px); align-content:start; border-top:1px solid #EEF0F4; padding-top:3px; }
+#chain .occ .cmt span{ display:flex; justify-content:space-between; gap:8px; font-size:.78rem; line-height:17px; color:var(--muted); }
+#chain .occ .cmt b{ color:var(--ink); font-weight:700; font-variant-numeric:tabular-nums; }
+#chain .occ .cmt span.na b{ color:#B6BCC9; font-weight:400; }
+#chain .occ .cmore{ font-size:.74rem; font-weight:700; color:var(--accent); text-align:center; line-height:16px; }
+#chain .occ .cmore.none{ color:#B6BCC9; font-weight:400; }
+#chain .ocdet{ position:relative; z-index:1; margin-top:12px; max-width:560px; background:var(--tint); border-left:5px solid var(--gold); border-radius:4px; padding:10px 14px; font-size:.94rem; }
+#chain .ocdet h5{ margin:0 0 4px; font-family:var(--display); font-weight:800; text-transform:uppercase; letter-spacing:.03em; font-size:1.08rem; color:var(--head); }
+#chain .ocdet p{ margin:0 0 6px !important; }
+#chain .ocdet p:last-child{ margin:0 !important; }
+#chain .ctag{ display:inline-block; font-size:.68rem; font-weight:700; letter-spacing:.03em; text-transform:uppercase; border-radius:4px; padding:1px 6px; margin-left:6px; vertical-align:1px; }
+#chain .ctag.o{ background:#DCE3F2; color:var(--navy); }
+#chain .ctag.i{ background:#FBE9C6; color:#7A4F00; }
+#chain .chin{ animation:chfade .28s ease; }
+@keyframes chfade{ from{ opacity:0; transform:translateY(-4px); } to{ opacity:1; transform:none; } }
+</style>
+
+<section id="whos">
+  <h2>Who Answers to Whom</h2>
+  <div id="chain">
+    <p>Every kind of job in the district, from the School Board down to the newest hire. Tap a box to open the jobs under it, and keep tapping to go deeper. Only one path stays open at a time, so tapping somewhere new folds up what you had open. The trail at the top shows where you are; tap any step to go back up.</p>
+  <div class="ccpanel">
+    <div class="cclegend"><span><i></i>On the district's own org chart</span><span><i class="inf"></i>Our reading of the budget and job postings</span><span><em>Also:</em> also answers to a second boss</span></div>
+    <div class="occrumb" id="occrumb"></div>
+    <div class="occan" id="occan"></div>
+  </div>
+  <p class="fine">Positions and pay are from the district's 2026-27 budget: the General Fund, School Lunch and School Security funds. Counts are budgeted positions, not people, so part-time jobs count as fractions. "Total budget" is what the district budgets in salaries for that group of jobs in 2026-27, before benefits like health insurance and retirement. This is the 30,000-foot view; we will fill in more detail when the district releases the position-by-position payroll data we have requested. The top of the chart comes from the district's organizational chart in its 2025 audited financial report. The district publishes no chart below its directors, so every gold dashed line is our reading of the budget, job titles and job postings. We have asked the district for its current chart and job descriptions, and we will correct any line that's wrong.</p>
+</div>
+</section>
+
 <style>
 /* The 2025 bond section */
 .bdtiles{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; margin:14px 0 8px; }
@@ -2079,6 +2167,7 @@ ol.btime .dt{ display:block; font-family:var(--display); font-weight:800; text-t
     <li><a href="https://hallapproved.com/la/cases/appeals/1983/7595811/" target="_blank" rel="noopener"><i>Louisiana Ass'n of Educators v. St. Tammany Parish School Board</i> (La. App. 1983)</a>: wording of the 1966 sales tax dedication</li>
     <li><a href="https://www.stpsb.org/connect/news/featured-news/~board/news/post/stpps-continues-to-save-money-for-taxpayers" target="_blank" rel="noopener">STPSB, "STPPS Continues to Save Money for Taxpayers" (April 2025)</a>: 2025 millage, 13.7 debt mills, 28.86 mills of net rollbacks since 1992</li>
     <li><a href="https://legis.la.gov/Legis/ViewDocument.aspx?d=1471459" target="_blank" rel="noopener">HB 521 (2026 Regular Session), Constitutional Amendment 2</a> on rolling millage forward</li>
+    <li><a href="https://app.lla.state.la.us/PublicReports.nsf/0/D887D0C82E72740786258D860063128F/$FILE/0000991B.pdf" target="_blank" rel="noopener">STPSB Annual Comprehensive Financial Report FY2025, organizational chart (p. xiii) and principal officials (p. xiv)</a>, the source for the top of the Who Answers to Whom chart; positions and pay below it are from the FY2026-27 General Fund, School Lunch and School Security budgets</li>
   </ul>
 </section>
 
@@ -2995,7 +3084,7 @@ document.addEventListener('click',async e=>{
   fitMenu(); window.addEventListener('resize',fitMenu); if(document.fonts&&document.fonts.ready) document.fonts.ready.then(fitMenu);
   const nav=[...document.querySelectorAll('nav.sections .navrow a')];
   const order=nav.map(a=>a.getAttribute('href').slice(1)).filter(id=>document.getElementById(id));
-  const label={}; nav.forEach(a=>label[a.getAttribute('href').slice(1)]=a.textContent.trim());
+  const label={}; nav.forEach(a=>label[a.getAttribute('href').slice(1)]=a.dataset.full||a.textContent.trim());
   const secs=order.map(id=>document.getElementById(id));
   const tiles=document.querySelector('main .tiles');
   const head=document.querySelector('header.top');
@@ -3348,6 +3437,179 @@ tabs.forEach(b=>b.addEventListener('click',()=>show(b.dataset.t)));
 pan.addEventListener('click',e=>{ const x=e.target.closest('button.efrow[data-d]'); if(x){ const it=x.parentElement, det=it.querySelector('.efdet'), op=x.getAttribute('aria-expanded')!=='true'; if(op && !det.dataset.f){ det.innerHTML=D[x.dataset.d](); det.dataset.f='1'; } x.setAttribute('aria-expanded',String(op)); it.classList.toggle('open',op); det.hidden=!op; return; } const g=e.target.closest('[data-go]'); if(!g) return; if(g.dataset.go==='gf'){ const h=document.querySelector('#everyfund h3.gfh'); if(h) h.scrollIntoView({behavior:'smooth',block:'start'}); } else { location.hash='bprojects'; } });
 show('in');
 document.getElementById('efgap').innerHTML=`<p><b>This year the district plans to spend $40.8 million more than the new money coming in.</b> It covers that from money it already has: the last $19.8 million of forgiven FEMA disaster loans, $9.4 million from the Parishwide Construction Fund, $7.4 million of leftover 2019 bond money, $4.9 million of grant money carried over from last year, and smaller amounts from other funds. Most of that is one-time money. Once it's gone, it's gone.</p><p>Meanwhile the July bond sale adds $26.3 million that mostly sits in the bank until construction starts, and the bond-payment fund grows by $6.3 million. Net, everything the district has on hand drops $14.2 million, from $289.2 million to $274.9 million.</p>`;
+})();
+</script>
+<script>
+(function(){
+const N=[
+ ['voters',null,'St. Tammany Voters',null,null,'o','Voters elect the 15 School Board members, one from each district, for four-year terms.'],
+ ['board','voters','School Board',15,145200,'o','Sets policy, adopts the budget, hires and evaluates the superintendent, and approves contracts.'],
+ ['supt','board','Superintendent',1,284775,'o','Runs the district day to day and answers to the School Board. Steve Alfonso Jr., one of the assistant superintendents, is serving as interim superintendent since Frank Jabbia’s retirement. The board picks the next one.'],
+ ['asoffice','supt','Assistant Superintendents’ Office Staff',2,83314,'i',''],
+ ['execasst','supt','Executive Assistant to the Superintendent and Board',1,81656,'i','Paid with the superintendent’s office.'],
+ ['comm','supt','Communications and Channel 13',8,517632,'i','Director of Communications, communications staff and the Channel 13 production team. Not on the district’s chart; we place it under the superintendent.'],
+ ['asa','supt','Assistant Superintendent, Administration',1,null,'o','The General Fund budgets $432,581 for three assistant superintendents together. On the district’s chart, the administrative supervisors, child welfare and attendance, and food services report here.'],
+ ['admsup','asa','Administrative Supervisors and Building Manager',5,508607,'o','On the district’s chart under Administration. Administrative supervisors oversee groups of schools and their principals.'],
+ ['principals','admsup','Principals',55,5555723,'i','One per school. The principal supervises the people who work in the building. School resource officers also work in schools, but they are sheriff’s deputies or city police who answer to their own agency; the district pays for them by contract from the School Security Fund. We place principals under the administrative supervisors.'],
+ ['aps','principals','Assistant Principals',92,7846003,'i','Help the principal run the school and share supervision and discipline.'],
+ ['teachers','principals','Teachers',2634,159094837,'i','Classroom teachers at every school. Assistant principals handle much of the day-to-day supervision.'],
+ ['t_elem','teachers','Elementary Teachers',1236,74504112,'i',''],
+ ['t_sec','teachers','Middle and High School Teachers',521,31312922,'i',''],
+ ['t_sped','teachers','Special Education Teachers',437,25165820,'i','Also work with the Special Education department.',['sped']],
+ ['t_k','teachers','Kindergarten Teachers',133,7859804,'i',''],
+ ['t_gt','teachers','Gifted and Talented Teachers',124,7867425,'i','Many travel between schools.'],
+ ['t_cte','teachers','Career and Technical Teachers',61,4120165,'i','Agriculture, family and consumer science, industrial arts and business.'],
+ ['t_pre','teachers','Preschool Teachers',42,2419683,'i','',['sped']],
+ ['t_esl','teachers','English as a Second Language Teachers',32,1913942,'i',''],
+ ['t_ape','teachers','Adaptive Physical Education Teachers',21,1319638,'i','',['sped']],
+ ['t_rotc','teachers','JROTC Instructors',16,1535943,'i',''],
+ ['t_alt','teachers','Alternative Program Teachers',11,1075383,'i','Grades 7-8 YES, WIN, JAG, homebound, virtual academy and Project Team.'],
+ ['paras','principals','Paraprofessionals and Aides',645.5,20150566,'i','Special education aides (550), in-school suspension aides (47), preschool aides (20), ESL aides (18), alternative program aides (8) and library aides.',['sped']],
+ ['counselors','principals','School Counselors',81,5242295,'i',''],
+ ['librarians','principals','Librarians',56,3568205,'i',''],
+ ['schoolclerical','principals','School Office Staff',165,5657164,'i','Secretaries and clerks in each school office.'],
+ ['custodians','principals','Custodians',348.29,11777669,'i','Work in each school under the principal; the maintenance department handles bigger building work.',['maint']],
+ ['monitors','principals','Cafeteria Monitors',null,150000,'i','Part-time; no position count in the budget.'],
+ ['nurses','principals','School Nurses',55,3357788,'i','Work in schools; we believe they are organized through student services.',['stusvc']],
+ ['mhp','principals','Mental-Health Providers',62,3702123,'i','Paid from the School Security Fund, one in nearly every school.',['stusvc']],
+ ['lunchtech','principals','Lunchroom Staff (report through Food Services)',null,null,'i','Lunchroom managers, assistant managers and technicians work in the school, but they report through the lunchroom manager to Food Services, under Administration.',['lunchmgr']],
+ ['altadmin','admsup','Alternative Program Administrators',19,1418343,'i','Administrators and administrative assistants for alternative programs.'],
+ ['childsvc','asa','Child Welfare and Attendance',7,403668,'o','Supervisor and coordinator, clerical staff and an investigator. On the district’s chart under Administration.'],
+ ['food','asa','Food Services Director',1,94348,'o','On the district’s chart under Administration. Paid from the School Lunch Fund.'],
+ ['foodasst','food','Food Services Assistant Directors and Office',11,562431,'i','Four assistant directors, an office clerk and six maintenance workers.'],
+ ['lunchmgr','foodasst','Lunchroom Managers',54,2517877,'i','One per cafeteria. Runs the kitchen at the school.',['principals']],
+ ['lunchasst','lunchmgr','Lunchroom Assistant Managers',49,1422924,'i','',['principals']],
+ ['lunchtechs','lunchasst','Lunchroom Technicians',220.6,6142797,'i','Cook and serve breakfast and lunch. Many are part-time.',['principals']],
+ ['maint','asa','Maintenance and Facilities',99,4692938,'i','Director and assistant directors (4), office staff (3), foremen (13) and maintenance workers (79). Not on the district’s chart; we place it under Administration.'],
+ ['security','asa','Security Coordinator and Officers',3,166442,'i','Paid from the School Security Fund.'],
+ ['adminoffice','asa','Administration Office Staff',6,245433,'i',''],
+ ['asci','supt','Assistant Superintendent, Curriculum and Instruction',1,null,'o','Oversees what is taught and how. On the district’s chart, the curriculum and instruction directors report here.'],
+ ['cidir','asci','Curriculum and Instruction Directors',16,1341285,'o','Directors and supervisors of instruction (9) and their office staff (7).'],
+ ['cistaff','cidir','Curriculum, Testing and Training Staff',21,1821237,'i','Curriculum specialists (11), early childhood coordinators (4), testing, professional development, virtual academy and instructional technology coordinators, and office staff.'],
+ ['sped','asci','Special Education',36,2468025,'i','Directors and assistant directors (4), coordinators and IEP facilitators (17) and office staff (15). Not on the district’s chart; we place it under Curriculum and Instruction.'],
+ ['appraisal','sped','Pupil Appraisal',50,3407650,'i','Educational diagnosticians (32), psychologists (13) and office staff (5). They test and evaluate students for special education.'],
+ ['therapists','sped','Therapists and Specialists',154,9903665,'i','Speech therapists (121), occupational therapists (18), physical therapists (5), interpreters (9) and an orientation and mobility specialist. Most travel between schools.'],
+ ['stusvc','asci','Student Services',18,1332431,'i','Social workers (15) and the 504, health and safety, and career coordinators. Not on the district’s chart; we place it under Curriculum and Instruction.'],
+ ['asf','supt','Assistant Superintendent, Federal Programs',1,null,'o','Runs the federal grants, like Title I and special education money. The budget pays three assistant superintendents from the General Fund, so this one is likely paid from grants. On the district’s chart, the federal programs directors report here.'],
+ ['fpdir','asf','Federal Programs Directors and Coordinators',8,716184,'o',''],
+ ['grantstaff','fpdir','Grant-Funded Teachers, Aides and Staff',null,9217477,'i','Title I teachers and aides, interventionists and others paid from federal and state grants. They work in schools under the principal day to day. The grant report gives salaries but not position counts.',['principals']],
+ ['ashr','supt','Assistant Superintendent, Human Resources',1,null,'o','Hiring, certification, pay and employee relations. On the district’s chart, the human resources directors report here.'],
+ ['hr','ashr','Human Resources Directors and Staff',16,941998,'o','Directors and supervisors (3), coordinators (2) and office staff (11).'],
+ ['cfo','supt','Chief Financial Officer',2,261083,'o','The CFO and chief accountant. On the district’s chart.'],
+ ['payroll','cfo','Payroll',7,432156,'i',''],
+ ['acct','cfo','Accounting',9,524524,'i',''],
+ ['purch','cfo','Purchasing',4,261775,'i',''],
+ ['print','cfo','Graphic Arts and Printing',8,370172,'i',''],
+ ['audit','cfo','Internal Auditor',1,95767,'i','Internal auditors often report to the board’s audit committee; we couldn’t confirm the line.',['board']],
+ ['cio','supt','Chief of Information Technology',1,147199,'o','On the district’s chart.'],
+ ['itstaff','cio','Technology Staff',50,2728836,'i','Systems analysts (9), operations (5), computer technicians (17), paraprofessional technicians (17) and office staff (2).'],
+ ['constr','supt','Chief of Construction',3,332854,'o','Chief and supervisors of construction. Runs the bond and building projects. On the district’s chart.'],
+ ['constrstaff','constr','Construction Office Staff',2,81357,'i',''],
+ ['trans','supt','Transportation Director',3,270350,'o','Director and assistant directors. On the district’s chart.'],
+ ['transoff','trans','Transportation Office, Fleet and Investigators',15,752413,'i','Office staff (8), fleet managers (2) and investigators (5).'],
+ ['busdrv','trans','Bus Operators',261,10153316,'i','Regular routes. Many own their buses and are paid for mileage and upkeep on top of salary.'],
+ ['busswe','trans','Special Education Bus Operators',87,2992872,'i',''],
+ ['busatt','trans','Special Education Bus Attendants',136,3827605,'i','Ride the special education routes to help students.']
+];
+
+const BY={}, KIDS={}; N.forEach(n=>{ BY[n[0]]=n; (KIDS[n[1]]=KIDS[n[1]]||[]).push(n[0]); });
+const POINTER=new Set(['lunchtech']);
+const COLS=['asa','asci','asf','ashr','cfo','cio','constr','trans','comm','asoffice'];
+const TAG={asa:'Admin.',asci:'Curriculum',asf:'Fed. Programs',ashr:'HR',cfo:'Finance',cio:'Technology',constr:'Construction',trans:'Transportation',comm:'Comms.',asoffice:'Supt.’s Office'};
+const ABBR={"board": "School Board", "supt": "Superintendent", "execasst": "Exec. Asst. to Supt. & Board", "asoffice": "Asst. Supts.’ Office Staff", "comm": "Communications & Ch. 13", "asa": "Asst. Supt., Administration", "asci": "Asst. Supt., Curriculum & Instr.", "asf": "Asst. Supt., Federal Programs", "ashr": "Asst. Supt., Human Resources", "admsup": "Admin. Supervisors & Bldg. Mgr.", "principals": "Principals", "aps": "Asst. Principals", "teachers": "Teachers", "t_elem": "Elementary Teachers", "t_sec": "Middle & High School Teachers", "t_sped": "Special Ed. Teachers", "t_k": "Kindergarten Teachers", "t_gt": "Gifted & Talented Teachers", "t_cte": "Career & Tech. Teachers", "t_pre": "Preschool Teachers", "t_esl": "ESL Teachers", "t_ape": "Adaptive PE Teachers", "t_rotc": "JROTC Instructors", "t_alt": "Alt. Program Teachers", "paras": "Paras & Aides", "counselors": "School Counselors", "librarians": "Librarians", "schoolclerical": "School Office Staff", "custodians": "Custodians", "monitors": "Cafeteria Monitors", "nurses": "School Nurses", "mhp": "Mental-Health Providers", "lunchtech": "Lunchroom Staff (via Food Svcs.)", "altadmin": "Alt. Program Admins.", "childsvc": "Child Welfare & Attendance", "food": "Food Services Dir.", "foodasst": "Food Svcs. Asst. Dirs. & Office", "lunchmgr": "Lunchroom Mgrs.", "lunchasst": "Lunchroom Asst. Mgrs.", "lunchtechs": "Lunchroom Techs.", "maint": "Maintenance & Facilities", "security": "Security Coord. & Officers", "adminoffice": "Admin. Office Staff", "cidir": "C&I Directors", "cistaff": "Curriculum, Testing & Training", "sped": "Special Ed.", "appraisal": "Pupil Appraisal", "therapists": "Therapists & Specialists", "stusvc": "Student Services", "fpdir": "Fed. Programs Dirs. & Coords.", "grantstaff": "Grant-Funded Teachers & Aides", "hr": "HR Directors & Staff", "cfo": "Chief Financial Officer", "payroll": "Payroll", "acct": "Accounting", "purch": "Purchasing", "print": "Graphic Arts & Printing", "audit": "Internal Auditor", "cio": "Chief of IT", "itstaff": "Technology Staff", "constr": "Chief of Construction", "constrstaff": "Construction Office Staff", "trans": "Transportation Dir.", "transoff": "Transp. Office, Fleet & Investigators", "busdrv": "Bus Operators", "busswe": "Special Ed. Bus Operators", "busatt": "Special Ed. Bus Attendants"};
+const SN=id=>ABBR[id]||BY[id][2];
+const ALSO={principals:'Principal',sped:'Special Ed.',maint:'Maintenance',stusvc:'Student Svcs.',lunchmgr:'Lunchroom Mgr.',board:'School Board'};
+const AN=id=>ALSO[id]||SN(id);
+
+const SHORT={asa:'Administration',asci:'Curriculum & Instr.',asf:'Fed. Programs',ashr:'HR',cfo:'Finance',cio:'Technology',constr:'Construction',trans:'Transportation',comm:'Comms.',asoffice:'Supt.’s Office'};
+function deptOf(id){ if(id==='board') return 'Elected'; if(id==='supt') return 'Executive'; if(id==='execasst') return 'Supt.’s Office'; let n=BY[id]; while(n){ if(COLS.includes(n[0])) return TAG[n[0]]; n=n[1]?BY[n[1]]:null; } return ''; }
+const fmtN=v=>v==null?'':(v%1? v.toLocaleString('en-US',{maximumFractionDigits:1}) : v.toLocaleString('en-US'));
+const money=v=>'$'+Math.round(v).toLocaleString('en-US');
+const kidsOf=id=>(KIDS[id]||[]).filter(k=>!(id==='supt'&&k==='execasst'));
+const ORDER={supt:COLS};
+const kidsSorted=id=>ORDER[id]?ORDER[id]:kidsOf(id);
+function own(id){ const n=BY[id]; return (n[3]&&!POINTER.has(id)&&id!=='voters')?n[3]:0; }
+function below(id){ if(id==='teachers') return 0; let s=0; (KIDS[id]||[]).forEach(k=>{ s+=(k==='teachers'?own(k):own(k)+below(k)); }); return s; }
+const ONE='<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="8" r="4.2"/><path d="M3.5 21c.6-4.6 4.1-7.2 8.5-7.2s7.9 2.6 8.5 7.2z"/></svg>';
+const MANY='<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="8.5" cy="8.5" r="3.4"/><circle cx="16.3" cy="7.6" r="2.9" opacity=".65"/><path d="M1.8 20.5c.5-3.8 3.3-6 6.7-6s6.2 2.2 6.7 6z"/><path d="M14.2 14.1c.7-.2 1.4-.3 2.1-.3 3 0 5.4 1.9 5.9 5.3h-5.4c-.5-2-1.4-3.6-2.6-5z" opacity=".65"/></svg>';
+const icon=id=>{ const n=BY[id]; return (n[3]&&n[3]>1)||n[3]==null?MANY:ONE; };
+let path=[], sel=null;
+function chainOf(id){ const c=[]; let n=BY[id]; while(n){ c.push(n[0]); n=n[1]?BY[n[1]]:null; } return c; }
+function card(id){ const n=BY[id]; const b=below(id); const al=Array.isArray(n[7])?n[7]:[]; const k=kidsOf(id).length;
+  const top=id==='board'||id==='supt'; const open=path.includes(id);
+  const cls=['occ']; if(n[5]==='i') cls.push('inf'); if(top) cls.push('top'); if(sel===id) cls.push('sel'); else if(sel && chainOf(sel).includes(id)) cls.push('path');
+  const alsoTxt= id==='asa' ? '<span class="cal note">Includes all 55 schools</span>' : (al.length?`<span class="cal">Also: ${AN(al[0])}</span>`:'<span class="cal"></span>');
+  const m=(lab,val)=>`<span class="${val?'':'na'}">${lab}<b>${val||'—'}</b></span>`;
+  const more= top||!k ? `<span class="cmore none">${top?'':'No jobs under this one'}</span>` : `<span class="cmore">${open?'Close ▲':'Open '+k+(k===1?' box':' boxes')+' ▼'}</span>`;
+  if(G.mob){ cls.push('mob'); const tagTxt=deptOf(id); const alsoM= id==='asa' ? '<em class="note">All 55 schools</em>' : (al.length?`<em>Also: ${AN(al[0])}</em>`:'');
+    const bud=n[4]?(n[4]>=1e6?'$'+(n[4]/1e6).toFixed(1)+'M':'$'+Math.round(n[4]/1e3).toLocaleString('en-US')+'K'):'\u2014';
+    const moreM= top||!k ? `<span class="cmore none">${top?'':'No jobs under this one'}</span>` : `<span class="cmore">${open?'Close \u25B2':'Open '+k+(k===1?' box':' boxes')+' \u25BC'}</span>`;
+    return `<button type="button" class="${cls.join(' ')}" data-id="${id}"${k&&!top?` aria-expanded="${open}"`:''}><span class="cav">${icon(id)}</span><span class="mtl"><span class="cnm">${SN(id)}</span><span class="msub"><b>${tagTxt}</b>${alsoM?' \u00B7 '+alsoM:''}</span></span><span class="mnum"><span><b>${n[3]!=null?fmtN(n[3]):'\u2014'}</b> pos.</span><span><b>${bud}</b></span></span>${moreM}</button>`; }
+  return `<button type="button" class="${cls.join(' ')}" data-id="${id}"${k&&!top?` aria-expanded="${open}"`:''}><span class="chd"><span class="cav">${icon(id)}</span><span class="cdp">${deptOf(id)}</span></span><span class="cnm">${SN(id)}</span>${alsoTxt}<span class="cmt">${m('Positions',n[3]!=null?fmtN(n[3]):'')}${m('Total budget',n[4]?(n[4]>=1e6?'$'+(n[4]/1e6).toFixed(1)+'M':'$'+Math.round(n[4]/1e3).toLocaleString('en-US')+'K'):'')}</span>${more}</button>`; }
+function det(id){ const n=BY[id], p=n[1]?BY[n[1]]:null, al=Array.isArray(n[7])?n[7]:[];
+  return `<div class="ocdet chin" style="margin-left:var(--ind)"><h5>${n[2]}</h5>${n[6]?`<p>${n[6]}</p>`:''}${p?`<p><b>Answers to:</b> ${p[2]} <span class="ctag ${n[5]}">${n[5]==='o'?'district chart':'our reading'}</span></p>`:''}${al.length?`<p><b>Also answers to:</b> ${al.map(a=>BY[a][2]).join(', ')}</p>`:''}</div>`; }
+const can=document.getElementById('occan');
+let G={};
+const NUMW=64;
+function geom(){ const W=can.clientWidth-28; const mobile=W<620; const gap=mobile?10:12; const step=mobile?12:28;
+  const cw= mobile? W-step*5 : Math.min(230, Math.floor((W-step-3*gap)/4));
+  const ms=document.createElement('div'); ms.style.cssText='position:absolute;left:-9999px;top:0;visibility:hidden'; can.appendChild(ms);
+  const tw=mobile? cw-25-24-8-8-NUMW : cw-25; let th=16, ah=0;
+  N.forEach(n=>{ if(n[0]==='voters') return; ms.innerHTML=`<span class="occ" style="display:block;height:auto;width:${cw}px"><span class="cnm" style="display:block;-webkit-line-clamp:unset;width:${tw}px">${SN(n[0])}</span><span class="cal" style="display:block;-webkit-line-clamp:unset;width:${tw}px">${n[0]==='asa'?'Includes all 55 schools':(Array.isArray(n[7])&&n[7].length?'Also: '+AN(n[7][0]):'')}</span></span>`; th=Math.max(th,ms.querySelector('.cnm').offsetHeight); ah=Math.max(ah,ms.querySelector('.cal').offsetHeight); });
+  ms.remove();
+  return mobile? {W,gap,step,cw,th,ah:13,mob:true,chh:Math.max(th+15,34)+16+3+14+3} : {W,gap,step,cw,th,ah,chh:24+th+ah+38+16+16+17+3}; }
+function level(parent,depth){ const ids=kidsSorted(parent); const ind=G.step*(depth+1);
+  const K=Math.max(1,Math.floor((G.W-ind+G.gap)/(G.cw+G.gap)));
+  let h=''; for(let i=0;i<ids.length;i+=K){ const row=ids.slice(i,i+K);
+    h+=`<div class="orow chin" style="margin-left:${ind}px" data-parent="${parent}">${row.map(card).join('')}</div>`;
+    const sid=row.find(x=>x===sel); if(sid) h+=`<div style="--ind:${ind}px">${det(sid)}</div>`;
+    const oid=row.find(x=>x===path[depth]); if(oid && kidsOf(oid).length) h+=level(oid,depth+1); }
+  return h; }
+function render(){
+  G=geom(); can.classList.toggle('mobile',!!G.mob); const nv=document.querySelector('nav.sections'); if(nv) document.documentElement.style.setProperty('--navh',nv.offsetHeight+'px'); can.style.setProperty('--th',G.th+'px'); can.style.setProperty('--ah',G.ah+'px'); can.style.setProperty('--cw',G.cw+'px'); can.style.setProperty('--chh',G.chh+'px'); can.style.setProperty('--gap',G.gap+'px');
+  let h=`<div class="orow top">${card('board')}</div>`;
+  if(sel==='board') h+=`<div style="--ind:0px">${det('board')}</div>`;
+  h+=`<div class="orow top" data-parent="board">${card('supt')}${G.W>=G.cw*2+60?`<span style="width:44px;flex:none"></span>${card('execasst')}`:''}</div>`;
+  if(G.W<G.cw*2+60) h+=`<div class="orow" style="margin-left:${G.step}px" data-parent="supt-side">${card('execasst')}</div>`;
+  if(sel==='supt'||sel==='execasst') h+=`<div style="--ind:0px">${det(sel)}</div>`;
+  h+=level('supt',0);
+  can.innerHTML=h+'<svg class="oclines" id="oclines"></svg>';
+  crumbs(); requestAnimationFrame(lines);
+}
+function rect(el){ const r=el.getBoundingClientRect(), c=can.getBoundingClientRect(); return {l:r.left-c.left,t:r.top-c.top,r:r.right-c.left,b:r.bottom-c.top,cx:(r.left+r.right)/2-c.left,cy:(r.top+r.bottom)/2-c.top}; }
+function lines(){ const svg=document.getElementById('oclines'); if(!svg) return; svg.setAttribute('width',can.scrollWidth); svg.setAttribute('height',can.scrollHeight);
+  let d=''; const P=(cls,s)=>{ d+=`<path class="${cls}" d="${s}"/>`; };
+  const C=id=>can.querySelector(`.occ[data-id="${id}"]`);
+  // board -> superintendent
+  const b=C('board'), s=C('supt'); if(b&&s){ const B=rect(b), S=rect(s); P('',`M${B.l+(G.mob?5:18)} ${B.b} V${S.t}`); }
+  // superintendent -> executive assistant (side)
+  const e=C('execasst'); if(s&&e){ const S=rect(s), E=rect(e); if(Math.abs(E.cy-S.cy)<20) P('side',`M${S.r} ${S.cy} H${E.l}`); else P('side',`M${S.l+(G.mob?5:18)} ${S.b} V${E.t+18} H${E.l}`); }
+  // every open parent -> its children, row by row
+  const parents=['supt'].concat(path.filter(x=>kidsOf(x).length));
+  parents.forEach(pid=>{ const pe=C(pid); if(!pe) return; const PR=rect(pe); const tx=G.mob?PR.l+5:PR.l+18; let lastY=null;
+    const rows=[...can.querySelectorAll(`.orow[data-parent="${pid}"]`)];
+    rows.forEach(row=>{ const cards=[...row.querySelectorAll(':scope > .occ')]; if(!cards.length) return; const R=cards.map(c=>({id:c.dataset.id,...rect(c)}));
+      if(G.mob){ R.forEach(r=>{ const y=r.t+18; P(BY[r.id][5]==='i'?'inf':'',`M${tx} ${y} H${r.l}`); lastY=y; }); return; }
+      const y=R[0].t-12;
+      const allInf=R.every(r=>BY[r.id][5]==='i');
+      P(allInf?'inf':'',`M${tx} ${y} H${R[R.length-1].cx}`);
+      R.forEach(r=>P(BY[r.id][5]==='i'?'inf':'',`M${r.cx} ${y} V${r.t}`)); lastY=y; });
+    if(lastY!=null){ const kids=kidsOf(pid); const allInf=kids.every(k=>BY[k][5]==='i'); P(allInf?'inf':'',`M${tx} ${PR.b} V${lastY}`); }
+  });
+  svg.innerHTML=d; }
+function crumbs(){ const steps=['supt'].concat(path); const nm=s=>s==='supt'?'Superintendent':(COLS.includes(s)?SHORT[s]:SN(s));
+  document.getElementById('occrumb').innerHTML=steps.map((s,i)=>i===steps.length-1?`<span class="cur">${nm(s)}</span>`:`<button type="button" data-crumb="${i}">${nm(s)}</button><i>&rsaquo;</i>`).join('')+(path.length?`<button type="button" class="home" data-crumb="0">Back to the top</button>`:''); }
+function tap(id){ const ch=chainOf(id).reverse(); const i=ch.indexOf('supt'); const below=i>=0?ch.slice(i+1):[];
+  if(id==='board'||id==='supt'||id==='execasst'){ sel=sel===id?null:id; render(); return; }
+  const k=kidsOf(id).length;
+  if(path.includes(id)){ path=below.slice(0,below.indexOf(id)); sel=id; }
+  else { path=k?below:below.slice(0,-1); sel=id; }
+  render(); setTimeout(()=>{ const el=can.querySelector(`.occ[data-id="${id}"]`); if(!el) return; const r=el.getBoundingClientRect(); if(r.top<130||r.top>window.innerHeight*.6) el.scrollIntoView({behavior:'smooth',block:'start'}); },60); }
+document.getElementById('occrumb').addEventListener('click',e=>{ const cb=e.target.closest('[data-crumb]'); if(!cb) return; const i=+cb.dataset.crumb; path=path.slice(0,i); sel=i?path[i-1]:null; render(); });
+can.addEventListener('click',e=>{ const c=e.target.closest('.occ'); if(c) tap(c.dataset.id); });
+let rw=can.clientWidth; window.addEventListener('resize',()=>{ if(Math.abs(can.clientWidth-rw)>4){ rw=can.clientWidth; render(); } else lines(); });
+if(document.fonts&&document.fonts.ready) document.fonts.ready.then(()=>lines());
+render();
 })();
 </script>
 </body></html>
