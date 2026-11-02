@@ -1619,8 +1619,9 @@ draw();
 #chain .ccpanel{ margin-top:14px; background:var(--surface); border:1px solid #9EA6B6; border-radius:8px; padding:12px 0 0; box-shadow:0 2px 8px rgba(16,24,48,.07); }
 #chain .occan{ border-radius:0 0 8px 8px; }
 #chain .cclegend{ display:flex; flex-wrap:wrap; gap:4px 16px; font-size:.8rem; color:var(--muted); padding:0 14px 8px; }
-#chain .cclegend i{ display:inline-block; width:24px; height:0; vertical-align:middle; margin-right:6px; border-top:2px solid #8C95A8; }
-#chain .cclegend i.inf{ border-top:2px dashed var(--gold); }
+#chain .cclegend i{ display:inline-block; width:24px; height:0; vertical-align:middle; margin-right:6px; border-top:2px solid #5F687C; }
+#chain .cclegend i.inf{ border-top:2px dashed #C8890A; }
+#chain .cclegend i.hl{ border-top:3px solid var(--navy); }
 #chain .cclegend em{ font-style:normal; color:#B3261E; font-weight:700; }
 #chain .occrumb{ position:sticky; top:calc(var(--tkh,40px) + var(--navh,46px)); z-index:4; display:flex; flex-wrap:wrap; align-items:center; gap:2px 4px; padding:8px 14px; border-top:1px solid var(--line); border-bottom:1px solid var(--line); background:#F8F9FB; font-size:.86rem; min-height:42px; }
 #chain .occrumb button{ font:inherit; font-weight:700; color:var(--navy); background:none; border:0; padding:2px 4px; border-radius:4px; cursor:pointer; text-decoration:underline; text-underline-offset:2px; }
@@ -1630,9 +1631,11 @@ draw();
 #chain .occrumb .home{ margin-left:auto; text-decoration:none; border:1px solid #9EA6B6; background:#fff; font-size:.8rem; padding:3px 10px; }
 #chain .occan{ position:relative; padding:16px 14px 18px; background:radial-gradient(circle, #CDD2DC 1px, transparent 1.2px) 0 0/18px 18px, #ECEEF2; }
 #chain .oclines{ position:absolute; left:0; top:0; pointer-events:none; overflow:visible; }
-#chain .oclines path{ fill:none; stroke:#8C95A8; stroke-width:2; }
-#chain .oclines path.inf{ stroke:var(--gold); stroke-dasharray:6 4; }
-#chain .oclines path.side{ stroke:var(--gold); stroke-dasharray:6 4; }
+#chain .oclines path{ fill:none; stroke:#5F687C; stroke-width:2; }
+#chain .oclines path.inf{ stroke:#C8890A; stroke-dasharray:6 4; }
+#chain .oclines path.side{ stroke:#C8890A; stroke-dasharray:6 4; }
+#chain .oclines path.hl{ stroke:var(--navy); stroke-width:3.5; stroke-dasharray:none; stroke-linecap:round; }
+#chain .oclines path.hl.inf, #chain .oclines path.hl.side{ stroke-dasharray:7 4; stroke-linecap:butt; }
 #chain .orow{ position:relative; display:flex; gap:var(--gap); margin-top:24px; }
 #chain .orow.top{ margin-top:0; align-items:center; }
 #chain .orow.top + .orow.top{ margin-top:24px; }
@@ -1653,6 +1656,7 @@ draw();
 #chain .mobile .orow{ margin-top:8px; }
 #chain .mobile .orow.top + .orow.top{ margin-top:12px; }
 #chain .mobile .oclines path{ stroke-width:1.5; }
+#chain .mobile .oclines path.hl{ stroke-width:2.75; }
 @media (max-width:700px){ #chain .occrumb{ font-size:.78rem; padding:6px 112px 6px 10px; min-height:36px; } #chain .occrumb .home{ font-size:.74rem; padding:2px 8px; } }
 
 
@@ -1691,11 +1695,11 @@ draw();
   <div id="chain">
     <p>Every kind of job in the district, from the School Board down to the newest hire. Tap a box to open the jobs under it, and keep tapping to go deeper. Only one path stays open at a time, so tapping somewhere new folds up what you had open. The trail at the top shows where you are; tap any step to go back up.</p>
   <div class="ccpanel">
-    <div class="cclegend"><span><i></i>On the district's own org chart</span><span><i class="inf"></i>Our reading of the budget and job postings</span><span><em>Also:</em> also answers to a second boss</span></div>
+    <div class="cclegend"><span><i></i>On the district's own org chart</span><span><i class="inf"></i>Our reading of the budget and job postings</span><span><em>Also:</em> also answers to a second boss</span><span><i class="hl"></i>The chain of command for the box you tapped</span></div>
     <div class="occrumb" id="occrumb"></div>
     <div class="occan" id="occan"></div>
   </div>
-  <p class="fine">Positions and pay are from the district's 2026-27 budget: the General Fund, School Lunch and School Security funds. Counts are budgeted positions, not people, so part-time jobs count as fractions. "Total budget" is what the district budgets in salaries for that group of jobs in 2026-27, before benefits like health insurance and retirement. This is the 30,000-foot view; we will fill in more detail when the district releases the position-by-position payroll data we have requested. The top of the chart comes from the district's organizational chart in its 2025 audited financial report. The district publishes no chart below its directors, so every gold dashed line is our reading of the budget, job titles and job postings. We have asked the district for its current chart and job descriptions, and we will correct any line that's wrong.</p>
+  <p class="fine">Positions and pay are from the district's 2026-27 budget: the General Fund, School Lunch and School Security funds. Counts are budgeted positions, not people, so part-time jobs count as fractions. "Portion of budget" is the part of the district's 2026-27 budget set aside for salaries in that group of jobs, before benefits like health insurance and retirement. Where the budget lumps several jobs into one line, the box says so: the three assistant superintendents paid from the General Fund share one $432,581 line. This is the 30,000-foot view; we will fill in more detail when the district releases the position-by-position payroll data we have requested. The top of the chart comes from the district's organizational chart in its 2025 audited financial report. The district publishes no chart below its directors, so every gold dashed line is our reading of the budget, job titles and job postings. We have asked the district for its current chart and job descriptions, and we will correct any line that's wrong.</p>
 </div>
 </section>
 
@@ -3448,7 +3452,7 @@ const N=[
  ['asoffice','supt','Assistant Superintendents’ Office Staff',2,83314,'i',''],
  ['execasst','supt','Executive Assistant to the Superintendent and Board',1,81656,'i','Paid with the superintendent’s office.'],
  ['comm','supt','Communications and Channel 13',8,517632,'i','Director of Communications, communications staff and the Channel 13 production team. Not on the district’s chart; we place it under the superintendent.'],
- ['asa','supt','Assistant Superintendent, Administration',1,null,'o','The General Fund budgets $432,581 for three assistant superintendents together. On the district’s chart, the administrative supervisors, child welfare and attendance, and food services report here.'],
+ ['asa','supt','Assistant Superintendent, Administration',1,null,'o','The General Fund budgets $432,581 for three assistant superintendents together and doesn’t split it by person. On the district’s chart, the administrative supervisors, child welfare and attendance, and food services report here.'],
  ['admsup','asa','Administrative Supervisors and Building Manager',5,508607,'o','On the district’s chart under Administration. Administrative supervisors oversee groups of schools and their principals.'],
  ['principals','admsup','Principals',55,5555723,'i','One per school. The principal supervises the people who work in the building. School resource officers also work in schools, but they are sheriff’s deputies or city police who answer to their own agency; the district pays for them by contract from the School Security Fund. We place principals under the administrative supervisors.'],
  ['aps','principals','Assistant Principals',92,7846003,'i','Help the principal run the school and share supervision and discipline.'],
@@ -3483,17 +3487,17 @@ const N=[
  ['maint','asa','Maintenance and Facilities',99,4692938,'i','Director and assistant directors (4), office staff (3), foremen (13) and maintenance workers (79). Not on the district’s chart; we place it under Administration.'],
  ['security','asa','Security Coordinator and Officers',3,166442,'i','Paid from the School Security Fund.'],
  ['adminoffice','asa','Administration Office Staff',6,245433,'i',''],
- ['asci','supt','Assistant Superintendent, Curriculum and Instruction',1,null,'o','Oversees what is taught and how. On the district’s chart, the curriculum and instruction directors report here.'],
+ ['asci','supt','Assistant Superintendent, Curriculum and Instruction',1,null,'o','Oversees what is taught and how. The General Fund budgets $432,581 for three assistant superintendents together and doesn’t split it by person. On the district’s chart, the curriculum and instruction directors report here.'],
  ['cidir','asci','Curriculum and Instruction Directors',16,1341285,'o','Directors and supervisors of instruction (9) and their office staff (7).'],
  ['cistaff','cidir','Curriculum, Testing and Training Staff',21,1821237,'i','Curriculum specialists (11), early childhood coordinators (4), testing, professional development, virtual academy and instructional technology coordinators, and office staff.'],
  ['sped','asci','Special Education',36,2468025,'i','Directors and assistant directors (4), coordinators and IEP facilitators (17) and office staff (15). Not on the district’s chart; we place it under Curriculum and Instruction.'],
  ['appraisal','sped','Pupil Appraisal',50,3407650,'i','Educational diagnosticians (32), psychologists (13) and office staff (5). They test and evaluate students for special education.'],
  ['therapists','sped','Therapists and Specialists',154,9903665,'i','Speech therapists (121), occupational therapists (18), physical therapists (5), interpreters (9) and an orientation and mobility specialist. Most travel between schools.'],
  ['stusvc','asci','Student Services',18,1332431,'i','Social workers (15) and the 504, health and safety, and career coordinators. Not on the district’s chart; we place it under Curriculum and Instruction.'],
- ['asf','supt','Assistant Superintendent, Federal Programs',1,null,'o','Runs the federal grants, like Title I and special education money. The budget pays three assistant superintendents from the General Fund, so this one is likely paid from grants. On the district’s chart, the federal programs directors report here.'],
+ ['asf','supt','Assistant Superintendent, Federal Programs',1,null,'o','Runs the federal grants, like Title I and special education money. The budget pays three assistant superintendents from the General Fund, so this one is likely paid from grants; no amount for it appears in the General Fund budget. On the district’s chart, the federal programs directors report here.'],
  ['fpdir','asf','Federal Programs Directors and Coordinators',8,716184,'o',''],
  ['grantstaff','fpdir','Grant-Funded Teachers, Aides and Staff',null,9217477,'i','Title I teachers and aides, interventionists and others paid from federal and state grants. They work in schools under the principal day to day. The grant report gives salaries but not position counts.',['principals']],
- ['ashr','supt','Assistant Superintendent, Human Resources',1,null,'o','Hiring, certification, pay and employee relations. On the district’s chart, the human resources directors report here.'],
+ ['ashr','supt','Assistant Superintendent, Human Resources',1,null,'o','Hiring, certification, pay and employee relations. The General Fund budgets $432,581 for three assistant superintendents together and doesn’t split it by person. On the district’s chart, the human resources directors report here.'],
  ['hr','ashr','Human Resources Directors and Staff',16,941998,'o','Directors and supervisors (3), coordinators (2) and office staff (11).'],
  ['cfo','supt','Chief Financial Officer',2,261083,'o','The CFO and chief accountant. On the district’s chart.'],
  ['payroll','cfo','Payroll',7,432156,'i',''],
@@ -3525,6 +3529,9 @@ const SHORT={asa:'Administration',asci:'Curriculum & Instr.',asf:'Fed. Programs'
 function deptOf(id){ if(id==='board') return 'Elected'; if(id==='supt') return 'Executive'; if(id==='execasst') return 'Supt.’s Office'; let n=BY[id]; while(n){ if(COLS.includes(n[0])) return TAG[n[0]]; n=n[1]?BY[n[1]]:null; } return ''; }
 const fmtN=v=>v==null?'':(v%1? v.toLocaleString('en-US',{maximumFractionDigits:1}) : v.toLocaleString('en-US'));
 const money=v=>'$'+Math.round(v).toLocaleString('en-US');
+const SHARED={asa:1,asci:1,ashr:1};
+const fmtB=v=>v>=1e6?'$'+(v/1e6).toFixed(1)+'M':'$'+Math.round(v/1e3).toLocaleString('en-US')+'K';
+const budTxt=id=>SHARED[id]?'$433K for 3':(BY[id][4]?fmtB(BY[id][4]):'');
 const kidsOf=id=>(KIDS[id]||[]).filter(k=>!(id==='supt'&&k==='execasst'));
 const ORDER={supt:COLS};
 const kidsSorted=id=>ORDER[id]?ORDER[id]:kidsOf(id);
@@ -3542,12 +3549,12 @@ function card(id){ const n=BY[id]; const b=below(id); const al=Array.isArray(n[7
   const m=(lab,val)=>`<span class="${val?'':'na'}">${lab}<b>${val||'—'}</b></span>`;
   const more= top||!k ? `<span class="cmore none">${top?'':'No jobs under this one'}</span>` : `<span class="cmore">${open?'Close ▲':'Open '+k+(k===1?' box':' boxes')+' ▼'}</span>`;
   if(G.mob){ cls.push('mob'); const tagTxt=deptOf(id); const alsoM= id==='asa' ? '<em class="note">All 55 schools</em>' : (al.length?`<em>Also: ${AN(al[0])}</em>`:'');
-    const bud=n[4]?(n[4]>=1e6?'$'+(n[4]/1e6).toFixed(1)+'M':'$'+Math.round(n[4]/1e3).toLocaleString('en-US')+'K'):'\u2014';
+    const bud=budTxt(id)||'\u2014';
     const moreM= top||!k ? `<span class="cmore none">${top?'':'No jobs under this one'}</span>` : `<span class="cmore">${open?'Close \u25B2':'Open '+k+(k===1?' box':' boxes')+' \u25BC'}</span>`;
     return `<button type="button" class="${cls.join(' ')}" data-id="${id}"${k&&!top?` aria-expanded="${open}"`:''}><span class="cav">${icon(id)}</span><span class="mtl"><span class="cnm">${SN(id)}</span><span class="msub"><b>${tagTxt}</b>${alsoM?' \u00B7 '+alsoM:''}</span></span><span class="mnum"><span><b>${n[3]!=null?fmtN(n[3]):'\u2014'}</b> pos.</span><span><b>${bud}</b></span></span>${moreM}</button>`; }
-  return `<button type="button" class="${cls.join(' ')}" data-id="${id}"${k&&!top?` aria-expanded="${open}"`:''}><span class="chd"><span class="cav">${icon(id)}</span><span class="cdp">${deptOf(id)}</span></span><span class="cnm">${SN(id)}</span>${alsoTxt}<span class="cmt">${m('Positions',n[3]!=null?fmtN(n[3]):'')}${m('Total budget',n[4]?(n[4]>=1e6?'$'+(n[4]/1e6).toFixed(1)+'M':'$'+Math.round(n[4]/1e3).toLocaleString('en-US')+'K'):'')}</span>${more}</button>`; }
+  return `<button type="button" class="${cls.join(' ')}" data-id="${id}"${k&&!top?` aria-expanded="${open}"`:''}><span class="chd"><span class="cav">${icon(id)}</span><span class="cdp">${deptOf(id)}</span></span><span class="cnm">${SN(id)}</span>${alsoTxt}<span class="cmt">${m('Positions',n[3]!=null?fmtN(n[3]):'')}${m('Portion of budget',budTxt(id))}</span>${more}</button>`; }
 function det(id){ const n=BY[id], p=n[1]?BY[n[1]]:null, al=Array.isArray(n[7])?n[7]:[];
-  return `<div class="ocdet chin" style="margin-left:var(--ind)"><h5>${n[2]}</h5>${n[6]?`<p>${n[6]}</p>`:''}${p?`<p><b>Answers to:</b> ${p[2]} <span class="ctag ${n[5]}">${n[5]==='o'?'district chart':'our reading'}</span></p>`:''}${al.length?`<p><b>Also answers to:</b> ${al.map(a=>BY[a][2]).join(', ')}</p>`:''}</div>`; }
+  return `<div class="ocdet chin" data-for="${id}" style="margin-left:var(--ind)"><h5>${n[2]}</h5>${n[6]?`<p>${n[6]}</p>`:''}${p?`<p><b>Answers to:</b> ${p[2]} <span class="ctag ${n[5]}">${n[5]==='o'?'district chart':'our reading'}</span></p>`:''}${al.length?`<p><b>Also answers to:</b> ${al.map(a=>BY[a][2]).join(', ')}</p>`:''}</div>`; }
 const can=document.getElementById('occan');
 let G={};
 const NUMW=64;
@@ -3574,29 +3581,42 @@ function render(){
   if(sel==='supt'||sel==='execasst') h+=`<div style="--ind:0px">${det(sel)}</div>`;
   h+=level('supt',0);
   can.innerHTML=h+'<svg class="oclines" id="oclines"></svg>';
-  crumbs(); requestAnimationFrame(lines);
+  placeDet(); crumbs(); requestAnimationFrame(lines);
 }
+// Move the pop-up card beside the line that drops through it, so the line stays in view
+function placeDet(){ const d=can.querySelector('.ocdet'); if(!d) return; const C=x=>can.querySelector(`.occ[data-id="${x}"]`);
+  const cr=can.getBoundingClientRect(), off=G.mob?5:18, gap=G.mob?10:16, right=can.clientWidth-14;
+  const dt=d.getBoundingClientRect().top-cr.top, base=d.getBoundingClientRect().left-cr.left; const xs=[];
+  ['board','supt'].concat(path).forEach(A=>{ const el=C(A); if(!el) return; const R=el.getBoundingClientRect(); let end;
+    if(A==='board'){ const s=C('supt'); end=s?s.getBoundingClientRect().top-cr.top:0; }
+    else { const rows=can.querySelectorAll(`.orow[data-parent="${A}"]`); if(!rows.length) return; end=rows[rows.length-1].getBoundingClientRect().top-cr.top; }
+    if(dt>R.bottom-cr.top && dt<end){ const x=R.left-cr.left+off; if(x>base-1) xs.push(x); } });
+  if(!xs.length) return; const m=Math.max(...xs), n=Math.min(...xs);
+  const rs=right-(m+gap), ls=n-gap-base;
+  if(rs>=ls||rs>=360){ d.style.marginLeft=(parseFloat(getComputedStyle(d).marginLeft)+(m+gap-base))+'px'; d.style.maxWidth=Math.min(560,rs)+'px'; }
+  else d.style.maxWidth=Math.min(560,ls)+'px'; }
 function rect(el){ const r=el.getBoundingClientRect(), c=can.getBoundingClientRect(); return {l:r.left-c.left,t:r.top-c.top,r:r.right-c.left,b:r.bottom-c.top,cx:(r.left+r.right)/2-c.left,cy:(r.top+r.bottom)/2-c.top}; }
 function lines(){ const svg=document.getElementById('oclines'); if(!svg) return; svg.setAttribute('width',can.scrollWidth); svg.setAttribute('height',can.scrollHeight);
-  let d=''; const P=(cls,s)=>{ d+=`<path class="${cls}" d="${s}"/>`; };
+  let d='', hd=''; const P=(cls,s)=>{ d+=`<path class="${cls}" d="${s}"/>`; }; const H=(cls,s)=>{ hd+=`<path class="hl ${cls}" d="${s}"/>`; };
+  const hl=new Set(sel?chainOf(sel):[]);
   const C=id=>can.querySelector(`.occ[data-id="${id}"]`);
   // board -> superintendent
-  const b=C('board'), s=C('supt'); if(b&&s){ const B=rect(b), S=rect(s); P('',`M${B.l+(G.mob?5:18)} ${B.b} V${S.t}`); }
+  const b=C('board'), s=C('supt'); if(b&&s){ const B=rect(b), S=rect(s); P('',`M${B.l+(G.mob?5:18)} ${B.b} V${S.t}`); if(sel&&sel!=='board') H('',`M${B.l+(G.mob?5:18)} ${B.b} V${S.t}`); }
   // superintendent -> executive assistant (side)
-  const e=C('execasst'); if(s&&e){ const S=rect(s), E=rect(e); if(Math.abs(E.cy-S.cy)<20) P('side',`M${S.r} ${S.cy} H${E.l}`); else P('side',`M${S.l+(G.mob?5:18)} ${S.b} V${E.t+18} H${E.l}`); }
+  const e=C('execasst'); if(s&&e){ const S=rect(s), E=rect(e); const sp=Math.abs(E.cy-S.cy)<20?`M${S.r} ${S.cy} H${E.l}`:`M${S.l+(G.mob?5:18)} ${S.b} V${E.t+18} H${E.l}`; P('side',sp); if(sel==='execasst') H('side',sp); }
   // every open parent -> its children, row by row
   const parents=['supt'].concat(path.filter(x=>kidsOf(x).length));
   parents.forEach(pid=>{ const pe=C(pid); if(!pe) return; const PR=rect(pe); const tx=G.mob?PR.l+5:PR.l+18; let lastY=null;
     const rows=[...can.querySelectorAll(`.orow[data-parent="${pid}"]`)];
     rows.forEach(row=>{ const cards=[...row.querySelectorAll(':scope > .occ')]; if(!cards.length) return; const R=cards.map(c=>({id:c.dataset.id,...rect(c)}));
-      if(G.mob){ R.forEach(r=>{ const y=r.t+18; P(BY[r.id][5]==='i'?'inf':'',`M${tx} ${y} H${r.l}`); lastY=y; }); return; }
+      if(G.mob){ R.forEach(r=>{ const y=r.t+18; const ty=BY[r.id][5]==='i'?'inf':''; P(ty,`M${tx} ${y} H${r.l}`); if(hl.has(r.id)) H(ty,`M${tx} ${PR.b} V${y} H${r.l}`); lastY=y; }); return; }
       const y=R[0].t-12;
       const allInf=R.every(r=>BY[r.id][5]==='i');
       P(allInf?'inf':'',`M${tx} ${y} H${R[R.length-1].cx}`);
-      R.forEach(r=>P(BY[r.id][5]==='i'?'inf':'',`M${r.cx} ${y} V${r.t}`)); lastY=y; });
+      R.forEach(r=>{ const ty=BY[r.id][5]==='i'?'inf':''; P(ty,`M${r.cx} ${y} V${r.t}`); if(hl.has(r.id)) H(ty,`M${tx} ${PR.b} V${y} H${r.cx} V${r.t}`); }); lastY=y; });
     if(lastY!=null){ const kids=kidsOf(pid); const allInf=kids.every(k=>BY[k][5]==='i'); P(allInf?'inf':'',`M${tx} ${PR.b} V${lastY}`); }
   });
-  svg.innerHTML=d; }
+  svg.innerHTML=d+hd; }
 function crumbs(){ const steps=['supt'].concat(path); const nm=s=>s==='supt'?'Superintendent':(COLS.includes(s)?SHORT[s]:SN(s));
   document.getElementById('occrumb').innerHTML=steps.map((s,i)=>i===steps.length-1?`<span class="cur">${nm(s)}</span>`:`<button type="button" data-crumb="${i}">${nm(s)}</button><i>&rsaquo;</i>`).join('')+(path.length?`<button type="button" class="home" data-crumb="0">Back to the top</button>`:''); }
 function tap(id){ const ch=chainOf(id).reverse(); const i=ch.indexOf('supt'); const below=i>=0?ch.slice(i+1):[];
