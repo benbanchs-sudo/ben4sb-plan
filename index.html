@@ -935,29 +935,36 @@ table.blines thead th small.thsub{ margin-top:2px; }
 #living .pill{ display:inline-flex; flex-direction:column; align-items:center; justify-content:center; width:9.2em; min-height:2.9em; border-radius:6px; padding:3px 6px; line-height:1.15; text-align:center; font-weight:700; font-size:.88rem; }
 #living .pill small{ display:block; font-weight:600; font-size:.74rem; opacity:.85; }
 #living .pill.r{ background:#F9D6D2; color:#8A1C12; } #living .pill.o{ background:#FBE1CF; color:#8A3510; } #living .pill.y{ background:#FBF0C9; color:#6B4E00; } #living .pill.g{ background:#DCEFE2; color:#1D5B33; } #living .pill.n{ background:var(--zebra); color:var(--muted); border:1px dashed var(--line); }
-/* market table */
-#living table.mkt td, #living table.mkt th{ vertical-align:middle; padding:8px; }
-#living table.mkt th{ white-space:normal; line-height:1.15; }
-#living table.mkt thead tr:first-child th[colspan]{ text-align:center; border-bottom:1px solid rgba(255,255,255,.25); }
-#living table.mkt td:first-child{ min-width:11em; }
-#living td small.sub{ display:block; color:var(--muted); font-size:.78rem; line-height:1.25; font-weight:400; margin-top:1px; }
+/* market table: three levels per job, one area at a time */
+#living .lvarea{ display:flex; flex-wrap:wrap; align-items:center; gap:6px 12px; margin:10px 0 0; }
+#living .lvarea label{ font-family:var(--display); font-weight:700; text-transform:uppercase; letter-spacing:.05em; font-size:.85rem; color:var(--head); white-space:nowrap; }
+#living .lvarea select{ width:auto; min-width:15em; }
+#living table.mkt th, #living table.mkt td{ white-space:nowrap; vertical-align:middle; padding:7px 10px; }
+#living table.mkt tbody{ border-top:2px solid var(--line); }
+#living table.mkt tbody:nth-of-type(even) td{ background:var(--zebra); }
+#living table.mkt tbody tr:not(:first-child) td{ border-top:1px dashed var(--line); }
+#living table.mkt td.job{ border-top:0; }
+#living td small.sub, #living td small.lvl{ display:block; color:var(--muted); font-size:.78rem; line-height:1.25; font-weight:400; margin-top:1px; white-space:nowrap; }
 /* question bar */
 #living .lvq{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px 16px; background:var(--surface); border:1px solid var(--line); border-top:3px solid var(--navy); border-radius:8px; padding:12px 14px; margin:12px 0 10px; }
 #living .lvq label{ display:block; font-family:var(--display); font-weight:700; text-transform:uppercase; letter-spacing:.05em; font-size:.82rem; color:var(--head); margin:0 0 5px; }
-#living .lvq select{ display:block; width:100%; height:40px; font:inherit; font-size:.98rem; color:var(--ink); background-color:var(--surface); border:2px solid var(--navy); border-radius:6px; padding:0 34px 0 10px; cursor:pointer; -webkit-appearance:none; appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%2316244F' stroke-width='1.6'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 12px center; }
-#living .lvq select:focus-visible{ outline:3px solid var(--gold); outline-offset:1px; }
+#living .lvq select, #living .lvarea select{ display:block; width:100%; height:40px; font:inherit; font-size:.98rem; color:var(--ink); background-color:var(--surface); border:2px solid var(--navy); border-radius:6px; padding:0 34px 0 10px; cursor:pointer; -webkit-appearance:none; appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%2316244F' stroke-width='1.6'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 12px center; }
+#living .lvq select:focus-visible, #living .lvarea select:focus-visible{ outline:3px solid var(--gold); outline-offset:1px; }
+#living .lvarea select{ width:auto; min-width:16em; max-width:100%; }
 @media (max-width:560px){ #living .lvq{ grid-template-columns:1fr; } }
 #living .lvsum{ font-size:1.05rem; margin:4px 0 10px; }
 /* program key and chips: six boxes, same order, same size everywhere */
 #living .pkey{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; margin:8px 0 12px; }
-#living .pkey > div{ display:grid; grid-template-columns:6.4em minmax(0,1fr); gap:8px; align-items:center; background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:7px 9px; }
+#living .pkey > div{ display:flex; flex-direction:column; gap:6px; background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:9px 10px; }
 #living .pkey .pd{ font-size:.82rem; color:var(--muted); line-height:1.3; }
-@media (max-width:720px){ #living .pkey{ grid-template-columns:repeat(2,minmax(0,1fr)); } } @media (max-width:480px){ #living .pkey{ grid-template-columns:1fr; } }
-#living .chip{ display:flex; align-items:center; justify-content:center; height:2.6em; border-radius:5px; font-size:.76rem; font-weight:700; line-height:1.1; text-align:center; padding:0 3px; background:var(--navy); color:#fff; }
-#living .chips6{ display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:4px; min-width:31em; }
-#living .chips6 .chip.off{ background:transparent; color:var(--muted); border:1px dashed var(--line); font-weight:600; opacity:.7; }
+@media (max-width:720px){ #living .pkey{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
+#living .chip{ display:flex; align-items:center; justify-content:center; height:2em; border-radius:5px; font-size:.8rem; font-weight:700; line-height:1; text-align:center; padding:0 4px; white-space:nowrap; background:var(--pc,var(--navy)); color:#fff; }
+#living .pkey .chip{ width:100%; max-width:11em; }
+#living .c1{ --pc:#1F5FA8; } #living .c2{ --pc:#2E7D32; } #living .c3{ --pc:#6A3FA0; } #living .c4{ --pc:#B5520F; } #living .c5{ --pc:#A0306A; } #living .c6{ --pc:#0E7C86; }
+#living .chips6{ display:grid; grid-template-columns:repeat(3,minmax(7.4em,1fr)); gap:4px; }
+#living .chips6 .chip.off{ background:transparent; color:var(--muted); border:1px dashed #B9BECA; font-weight:600; }
 #living table.hh td, #living table.hh th{ vertical-align:middle; padding:8px; }
-#living table.hh th{ white-space:normal; line-height:1.15; }
+#living table.hh th{ white-space:nowrap; } #living table.hh td{ white-space:nowrap; }
 #living table.hh td:first-child{ min-width:9em; }
 @media (max-width:640px){
   #living table.lvt thead{ display:none; }
@@ -968,7 +975,12 @@ table.blines thead th small.thsub{ margin-top:2px; }
   #living table.lvt td:first-child{ grid-column:1/-1; min-width:0; }
   #living table.lvt td.wide{ grid-column:1/-1; }
   #living table.lvt td[data-l]::before{ content:attr(data-l); display:block; font-family:var(--display); font-weight:700; font-size:.68rem; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); margin-bottom:2px; }
-  #living .chips6{ grid-template-columns:repeat(3,minmax(0,1fr)); min-width:0; }
+  #living .chips6{ grid-template-columns:repeat(3,minmax(0,1fr)); }
+  #living table.mkt tbody{ display:block; } #living table.mkt td{ white-space:normal; }
+  #living table.mkt tr{ grid-template-columns:repeat(3,minmax(0,1fr)); }
+  #living table.mkt td.lvc{ grid-column:1/-1; } #living table.mkt td.job{ grid-column:1/-1; font-size:1rem; }
+  #living .lvarea select{ width:100%; min-width:0; }
+  #living table.mkt .pill{ width:100%; max-width:9.2em; }
 }
 </style>
 <div class="part" id="living">
@@ -981,11 +993,12 @@ table.blines thead th small.thsub{ margin-top:2px; }
   <div class="howto">
     <h5>How to read this table</h5>
     <ul>
-      <li>For each district job, we found the closest job the U.S. Department of Labor tracks, and what the <b>typical worker</b> in that job earns. Typical means the middle worker: half earn more, half earn less. It counts every employer, not just schools.</li>
-      <li><b>In St. Tammany</b> means our parish alone. The Labor Department now tracks St. Tammany as its own area.</li>
-      <li>The last column compares the district&rsquo;s <b>starting pay</b> with the typical St. Tammany worker. &ldquo;Below&rdquo; means the district starts new hires under the local going rate.</li>
+      <li>For each district job, we found the closest job the U.S. Department of Labor tracks. The Labor Department doesn&rsquo;t report pay by years on the job, so we compare each step of the district&rsquo;s scale with the matching part of the local pay range:</li>
+      <li><b>Starting pay</b> vs. the <b>lowest-paid 10%</b> of workers in that job, where most newcomers sit. <b>Mid-career</b> (the middle of the district&rsquo;s scale) vs. the <b>middle worker</b>: half earn more, half earn less. <b>Top of the scale</b> vs. the <b>highest-paid 10%</b>.</li>
+      <li>The figures count every employer, not just schools. Pick the area to compare with; St. Tammany means our parish alone.</li>
     </ul>
   </div>
+  <div class="lvarea"><label for="lvareasel">Compare with workers in</label><select id="lvareasel"><option value="st">St. Tammany (our parish)</option><option value="no">The New Orleans area</option><option value="la">All of Louisiana</option></select></div>
   <div class="tbl"><table class="lvt mkt" id="lvmkt"></table></div>
   <p class="fine" id="lvmktnote"></p>
 
@@ -994,8 +1007,8 @@ table.blines thead th small.thsub{ margin-top:2px; }
     <h5>How to read this table</h5>
     <ul>
       <li>Answer the two questions below. Every row then shows one district job&rsquo;s yearly pay as if it were the family&rsquo;s <b>only income</b>.</li>
-      <li><b>Compared with the poverty line</b> uses the government&rsquo;s 2026 poverty line for that size family. &ldquo;98% of the line&rdquo; means the paycheck falls just short of it.</li>
-      <li>Each program has an income limit. A <b>filled box</b> means a family living on that paycheck is under the limit. An empty box means it earns too much for that program.</li>
+      <li><b>vs. poverty line</b> compares the paycheck with the government&rsquo;s 2026 poverty line for that size family. &ldquo;98% of the line&rdquo; means the paycheck falls just short of it.</li>
+      <li>Each program has an income limit. A <b>colored box</b> means a family living on that paycheck is under the limit. A gray, empty box means it earns too much for that program.</li>
     </ul>
   </div>
   <div class="pkey" id="lvkey"></div>
@@ -1030,19 +1043,20 @@ const PROG=[
  {s:'WIC',kids:1,d:'Healthy food for pregnant women and children under 5. Limit: 185% of the line.',ok:(p)=>p<=185},
  {s:'Child care',kids:1,d:'Help paying for child care. Limit: 85% of Louisiana’s median income (published for families of 3 and 4).',ok:(p,v,cc)=>cc? v<=cc : false}
 ];
-/* District jobs (2026-27 salary schedules) matched to Labor Department occupations. Medians: BLS OEWS May 2025, via O*NET OnLine.
-   st = Slidell-Mandeville-Covington (St. Tammany), no = New Orleans-Metairie, la = Louisiana. hourly = BLS turns an hourly rate into a full-time, year-round figure. */
+/* District jobs (2026-27 salary schedules) matched to Labor Department occupations. BLS OEWS May 2025 via O*NET OnLine:
+   [10th percentile, median, 90th percentile] annual pay. st = Slidell-Mandeville-Covington (St. Tammany), no = New Orleans-Metairie, la = Louisiana.
+   hourly = BLS turns an hourly rate into a full-time, year-round figure. */
 const MKT=[
- {code:'Teacher, bachelor',label:'Teacher',sub:'Bachelor’s degree',occ:'elementary school teachers',la:58770,no:60350,st:59850},
- {code:'A-09',label:'Classroom paraprofessional',sub:'Pay grade A-09',occ:'teaching assistants',la:27400,no:28560,st:28330},
- {code:'B-02',label:'Bus operator',sub:'Pay grade B-02',occ:'school bus drivers',la:29450,no:47570,st:33620,hourly:1},
- {code:'L-12',label:'Lunch technician',sub:'Pay grade L-12',occ:'school and institution cooks',la:25490,no:29370,st:30410,hourly:1},
- {code:'J-08',label:'Custodian, 8 hours',sub:'Pay grade J-08',occ:'janitors',la:28930,no:30020,st:29620},
- {code:'S-04',label:'School clerk',sub:'Pay grade S-04',occ:'office clerks',la:32480,no:33860,st:31760,hourly:1},
- {code:'S-05',label:'School secretary',sub:'Pay grade S-05',occ:'secretaries',la:38790,no:42830,st:37660,hourly:1},
- {code:'C-02',label:'Clerk typist, central office',sub:'Pay grade C-02',occ:'office clerks',la:32480,no:33860,st:31760},
- {code:'M-01',label:'Maintenance worker',sub:'Pay grade M-01',occ:'maintenance and repair workers',la:43960,no:45260,st:38940},
- {code:'M-08',label:'Licensed skilled trade',sub:'Pay grade M-08',occ:'electricians',la:61540,no:62490,st:56670}
+ {code:'Teacher, bachelor',label:'Teacher',sub:'Bachelor\u2019s degree',occ:'elementary school teachers',st:[51200,59850,71940],no:[47010,60350,75550],la:[46680,58770,76380]},
+ {code:'A-09',label:'Classroom paraprofessional',sub:'A-09',occ:'teaching assistants',st:[28330,28330,33620],no:[22860,28560,38150],la:[20680,27400,38620]},
+ {code:'B-02',label:'Bus operator',sub:'B-02',occ:'school bus drivers',st:[29770,33620,33620],no:[28000,47570,55310],la:[21000,29450,50750],hourly:1},
+ {code:'L-12',label:'Lunch technician',sub:'L-12',occ:'school and institution cooks',st:[24410,30410,36900],no:[21610,29370,40600],la:[19250,25490,36200],hourly:1},
+ {code:'J-08',label:'Custodian, 8 hours',sub:'J-08',occ:'janitors',st:[22290,29620,41890],no:[22880,30020,41600],la:[21230,28930,39830]},
+ {code:'S-04',label:'School clerk',sub:'S-04',occ:'office clerks',st:[20860,31760,48510],no:[21540,33860,51650],la:[20920,32480,49520],hourly:1},
+ {code:'S-05',label:'School secretary',sub:'S-05',occ:'secretaries',st:[28920,37660,54990],no:[28820,42830,60210],la:[26680,38790,56340],hourly:1},
+ {code:'C-02',label:'Clerk typist, central office',sub:'C-02',occ:'office clerks',st:[20860,31760,48510],no:[21540,33860,51650],la:[20920,32480,49520]},
+ {code:'M-01',label:'Maintenance worker',sub:'M-01',occ:'maintenance and repair workers',st:[27060,38940,60440],no:[29840,45260,72340],la:[28110,43960,75880]},
+ {code:'M-08',label:'Licensed skilled trade',sub:'M-08',occ:'electricians',st:[38470,56670,75670],no:[38990,62490,82530],la:[38750,61540,81810]}
 ];
 const HHJOBS=[['Teacher, bachelor','Teacher','Bachelor’s degree'],['A-09','Classroom paraprofessional','A-09'],['B-02','Bus operator','B-02'],['B-03','Bus attendant','B-03'],['L-12','Lunch technician','L-12'],['J-07','Custodian, 7 hours','J-07'],['J-08','Custodian, 8 hours','J-08'],['S-04','School clerk','S-04'],['C-02','Clerk typist, central office','C-02'],['M-01','Maintenance worker','M-01'],['M-08','Licensed skilled trade','M-08']];
 const $=n=>'$'+Math.round(n).toLocaleString('en-US');
@@ -1058,21 +1072,26 @@ document.getElementById('lvtiles').innerHTML=[
 ].map(t=>`<div role="listitem"><div class="n">${t[0]}</div><div class="l">${t[1]}</div><div class="d">${t[2]}</div></div>`).join('');
 
 /* market table */
-(function(){
-  let h=`<thead><tr><th rowspan="2">Job</th><th class="num" colspan="2">District pay</th><th class="num" colspan="3">What a typical worker in this kind of job earns</th><th class="num" rowspan="2">District starting pay vs. St. Tammany</th></tr><tr><th class="num">Starts at</th><th class="num">Tops out at</th><th class="num">In St. Tammany</th><th class="num">New Orleans area</th><th class="num">Louisiana</th></tr></thead><tbody>`;
-  MKT.forEach(m=>{ const p=pay(m.code); if(!p) return;
-    const g=Math.round((p.start/m.st-1)*100);
-    const pill=m.hourly&&p.days<261?'<span class="pill n">Can&rsquo;t compare<small>see note *</small></span>':g<0?`<span class="pill r">${-g}% below</span>`:g>0?`<span class="pill g">${g}% above</span>`:'<span class="pill y">About even</span>';
-    h+=`<tr><td><b>${m.label}</b><small class="sub">${m.sub} &middot; ${yearTxt(p.days)}</small><small class="sub">Compared with ${m.occ}</small></td>`+
-      `<td class="num" data-l="District start">${$(p.start)}</td><td class="num" data-l="District top">${$(p.top)}</td>`+
-      `<td class="num" data-l="Typical, St. Tammany"><b>${$(m.st)}</b></td><td class="num" data-l="Typical, New Orleans area">${$(m.no)}</td><td class="num" data-l="Typical, Louisiana">${$(m.la)}</td>`+
-      `<td class="num wide" data-l="District starting pay vs. St. Tammany">${pill}</td></tr>`; });
-  document.getElementById('lvmkt').innerHTML=h+'</tbody>';
-  document.getElementById('lvmktnote').innerHTML='<b>* Why some rows can&rsquo;t be compared:</b> for jobs paid by the hour, the Labor Department figure assumes someone working full time all year, about 2,080 hours. These district jobs are paid only for the school year, and the district doesn&rsquo;t publish their daily hours, so putting the two side by side would mostly show the shorter calendar, not the pay rate. Teachers and teaching assistants are reported for the school year, so those rows compare fairly. For all jobs together, the average St. Tammany job paid <b>$59,351</b> in 2024. District pay is base pay from the 2026-27 salary schedules (new teachers start at Level 2, support staff at Level 0; the top is Level 45). Sources: U.S. Bureau of Labor Statistics, Occupational Employment and Wage Statistics, May 2025, and Quarterly Census of Employment and Wages, 2024.';
-})();
+const AREAS={st:'St. Tammany',no:'New Orleans area',la:'Louisiana'};
+const LVLS=[['start','Starting pay','vs. lowest-paid 10%',0],['mid','Mid-career','vs. middle worker',1],['top','Top of the scale','vs. highest-paid 10%',2]];
+function dpill(d,m,nc){ if(nc) return '<span class="pill n">Can&rsquo;t compare<small>see note *</small></span>'; const g=Math.round((d/m-1)*100);
+  return Math.abs(g)<=1?'<span class="pill y">About even</span>':g<0?`<span class="pill r">${-g}% below</span>`:`<span class="pill g">${g}% above</span>`; }
+function renderMkt(){
+  const ar=document.getElementById('lvareasel').value, an=AREAS[ar];
+  let h=`<thead><tr><th>Job</th><th>Pay level</th><th class="num">District pay</th><th class="num">${an} pay</th><th class="num">Difference</th></tr></thead>`;
+  MKT.forEach(m=>{ const p=pay(m.code); if(!p) return; const nc=m.hourly&&p.days<261;
+    h+='<tbody>';
+    LVLS.forEach((L,i)=>{ const d=p[L[0]], mv=m[ar][L[3]];
+      h+='<tr>'+(i===0?`<td class="job" rowspan="3"><b>${m.label}</b><small class="sub">${/^[A-Z]-?\d/.test(m.sub)?'Pay grade '+m.sub:m.sub} &middot; ${p.days<261?p.days+' days':'Year-round'}</small><small class="sub">vs. ${m.occ}</small></td>`:'')+
+        `<td class="lvc"><b>${L[1]}</b><small class="lvl">${L[2]}</small></td><td class="num" data-l="District">${$(d)}</td><td class="num" data-l="${an}">${$(mv)}</td><td class="num" data-l="Difference">${dpill(d,mv,nc)}</td></tr>`; });
+    h+='</tbody>'; });
+  document.getElementById('lvmkt').innerHTML=h;
+}
+document.getElementById('lvareasel').onchange=renderMkt; renderMkt();
+document.getElementById('lvmktnote').innerHTML='<b>* Why some jobs can&rsquo;t be compared:</b> for jobs paid by the hour, the Labor Department figure assumes someone working full time all year, about 2,080 hours. These district jobs are paid only for the school year, and the district doesn&rsquo;t publish their daily hours, so a side-by-side would mostly show the shorter calendar, not the pay rate. Teachers and teaching assistants are reported for the school year, so those rows compare fairly. <b>Why some St. Tammany figures repeat:</b> for teachers, aides and bus drivers, the school district is likely most of the local market, so several points of the St. Tammany range land on the same district pay step. For all jobs together, the average St. Tammany job paid <b>$59,351</b> in 2024. District pay is base pay from the 2026-27 salary schedules: starting pay is Level 0 for support staff and the Level 2 placement for new teachers, mid-career is the middle of the scale, and the top is Level 45. Sources: U.S. Bureau of Labor Statistics, Occupational Employment and Wage Statistics, May 2025 (via O*NET OnLine), and Quarterly Census of Employment and Wages, 2024.';
 
 /* program key */
-document.getElementById('lvkey').innerHTML=PROG.map(p=>`<div><span class="chip">${p.s}</span><span class="pd">${p.d}</span></div>`).join('');
+document.getElementById('lvkey').innerHTML=PROG.map((p,i)=>`<div><span class="chip c${i+1}">${p.s}</span><span class="pd">${p.d}</span></div>`).join('');
 
 /* family table */
 const hs=document.getElementById('lvhhsel'), ps=document.getElementById('lvptsel');
@@ -1086,15 +1105,15 @@ function pill(pct){ const t=Math.round(pct);
 function render(){
   const hh=HH.find(h=>h.k===hs.value), pt=PTS.find(p=>p[0]===ps.value), fpl=FPL[hh.size], al=ALICE[hh.size], cc=CCAP[hh.size];
   let under=0, any=0, below=0, n=0;
-  let h=`<thead><tr><th>Job</th><th class="num">Yearly pay</th><th>Compared with the poverty line</th><th>Would this family qualify? (filled box = yes)</th></tr></thead><tbody>`;
+  let h=`<thead><tr><th>Job</th><th class="num">Yearly pay</th><th>vs. poverty line</th><th>Qualifies for (colored box = yes)</th></tr></thead><tbody>`;
   HHJOBS.forEach(([code,label,sub])=>{ const p=pay(code); if(!p) return; n++;
     const v=p[pt[0]], pct=v/fpl*100;
     if(al && v<al) under++; if(pct<100) below++;
     let q=0;
-    const chips=PROG.map(g=>{ const yes=(!g.kids||hh.kids) && g.ok(pct,v,cc); if(yes) q++; return `<span class="chip${yes?'':' off'}" aria-label="${g.s}: ${yes?'qualifies':'does not qualify'}">${g.s}</span>`; }).join('');
+    const chips=PROG.map((g,i)=>{ const yes=(!g.kids||hh.kids) && g.ok(pct,v,cc); if(yes) q++; return `<span class="chip ${yes?'c'+(i+1):'off'}" aria-label="${g.s}: ${yes?'qualifies':'does not qualify'}">${g.s}</span>`; }).join('');
     if(q) any++;
-    h+=`<tr><td><b>${label}</b><small class="sub">${/^[A-Z]-?\d/.test(sub)?'Pay grade '+sub:sub} &middot; ${yearTxt(p.days)}</small></td><td class="num" data-l="Yearly pay"><b>${$(v)}</b></td>`+
-      `<td data-l="Compared with the poverty line">${pill(pct)}</td><td class="wide" data-l="Would this family qualify? (filled box = yes)"><div class="chips6">${chips}</div></td></tr>`; });
+    h+=`<tr><td><b>${label}</b><small class="sub">${/^[A-Z]-?\d/.test(sub)?'Pay grade '+sub:sub} &middot; ${p.days<261?p.days+' days':'Year-round'}</small></td><td class="num" data-l="Yearly pay"><b>${$(v)}</b></td>`+
+      `<td data-l="vs. poverty line">${pill(pct)}</td><td class="wide" data-l="Qualifies for (colored box = yes)"><div class="chips6">${chips}</div></td></tr>`; });
   document.getElementById('lvhht').innerHTML=h+'</tbody>';
   let s=`For ${hh.s} earning what ${pt[2]} makes, the 2026 poverty line is <b>${$(fpl)}</b>. `;
   if(below) s+=`<b>${below} of these ${n} jobs</b> pay less than that. `;
