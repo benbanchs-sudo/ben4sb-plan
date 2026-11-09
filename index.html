@@ -939,11 +939,11 @@ table.blines thead th small.thsub{ margin-top:2px; }
 #living .lvarea{ display:flex; flex-wrap:wrap; align-items:center; gap:6px 12px; margin:10px 0 0; }
 #living .lvarea label{ font-family:var(--display); font-weight:700; text-transform:uppercase; letter-spacing:.05em; font-size:.85rem; color:var(--head); white-space:nowrap; }
 #living .lvarea select{ width:auto; min-width:15em; }
-#living table.mkt th, #living table.mkt td{ white-space:nowrap; vertical-align:middle; padding:7px 10px; }
+#living table.mkt th, #living table.mkt td{ white-space:nowrap; vertical-align:middle; padding:7px 5px; }
 #living table.mkt tbody{ border-top:2px solid var(--line); }
 
 #living table.mkt tbody tr:not(:first-child) td{ border-top:1px dashed var(--line); }
-#living table.mkt tr.jrow td{ background:var(--tint) !important; border-top:0; padding:6px 10px; } #living table.mkt tr.jrow b{ font-family:var(--display); font-size:1.05rem; letter-spacing:.02em; color:var(--head); } #living .jsub{ color:var(--muted); font-size:.8rem; margin-left:10px; white-space:nowrap; }
+#living table.mkt tr.jrow td{ background:var(--tint) !important; border-top:0; padding:6px 10px; } #living table.mkt tr.jrow b{ font-family:var(--display); font-size:1.05rem; letter-spacing:.02em; color:var(--head); } #living .jsub{ display:block; color:var(--muted); font-size:.8rem; margin:1px 0 0; white-space:normal; }
 #living table.mkt tbody tr:nth-child(2) td{ border-top:0; }
 #living td small.sub, #living td small.lvl{ display:block; color:var(--muted); font-size:.78rem; line-height:1.25; font-weight:400; margin-top:1px; white-space:nowrap; }
 /* question bar */
@@ -959,12 +959,12 @@ table.blines thead th small.thsub{ margin-top:2px; }
 #living .pkey > div{ display:flex; flex-direction:column; gap:6px; background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:9px 10px; }
 #living .pkey .pd{ font-size:.82rem; color:var(--muted); line-height:1.3; }
 @media (max-width:720px){ #living .pkey{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
-#living .chip{ display:flex; align-items:center; justify-content:center; height:2em; border-radius:5px; font-size:.8rem; font-weight:700; line-height:1; text-align:center; padding:0 4px; white-space:nowrap; background:var(--pc,var(--navy)); color:#fff; }
+#living .chip{ display:flex; align-items:center; justify-content:center; height:2em; border-radius:5px; font-size:.76rem; font-weight:700; line-height:1; text-align:center; padding:0 4px; white-space:nowrap; background:var(--pc,var(--navy)); color:#fff; }
 #living .pkey .chip{ width:100%; max-width:11em; }
 #living .c1{ --pc:#1F5FA8; } #living .c2{ --pc:#2E7D32; } #living .c3{ --pc:#6A3FA0; } #living .c4{ --pc:#B5520F; } #living .c5{ --pc:#A0306A; } #living .c6{ --pc:#0E7C86; }
-#living .chips6{ display:grid; grid-template-columns:repeat(3,minmax(7.4em,1fr)); gap:4px; }
+#living .chips6{ display:grid; grid-template-columns:repeat(3,minmax(6.6em,1fr)); gap:4px; }
 #living .chips6 .chip.off{ background:transparent; color:var(--muted); border:1px dashed #B9BECA; font-weight:600; }
-#living table.hh td, #living table.hh th{ vertical-align:middle; padding:8px; }
+#living table.hh td, #living table.hh th{ vertical-align:middle; padding:7px 6px; }
 #living table.hh th{ white-space:nowrap; } #living table.hh td{ white-space:nowrap; }
 #living table.hh td:first-child{ min-width:9em; }
 
@@ -993,24 +993,56 @@ table.blines thead th small.thsub{ margin-top:2px; }
 #lvmaptip{ position:absolute; pointer-events:none; background:var(--surface); border:1px solid var(--line); border-radius:6px; box-shadow:0 4px 12px rgba(0,0,0,.15); padding:6px 9px; font-size:.84rem; line-height:1.35; max-width:240px; z-index:2; }
 #living table.mkt td.ac{ text-align:right; }
 #living table.mkt td.ac .amt{ display:block; font-variant-numeric:tabular-nums; }
-#living .mp{ display:inline-block; width:7.4em; text-align:center; border-radius:5px; padding:1px 4px; margin-top:2px; font-size:.74rem; font-weight:700; white-space:nowrap; }
+#living .mp{ display:inline-block; width:7.3em; text-align:center; border-radius:5px; padding:1px 4px; margin-top:2px; font-size:.74rem; font-weight:700; white-space:nowrap; }
 #living .mp.r{ background:#F9D6D2; color:#8A1C12; } #living .mp.g{ background:#DCEFE2; color:#1D5B33; } #living .mp.y{ background:#FBF0C9; color:#6B4E00; } #living .mp.n{ background:var(--zebra); color:var(--muted); border:1px dashed var(--line); }
 #living table.mkt th .adot{ margin-right:5px; vertical-align:-1px; }
-/* raise slider */
-#living .rbox{ background:var(--surface); border:1px solid var(--line); border-top:6px solid var(--gold); border-radius:8px; padding:12px 16px 12px; margin:14px 0 6px; }
-#living .rbox .rtop{ display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:4px 12px; }
-#living .rbox h5{ font-family:var(--display); font-weight:800; text-transform:uppercase; letter-spacing:.04em; color:var(--head); font-size:1.1rem; margin:0; white-space:nowrap; }
-#living .rbox .rval{ font-family:var(--display); font-weight:800; font-size:2rem; line-height:1; color:var(--accent); font-variant-numeric:tabular-nums; white-space:nowrap; }
-#living .rbox p{ font-size:.9rem; color:var(--muted); margin:4px 0 8px; }
-#living .rticks{ display:flex; flex-wrap:wrap; gap:8px; margin:6px 0 2px; }
-#living .rticks button{ font-family:var(--display); font-weight:700; font-size:1.05rem; letter-spacing:.03em; padding:6px 16px; border-radius:6px; border:2px solid var(--navy); background:var(--surface); color:var(--head); cursor:pointer; }
-#living .rticks button[aria-pressed="true"]{ background:var(--navy); color:#fff; }
+/* acknowledgment gate */
+.lockwrap.locked{ opacity:.4; filter:grayscale(.6); pointer-events:none; user-select:none; }
+#living .lvnote{ font-size:.95rem; margin:4px 0 8px; }
+/* raise row */
+#living .rbox{ display:flex; flex-wrap:wrap; align-items:center; gap:8px 12px; margin:16px 0 4px; }
+#living .rbox .lbl2{ white-space:nowrap; }
+#living .rbox p{ flex:1 1 100%; font-size:.88rem; color:var(--muted); margin:0; }
 #living small.was{ display:block; font-weight:400; color:var(--muted); font-size:.74rem; white-space:nowrap; }
 #living .rsum{ display:grid; grid-template-columns:repeat(auto-fit,minmax(11em,1fr)); gap:8px; margin:10px 0 0; }
 #living .rsum > div{ background:var(--zebra); border-radius:6px; padding:8px 10px; }
 #living .rsum .k{ font-size:.8rem; color:var(--muted); line-height:1.25; }
 #living .rsum .v{ font-family:var(--display); font-weight:800; font-size:1.35rem; color:var(--head); line-height:1.15; white-space:nowrap; }
 #living .rsum .v .ar{ color:var(--accent); margin:0 4px; }
+/* accordions */
+#living details.acc{ margin:14px 0 0; border:1px solid var(--line); border-left:5px solid var(--gold); border-radius:6px; background:var(--surface); }
+#living details.acc > summary{ list-style:none; cursor:pointer; display:flex; align-items:center; gap:10px; padding:12px 14px; }
+#living details.acc > summary::-webkit-details-marker{ display:none; }
+#living details.acc > summary::before{ content:""; flex:none; width:9px; height:9px; border:solid var(--head); border-width:0 3px 3px 0; transform:rotate(-45deg); transition:transform .15s; margin-right:2px; }
+#living details.acc[open] > summary::before{ transform:rotate(45deg); }
+#living .acct{ font-family:var(--display); font-weight:800; text-transform:uppercase; letter-spacing:.02em; color:var(--head); font-size:clamp(1.1rem,3vw,1.3rem); line-height:1.1; }
+#living .acch{ margin-left:auto; font-size:.82rem; color:var(--accent); font-weight:700; white-space:nowrap; }
+#living details.acc[open] .acch{ display:none; }
+#living details.acc > summary:focus-visible{ outline:3px solid var(--gold); outline-offset:2px; }
+#living details.acc > *:not(summary){ margin-left:12px; margin-right:12px; }
+#living details.acc[open]{ padding-bottom:12px; }
+#living details.acc > .lockwrap{ margin-left:6px; margin-right:6px; } #living details.acc .lockwrap > .howto, #living details.acc .lockwrap > .hhpick, #living details.acc .lockwrap > p, #living details.acc .lockwrap > .lvmapgrid, #living details.acc .lockwrap > .pkey, #living details.acc .lockwrap > h5{ margin-left:6px; margin-right:6px; }
+@media (max-width:560px){ #living details.acc > *:not(summary), #living details.acc .tbl{ margin-left:8px; margin-right:8px; } #living .acch{ display:none; } }
+/* option bars: same look as every other option bar on the page (.seg/.seg2) */
+#living .rticks, #living .tbar{ display:inline-grid; grid-auto-flow:column; grid-auto-columns:minmax(max-content,1fr); gap:0; border:1px solid #C3C8D2; border-radius:7px; overflow:hidden; background:var(--surface); padding:0; max-width:100%; vertical-align:middle; }
+#living .rticks button, #living .tbar button{ font-family:inherit; font-size:.86rem; font-weight:700; letter-spacing:0; text-transform:none; line-height:1.2; padding:8px 14px; margin:0; border:0; border-left:1px solid #C3C8D2; border-radius:0; background:var(--surface); color:var(--head); cursor:pointer; text-align:center; display:flex; align-items:center; justify-content:center; white-space:nowrap; min-width:2.6em; }
+#living .rticks button:first-child, #living .tbar button:first-child{ border-left:0; }
+#living .rticks button:hover, #living .tbar button:hover{ background:#EEF1F6; }
+#living .rticks button[aria-pressed="true"], #living .tbar button[aria-pressed="true"]{ background:var(--head); color:#fff; }
+#living .rticks button:focus-visible, #living .tbar button:focus-visible{ outline:3px solid var(--gold); outline-offset:-3px; }
+#living .tbar button:disabled{ color:#A9B0C2; background:var(--zebra); cursor:not-allowed; }
+@media (max-width:600px){ #living .rticks, #living .tbar{ display:grid; width:100%; grid-auto-columns:minmax(0,1fr); } #living .rticks button, #living .tbar button{ padding:8px 3px; min-width:0; font-size:.82rem; } #living .hhctl{ grid-template-columns:minmax(0,1fr); gap:3px; } #living .hhk{ font-size:.82rem; } }
+/* household toggle bars */
+#living .hhpick{ display:grid; gap:10px; background:var(--surface); border:1px solid var(--line); border-top:3px solid var(--navy); border-radius:8px; padding:12px 14px; margin:10px 0; }
+#living .hhrow{ display:grid; gap:8px; }
+#living .hhlab{ font-family:var(--display); font-weight:700; text-transform:uppercase; letter-spacing:.05em; font-size:.85rem; color:var(--head); }
+#living .hhctl{ display:grid; grid-template-columns:6.2em minmax(0,26em); align-items:center; gap:10px; }
+#living .hhctl .tbar{ display:grid; width:100%; grid-auto-flow:column; grid-auto-columns:minmax(0,1fr); }
+@media (max-width:600px){ #living .hhctl{ grid-template-columns:minmax(0,1fr); gap:3px; } #living .hhk{ font-size:.82rem; } }
+#living .hhk{ font-weight:700; font-size:.9rem; color:var(--head); white-space:nowrap; }
+/* bars below share the page's option-bar look */
+#living .keyh{ font-family:var(--display); font-weight:800; text-transform:uppercase; letter-spacing:.04em; color:var(--head); font-size:.95rem; margin:14px 0 4px; }
+
 /* icon pickers */
 #living .pick{ margin:12px 0 4px; }
 #living .pick .plab{ font-family:var(--display); font-weight:700; text-transform:uppercase; letter-spacing:.05em; font-size:.85rem; color:var(--head); margin:0 0 6px; }
@@ -1053,11 +1085,18 @@ table.blines thead th small.thsub{ margin-top:2px; }
   <p>Four in ten St. Tammany households (40%) earn less than it takes to cover basic costs, by the United Way&rsquo;s ALICE measure. That count includes families below the poverty line and the working families just above it.</p>
 
   <div class="rbox" id="lvraise">
-    <div class="rtop"><h5>Test a raise</h5><span class="rval" id="lvrval">No raise</span></div>
-    <p>Pick a raise to see what it would do. It changes every district paycheck in both tables below, as a percentage of each person&rsquo;s pay.</p>
+    <span class="lbl2">Test a raise:</span>
     <div class="rticks" id="lvrticks" role="group" aria-label="Raise size"></div>
+    <p>Applies to every district paycheck in both comparisons below, as a percentage of each person&rsquo;s pay.</p>
   </div>
-  <h4 class="tt">What the Same Kind of Work Pays Around Here</h4>
+  <details class="acc" id="accmkt">
+    <summary><span class="acct">What the Same Kind of Work Pays Around Here</span><span class="acch">Tap to open</span></summary>
+  <p class="lvnote">This table compares district pay with what comparable jobs pay across all employers in each area, public and private. For a school-district-to-school-district comparison of teacher pay, see the <a href="#compare">Compare</a> tab.</p>
+  <div class="ack" id="lvackbox">
+    <label><input type="checkbox" id="lvackchk"> <span><b>I understand what this comparison shows.</b> It sets St. Tammany school district pay next to what comparable jobs pay across all employers in each area, public and private. It is not a school-district-to-school-district comparison; that&rsquo;s the Compare tab. The figures are estimates from public data, not anyone&rsquo;s actual paycheck.</span></label>
+    <p class="ackhint">Check the box to use this section.</p>
+  </div>
+  <div class="lockwrap locked" id="lvlock">
   <div class="howto">
     <h5>How to read this table</h5>
     <ul>
@@ -1078,37 +1117,49 @@ table.blines thead th small.thsub{ margin-top:2px; }
   </div>
   <div class="tbl"><table class="lvt mkt" id="lvmkt"></table></div>
   <p class="fine" id="lvmktnote"></p>
-
-  <h4 class="tt">If This Paycheck Supports a Family</h4>
+  </div>
+  </details>
+  <details class="acc" id="accfam">
+    <summary><span class="acct">Does This Paycheck Support a Family?</span><span class="acch">Tap to open</span></summary>
+  <div class="ack" id="lvack2box">
+    <label><input type="checkbox" id="lvack2chk"> <span><b>I understand what this table shows.</b> It treats one district job&rsquo;s base pay as a household&rsquo;s income and checks it against the 2026 federal poverty line and each assistance program&rsquo;s published income limit. Qualifying on income is not the same as receiving help; programs also look at savings, expenses, citizenship and work rules. These are estimates, not anyone&rsquo;s paycheck or benefits decision.</span></label>
+    <p class="ackhint">Check the box to use this table.</p>
+  </div>
+  <div class="lockwrap locked" id="lvlock2">
   <div class="howto">
     <h5>How to read this table</h5>
     <ul>
-      <li>Tap your answers to the two questions below. Every row then shows one district job&rsquo;s yearly pay as if it were the family&rsquo;s <b>only income</b>.</li>
+      <li>Set the household and the point on the pay scale below. Every row then shows one district job&rsquo;s yearly pay as the household&rsquo;s income: one paycheck, or two paychecks at the same pay if both adults work that job.</li>
       <li><b>vs. poverty line</b> compares the paycheck with the government&rsquo;s 2026 poverty line for that size family. &ldquo;98% of the line&rdquo; means the paycheck falls just short of it.</li>
       <li>Each program has an income limit. A <b>colored box</b> means a family living on that paycheck is under the limit. A gray, empty box means it earns too much for that program.</li>
     </ul>
   </div>
-  <div class="pkey" id="lvkey"></div>
-  <div class="pick"><div class="plab">Who does this paycheck support?</div><div class="pgrid" id="lvhhpick" role="group" aria-label="Who does this paycheck support?"></div></div>
-  <div class="pick"><div class="plab">Where on the pay scale?</div><div class="pgrid p3" id="lvptpick" role="group" aria-label="Where on the pay scale?"></div></div>
+  <div class="hhpick">
+    <div class="hhrow"><span class="hhlab">Who does this paycheck support?</span>
+      <div class="hhctl"><span class="hhk">Adults</span><div class="tbar" id="lvadults" role="group" aria-label="Adults in the household"></div></div>
+      <div class="hhctl"><span class="hhk">Children</span><div class="tbar" id="lvkids" role="group" aria-label="Children in the household"></div></div>
+      <div class="hhctl"><span class="hhk">Paychecks</span><div class="tbar" id="lvchecks" role="group" aria-label="Paychecks in the household"></div></div>
+    </div>
+    <div class="hhrow"><span class="hhlab">Where on the pay scale?</span>
+      <div class="hhctl"><span class="hhk">Pay level</span><div class="tbar" id="lvptbar" role="group" aria-label="Where on the pay scale"></div></div>
+    </div>
+  </div>
   <p class="lvsum" id="lvhead"></p>
   <div class="tbl"><table class="lvt hh" id="lvhht"></table></div>
-  <div class="callout"><p><b>Qualifying is not the same as receiving.</b> We have no information on whether any district employee receives assistance, and we don&rsquo;t claim any does. These rows show only what a family with this one paycheck and no other income would qualify for under each program&rsquo;s published income limit. Programs also look at things like savings, expenses, citizenship and work rules, so actual eligibility can differ. Pay here is base pay from the 2026-27 salary schedules; stipends, supplements, bus route allowances and a second earner&rsquo;s income are not counted.</p></div>
+  <h5 class="keyh">What the boxes mean</h5>
+  <div class="pkey" id="lvkey"></div>
+  </div>
+  <div class="callout"><p><b>Qualifying is not the same as receiving.</b> We have no information on whether any district employee receives assistance, and we don&rsquo;t claim any does. These rows show only what a family living on this district pay alone would qualify for under each program&rsquo;s published income limit. Programs also look at things like savings, expenses, citizenship and work rules, so actual eligibility can differ. Pay here is base pay from the 2026-27 salary schedules; stipends, supplements, bus route allowances and any other income are not counted. With two paychecks, both adults are assumed to earn the same district pay.</p></div>
   <p class="fine" id="lvsrc"></p>
+  </details>
 </div>
 <script>
 document.addEventListener('DOMContentLoaded',function(){
 /* Every figure below is sourced; see the Sources tab. */
-const FPL={1:15960,2:21640,3:27320,4:33000}; /* HHS 2026 poverty guidelines, 48 states */
-const ALICE={1:30708,4:81912}; /* United For ALICE, Louisiana Household Survival Budget, 2024 costs (2026 report) */
-const CCAP={3:62076,4:73896};  /* Louisiana CCAP: 85% of state median income ($5,173 / $6,158 a month) */
-const HH=[
- {k:'1',l:'One adult, no children',s:'a single adult',size:1,kids:0},
- {k:'2',l:'A single parent and 1 child',s:'a single parent of one',size:2,kids:1},
- {k:'3',l:'A single parent and 2 children',s:'a single parent of two',size:3,kids:2},
- {k:'4',l:'Two parents and 2 children (one paycheck)',s:'a family of four on one paycheck',size:4,kids:2}
-];
-const PTS=[['start','A new hire (starting pay)','a new hire'],['mid','Mid-career (middle of the scale)','a mid-career employee'],['top','Top of the scale','an employee at the top of the scale']];
+const FPLB=15960, FPLA=5680; const FPLn=n=>FPLB+FPLA*(n-1); /* HHS 2026 poverty guidelines, 48 states: $15,960 + $5,680 per added person */
+const ALICEB={'1-0':30708,'2-2':81912}; /* United For ALICE, Louisiana Household Survival Budget, 2024 costs (2026 report): single adult; two adults + infant + preschooler */
+const SMI85_4=73896; const SMIF=[0,.52,.68,.84,1,1.16,1.32,1.35,1.38]; const CCAPn=n=>Math.round(SMI85_4*SMIF[Math.min(n,8)]); /* Louisiana CCAP: 85% of state median income ($6,158/mo for 4), scaled by the standard federal family-size factors */
+const PTS=[['start','New hire','a new hire'],['mid','Mid-career','a mid-career employee'],['top','Top of scale','an employee at the top of the scale']];
 /* Six programs, always in this order. Income limits are percent of the 2026 poverty line unless noted. */
 const PROG=[
  {s:'Medicaid',d:'Free health coverage for adults. Limit: 138% of the poverty line.',ok:(p)=>p<=138},
@@ -1116,7 +1167,7 @@ const PROG=[
  {s:'Kids’ health',kids:1,d:'LaCHIP health coverage for children. Free up to 217% of the line; low monthly premium up to 255%.',ok:(p)=>p<=255},
  {s:'School meals',kids:1,d:'Free school meals up to 130% of the line; reduced-price up to 185%.',ok:(p)=>p<=185},
  {s:'WIC',kids:1,d:'Healthy food for pregnant women and children under 5. Limit: 185% of the line.',ok:(p)=>p<=185},
- {s:'Child care',kids:1,d:'Help paying for child care. Limit: 85% of Louisiana’s median income (published for families of 3 and 4).',ok:(p,v,cc)=>cc? v<=cc : false}
+ {s:'Child care',kids:1,d:'Help paying for child care. Limit: 85% of Louisiana’s median income for the family’s size.',ok:(p,v,cc)=>v<=cc}
 ];
 /* District jobs (2026-27 salary schedules) matched to Labor Department occupations.
    W = BLS OEWS May 2025 via O*NET OnLine: [10th percentile, median, 90th percentile] annual pay by area; null = not published.
@@ -1148,25 +1199,33 @@ document.getElementById('lvtiles').innerHTML=[
  ['$33,000','Poverty line, family of four','2026 federal poverty line']
 ].map(t=>`<div role="listitem"><div class="n">${t[0]}</div><div class="l">${t[1]}</div><div class="d">${t[2]}</div></div>`).join('');
 
+/* acknowledgment */
+(function(){ const c=document.getElementById('lvackchk'), box=document.getElementById('lvackbox'), w=document.getElementById('lvlock');
+  const f=()=>{ w.classList.toggle('locked',!c.checked); box.classList.toggle('done',c.checked); w.setAttribute('aria-disabled',String(!c.checked)); };
+  c.addEventListener('change',f); f(); })();
+(function(){ const c=document.getElementById('lvack2chk'), box=document.getElementById('lvack2box'), w=document.getElementById('lvlock2');
+  const f=()=>{ w.classList.toggle('locked',!c.checked); box.classList.toggle('done',c.checked); w.setAttribute('aria-disabled',String(!c.checked)); };
+  c.addEventListener('change',f); f(); })();
 /* raise */
 let RAISE=0, FAMREADY=false; const RF=()=>1+RAISE/100;
 const wasTxt=b=>RAISE?`<small class="was">was ${$(b)}</small>`:'';
-function setRaise(r){ RAISE=r; document.getElementById('lvrval').textContent=r?'+'+r+'%':'No raise';
+function setRaise(r){ RAISE=r; 
   document.getElementById('lvrticks').innerHTML=[0,5,10,15,20,25].map(x=>`<button type="button" data-r="${x}" aria-pressed="${x===r}">${x?x+'%':'None'}</button>`).join('');
   renderMkt(); if(FAMREADY) render(); }
 /* market table */
 const AREA={st:['St. Tammany','Slidell-Mandeville-Covington metro'],no:['New Orleans area','New Orleans-Metairie metro'],br:['Baton Rouge area','Baton Rouge metro'],hm:['Hammond area','Hammond metro'],ho:['Houma-Thibodaux area','Houma-Bayou Cane-Thibodaux metro'],lf:['Lafayette area','Lafayette metro'],lc:['Lake Charles area','Lake Charles metro'],al:['Alexandria area','Alexandria metro'],mo:['Monroe area','Monroe metro'],sh:['Shreveport area','Shreveport-Bossier City metro'],ce:['Central La. rural','Central Louisiana rural parishes'],ne:['Northeast La. rural','Northeast Louisiana rural parishes'],sw:['Southwest La. rural','Southwest Louisiana rural parishes'],la:['All of Louisiana','Statewide']};
 const ACOL=['#2F6FB5','#8A4FB0','#1E8C5A'], HOME='#E79B03';
+const SHORT={st:'St. Tammany',no:'New Orleans',br:'Baton Rouge',hm:'Hammond',ho:'Houma',lf:'Lafayette',lc:'Lake Charles',al:'Alexandria',mo:'Monroe',sh:'Shreveport',ce:'Central rural',ne:'NE rural',sw:'SW rural',la:'Louisiana'};
 const NB=['no','hm','br'];
 let asel=NB.slice();
 const LVLS=[['start','Starting pay','vs. lowest-paid 10%',0],['mid','Mid-career','vs. middle worker',1],['top','Top of the scale','vs. highest-paid 10%',2]];
 const parishesIn=a=>Object.keys(P2A).filter(p=>P2A[p]===a);
-function mp(d,m,nc){ if(m==null) return ''; if(nc) return '<span class="mp n">Can&rsquo;t compare*</span>'; const g=Math.round((d/m-1)*100);
+function mp(d,m,nc){ if(m==null) return ''; if(nc) return '<span class="mp n">See note *</span>'; const g=Math.round((d/m-1)*100);
   return Math.abs(g)<=1?'<span class="mp y">About even</span>':g<0?`<span class="mp r">${-g}% below</span>`:`<span class="mp g">${g}% above</span>`; }
 function colOf(a){ return a==='st'?HOME:ACOL[asel.indexOf(a)]; }
 function renderMkt(){
   const cols=['st'].concat(asel);
-  let h=`<thead><tr><th>Pay level</th><th class="num">${RAISE?'District pay +'+RAISE+'%':'District pay'}</th>${cols.map(a=>`<th class="num"><i class="adot" style="background:${colOf(a)}"></i>${AREA[a][0]}</th>`).join('')}</tr></thead>`;
+  let h=`<thead><tr><th>Pay level</th><th class="num">${RAISE?'District pay +'+RAISE+'%':'District pay'}</th>${cols.map(a=>`<th class="num"><i class="adot" style="background:${colOf(a)}"></i>${SHORT[a]}</th>`).join('')}</tr></thead>`;
   MKT.forEach(m=>{ const p=pay(m.code); if(!p) return; const nc=m.hourly&&p.days<261;
     h+='<tbody>';
     LVLS.forEach((L,i)=>{ const d0=p[L[0]], d=Math.round(d0*RF());
@@ -1216,30 +1275,30 @@ document.getElementById('lvkey').innerHTML=PROG.map((p,i)=>`<div><span class="ch
 
 /* family table */
 
-const PERS=(x,h)=>{ const s=h/40; return `<g transform="translate(${x},${44-h})"><circle cx="${8*s}" cy="${6*s}" r="${5.5*s}" fill="currentColor"/><path d="M${0} ${h}V${22*s}a${8*s} ${8*s} 0 0 1 ${8*s}-${8*s}h0a${8*s} ${8*s} 0 0 1 ${8*s} ${8*s}V${h}Z" fill="currentColor"/></g>`; };
-const FIG={'1':[[40]],'2':[[40],[28]],'3':[[40],[28],[28]],'4':[[40],[40],[28],[28]]};
-function figSvg(k){ let x=0, parts=[]; FIG[k].forEach(([h])=>{ const w=16*h/40; parts.push(PERS(x,h)); x+=w+4; }); return `<svg viewBox="0 0 ${x-4} 44" aria-hidden="true">${parts.join('')}</svg>`; }
-const BARS=n=>`<svg viewBox="0 0 40 44" aria-hidden="true">${[0,1,2].map(i=>`<rect x="${i*14}" y="${44-(i+1)*14}" width="10" height="${(i+1)*14}" rx="2" fill="currentColor" opacity="${i<n?1:.25}"/>`).join('')}</svg>`;
-const HHS={'1':['1 adult','No children'],'2':['1 adult','1 child'],'3':['1 adult','2 children'],'4':['2 adults','2 children, one paycheck']};
-const st2={hh:'3',pt:'start'};
+const st2={ad:1,kd:2,ck:1,pt:'start'};
+function tb(id,items,cur,dis){ document.getElementById(id).innerHTML=items.map(([v,l])=>`<button type="button" data-v="${v}" aria-pressed="${String(v)===String(cur)}"${dis&&dis(v)?' disabled':''}>${l}</button>`).join(''); }
 function pickers(){
-  document.getElementById('lvhhpick').innerHTML=HH.map(h=>`<button type="button" class="pcard" data-k="${h.k}" aria-pressed="${h.k===st2.hh}">${figSvg(h.k)}<span class="pl">${HHS[h.k][0]}</span><span class="ps">${HHS[h.k][1]}</span></button>`).join('');
-  document.getElementById('lvptpick').innerHTML=PTS.map((p,i)=>`<button type="button" class="pcard" data-k="${p[0]}" aria-pressed="${p[0]===st2.pt}"><span class="ck" aria-hidden="true"></span>${BARS(i+1)}<span class="pl">${['New hire','Mid-career','Top of the scale'][i]}</span><span class="ps">${['Starting pay','Middle of the scale','Highest step'][i]}</span></button>`).join('');
+  if(st2.ad<2) st2.ck=1;
+  tb('lvadults',[[1,'1'],[2,'2']],st2.ad);
+  tb('lvkids',[0,1,2,3,4,5,6].map(n=>[n,String(n)]),st2.kd);
+  tb('lvchecks',[[1,'1'],[2,'2']],st2.ck,v=>v===2&&st2.ad<2);
+  tb('lvptbar',PTS.map(p=>[p[0],p[1]]),st2.pt);
 }
-document.getElementById('lvhhpick').addEventListener('click',e=>{ const b=e.target.closest('.pcard'); if(b){ st2.hh=b.dataset.k; pickers(); render(); } });
-document.getElementById('lvptpick').addEventListener('click',e=>{ const b=e.target.closest('.pcard'); if(b){ st2.pt=b.dataset.k; pickers(); render(); } });
+[['lvadults','ad',Number],['lvkids','kd',Number],['lvchecks','ck',Number],['lvptbar','pt',String]].forEach(([id,k,cv])=>{
+  document.getElementById(id).addEventListener('click',e=>{ const b=e.target.closest('button[data-v]'); if(!b||b.disabled) return; st2[k]=cv(b.dataset.v); pickers(); render(); }); });
+function hhDesc(){ const a=st2.ad, k=st2.kd; const who=(a===1?'1 adult':'2 adults')+(k?` and ${k} ${k===1?'child':'children'}`:''); return `a household of ${who}`+(a===2?(st2.ck===2?' with two paychecks':' with one paycheck'):''); }
 function pill(pct){ const t=Math.round(pct);
   if(pct<100) return `<span class="pill r">Below poverty<small>${t}% of the line</small></span>`;
   if(pct<138) return `<span class="pill o">Near poverty<small>${t}% of the line</small></span>`;
   if(pct<200) return `<span class="pill y">Low income<small>${t}% of the line</small></span>`;
   return `<span class="pill g">Above low income<small>${t}% of the line</small></span>`; }
 function render(){
-  const hh=HH.find(h=>h.k===st2.hh), pt=PTS.find(p=>p[0]===st2.pt), fpl=FPL[hh.size], al=ALICE[hh.size], cc=CCAP[hh.size];
+  const size=st2.ad+st2.kd, hh={kids:st2.kd,size}, pt=PTS.find(p=>p[0]===st2.pt), fpl=FPLn(size), al=ALICEB[st2.ad+'-'+st2.kd], cc=CCAPn(size), mult=st2.ck;
   let under=0, any=0, below=0, n=0, under0=0, any0=0, below0=0;
   const qual=(v,pct)=>PROG.some(g=>(!g.kids||hh.kids) && g.ok(pct,v,cc));
-  let h=`<thead><tr><th>Job</th><th class="num">${RAISE?'Yearly pay +'+RAISE+'%':'Yearly pay'}</th><th>vs. poverty line</th><th>Qualifies for (colored box = yes)</th></tr></thead><tbody>`;
+  let h=`<thead><tr><th>Job</th><th class="num">${(mult===2?'Household pay':'Yearly pay')+(RAISE?' +'+RAISE+'%':'')}</th><th>vs. poverty line</th><th>Qualifies for (colored box = yes)</th></tr></thead><tbody>`;
   HHJOBS.forEach(([code,label,sub])=>{ const p=pay(code); if(!p) return; n++;
-    const v0=p[pt[0]], v=Math.round(v0*RF()), pct=v/fpl*100, pct0=v0/fpl*100;
+    const v0=p[pt[0]]*mult, v=Math.round(v0*RF()), pct=v/fpl*100, pct0=v0/fpl*100;
     if(al && v<al) under++; if(pct<100) below++;
     if(al && v0<al) under0++; if(pct0<100) below0++; if(qual(v0,pct0)) any0++;
     let q=0;
@@ -1248,7 +1307,7 @@ function render(){
     h+=`<tr><td><b>${label}</b><small class="sub">${/^[A-Z]-?\d/.test(sub)?'Pay grade '+sub:sub} &middot; ${p.days<261?p.days+' days':'Year-round'}</small></td><td class="num" data-l="Yearly pay"><b>${$(v)}</b>${wasTxt(v0)}</td>`+
       `<td data-l="vs. poverty line">${pill(pct)}</td><td class="wide" data-l="Qualifies for (colored box = yes)"><div class="chips6">${chips}</div></td></tr>`; });
   document.getElementById('lvhht').innerHTML=h+'</tbody>';
-  let s=RAISE?`For ${hh.s} earning what ${pt[2]} makes (2026 poverty line: <b>${$(fpl)}</b>), here is what a <b>${RAISE}% raise</b> changes for these ${n} jobs:`:`For ${hh.s} earning what ${pt[2]} makes, the 2026 poverty line is <b>${$(fpl)}</b>. `;
+  let s=RAISE?`For ${hhDesc()}${mult===2?', each paycheck':''} earning what ${pt[2]} makes (2026 poverty line: <b>${$(fpl)}</b>), here is what a <b>${RAISE}% raise</b> changes for these ${n} jobs:`:`For ${hhDesc()}${mult===2?', each paycheck':''} earning what ${pt[2]} makes, the 2026 poverty line is <b>${$(fpl)}</b>. `;
   if(!RAISE){
     if(below) s+=`<b>${below} of these ${n} jobs</b> pay less than that. `;
     s+=`<b>${any} of ${n}</b> would qualify the family for at least one program.`;
@@ -2274,6 +2333,7 @@ ol.btime .dt{ display:block; font-family:var(--display); font-weight:800; text-t
 <section id="compare">
   <h2>How Our Pay Compares Across Louisiana</h2>
   <p>Pick up to three school districts on the map to compare with St. Tammany, or tap <b>Compare with our closest peers</b>. Every number comes from the Louisiana Department of Education.</p>
+  <p>This tab compares teacher pay district to district, using the state&rsquo;s average actual salaries. To see how district pay stacks up against comparable jobs at all employers, see <a href="#scales">Pay Scales</a>.</p>
   <div class="readfirst">
     <h4>How We Picked Our Peers</h4>
     <p style="margin:0 0 6px">A fair comparison means districts like ours. We used two rules:</p>
@@ -2284,6 +2344,11 @@ ol.btime .dt{ display:block; font-family:var(--display); font-weight:800; text-t
     <p style="margin:6px 0"><b>Districts That Meet Both Rules:</b> Jefferson, Caddo, Lafayette, Calcasieu and Ascension. The three closest to St. Tammany on both counts are <b>Caddo, Lafayette and Calcasieu</b>.</p>
     <p class="fine" style="margin:0 0 6px">Similar size only: East Baton Rouge, Livingston, Bossier, Rapides. Similar tax base only: 13 smaller districts, including St. Mary, Lincoln, Natchitoches and Zachary. Orleans meets both rules on paper but is left out: most New Orleans schools are independent charter schools, and the state's pay figures cover only about 190 teachers in board-run schools.</p>
   </div>
+  <div class="ack" id="cmpackbox">
+    <label><input type="checkbox" id="cmpackchk"> <span><b>I understand what this tab compares.</b> It compares teacher pay school district to school district, using the Louisiana Department of Education&rsquo;s average actual teacher salaries, which include extra pay and depend on how experienced each district&rsquo;s teachers are. It does not cover support staff, and it is not anyone&rsquo;s salary schedule or paycheck.</span></label>
+    <p class="ackhint">Check the box to use the comparison.</p>
+  </div>
+  <div class="lockwrap locked" id="cmplock">
   <div class="cmpctl">
     <button type="button" class="pbtn" id="peers">Compare with our closest peers</button>
     <button type="button" class="pbtn ghost" id="clr">Clear</button>
@@ -2311,7 +2376,13 @@ ol.btime .dt{ display:block; font-family:var(--display); font-weight:800; text-t
   <div class="svgwrap"><svg id="scatter" viewBox="0 0 860 420" role="img" aria-label="Tax money per student and average teacher pay for every Louisiana district"></svg><div id="sctip" class="tip" hidden></div></div>
   <p class="fine">Each dot is a school district. Farther right means more local tax money per student; higher means higher average teacher pay. Plaquemines ($39,107 per student) is drawn at the right edge. Hover or tap a dot for its name.</p>
   <div id="schedcmp"></div>
+  </div>
   <p class="src">Sources: students, Louisiana Department of Education (LDOE) October 1, 2024 count; local tax money and total revenue per student, LDOE Annual Financial Report, 2024-25 (property and sales taxes divided by students); teacher pay, LDOE "Actual Average Classroom Teacher Salaries" 2024-25, including extra pay, with the state's rank of 69 city and parish systems. "Newer teachers" averages teachers with 1 to 3 years of experience and "veteran teachers" those with 20 to 25 years. Averages depend on how experienced each district's teachers are, so they are not the same as a salary schedule. Map: U.S. Census Bureau parish boundaries.</p>
+<script>
+(function(){ const c=document.getElementById('cmpackchk'), box=document.getElementById('cmpackbox'), w=document.getElementById('cmplock');
+  if(!c) return; const f=()=>{ w.classList.toggle('locked',!c.checked); box.classList.toggle('done',c.checked); w.setAttribute('aria-disabled',String(!c.checked)); };
+  c.addEventListener('change',f); f(); })();
+</script>
 </section>
 
 
