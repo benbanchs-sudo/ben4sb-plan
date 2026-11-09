@@ -958,12 +958,22 @@ table.blines thead th small.thsub{ margin-top:2px; }
 #living .pkey{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; margin:8px 0 12px; }
 #living .pkey > div{ display:flex; flex-direction:column; gap:6px; background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:9px 10px; }
 #living .pkey .pd{ font-size:.82rem; color:var(--muted); line-height:1.3; }
-@media (max-width:720px){ #living .pkey{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
+
 #living .chip{ display:flex; align-items:center; justify-content:center; height:2em; border-radius:5px; font-size:.76rem; font-weight:700; line-height:1; text-align:center; padding:0 4px; white-space:nowrap; background:var(--pc,var(--navy)); color:#fff; }
 #living .pkey .chip{ width:100%; max-width:11em; }
 #living .c1{ --pc:#1F5FA8; } #living .c2{ --pc:#2E7D32; } #living .c3{ --pc:#6A3FA0; } #living .c4{ --pc:#B5520F; } #living .c5{ --pc:#A0306A; } #living .c6{ --pc:#0E7C86; }
-#living .chips6{ display:grid; grid-template-columns:repeat(3,minmax(6.6em,1fr)); gap:4px; }
-#living .chips6 .chip.off{ background:transparent; color:var(--muted); border:1px dashed #B9BECA; font-weight:600; }
+#living .chips6{ display:flex; gap:5px; flex-wrap:nowrap; }
+#living .qsq{ flex:0 0 auto; display:inline-flex; align-items:center; justify-content:center; width:2.1em; height:2.1em; border-radius:5px; background:var(--pc,var(--navy)); color:#fff; }
+#living .qsq svg{ width:1.3em; height:1.3em; display:block; }
+#living .qsq.off{ background:transparent; color:#C3C8D2; border:1px dashed #B9BECA; }
+#living .pkey > div{ flex-direction:row; align-items:flex-start; gap:10px; }
+#living .pkey .pkh{ flex:0 0 6.6em; display:flex; flex-direction:column; align-items:center; gap:5px; font-size:.8rem; color:var(--navy); white-space:nowrap; text-align:center; }
+#living .pkey .pkh .qsq{ width:2.8em; height:2.8em; border-radius:6px; }
+#living .pkey .pkh .qsq svg{ width:1.7em; height:1.7em; }
+#living .pkey .pd{ padding-top:2px; }
+#living .pkey .pd{ min-width:0; }
+@media (max-width:720px){ #living .pkey{ grid-template-columns:minmax(0,1fr); gap:6px; } }
+
 #living table.hh td, #living table.hh th{ vertical-align:middle; padding:7px 6px; }
 #living table.hh th{ white-space:nowrap; } #living table.hh td{ white-space:nowrap; }
 #living table.hh td:first-child{ min-width:9em; }
@@ -1044,6 +1054,10 @@ table.blines thead th small.thsub{ margin-top:2px; }
 #living .hhlab{ font-family:var(--display); font-weight:700; text-transform:uppercase; letter-spacing:.05em; font-size:.85rem; color:var(--head); }
 #living .hhctl{ display:grid; grid-template-columns:6.2em minmax(0,26em); align-items:center; gap:10px; }
 #living .hhctl .tbar{ display:grid; width:100%; grid-auto-flow:column; grid-auto-columns:minmax(0,1fr); }
+#living .hhctl .tbar button{ min-height:2.7em; padding-top:4px; padding-bottom:4px; }
+#living .sils{ display:inline-flex; align-items:flex-end; gap:2px; }
+#living .sil{ display:block; height:1.5em; width:auto; }
+#living .sil.dol{ height:1.35em; }
 @media (max-width:600px){ #living .hhctl{ grid-template-columns:minmax(0,1fr); gap:3px; } #living .hhk{ font-size:.82rem; } }
 #living .hhk{ font-weight:700; font-size:.9rem; color:var(--head); white-space:nowrap; }
 /* bars below share the page's option-bar look */
@@ -1075,7 +1089,6 @@ table.blines thead th small.thsub{ margin-top:2px; }
   #living table.lvt td:first-child{ grid-column:1/-1; min-width:0; }
   #living table.lvt td.wide{ grid-column:1/-1; }
   #living table.lvt td[data-l]::before{ content:attr(data-l); display:block; font-family:var(--display); font-weight:700; font-size:.68rem; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); margin-bottom:2px; }
-  #living .chips6{ grid-template-columns:repeat(3,minmax(0,1fr)); }
   #living table.mkt tbody{ display:block; } #living table.mkt td{ white-space:normal; }
   #living table.mkt tr{ grid-template-columns:repeat(2,minmax(0,1fr)); }
   #living table.mkt td.ac{ text-align:left !important; }
@@ -1189,13 +1202,14 @@ const SMI85_4=73896; const SMIF=[0,.52,.68,.84,1,1.16,1.32,1.35,1.38]; const CCA
 const PTS=[['start','New hire','a new hire'],['mid','Mid-career','a mid-career employee'],['top','Top of scale','an employee at the top of the scale']];
 /* Six programs, always in this order. Income limits are percent of the 2026 poverty line unless noted. */
 const PROG=[
- {s:'Medicaid',d:'Free health coverage for adults. Limit: 138% of the poverty line.',ok:(p)=>p<=138},
- {s:'SNAP',d:'Grocery money, once called food stamps. Louisiana screens at 200% of the poverty line.',ok:(p)=>p<=200},
- {s:'Kids’ health',kids:1,d:'LaCHIP health coverage for children. Free up to 217% of the line; low monthly premium up to 255%.',ok:(p)=>p<=255},
- {s:'School meals',kids:1,d:'Free school meals up to 130% of the line; reduced-price up to 185%.',ok:(p)=>p<=185},
- {s:'WIC',kids:1,d:'Healthy food for pregnant women and children under 5. Limit: 185% of the line.',ok:(p)=>p<=185},
- {s:'Child care',kids:1,d:'Help paying for child care. Limit: 85% of Louisiana’s median income for the family’s size.',ok:(p,v,cc)=>v<=cc}
+ {s:'Medicaid',ic:'<path d="M11 2v2M5 2v2"/><path d="M5 3H4a2 2 0 0 0-2 2v4a6 6 0 0 0 12 0V5a2 2 0 0 0-2-2h-1"/><path d="M8 15a6 6 0 0 0 12 0v-3"/><circle cx="20" cy="10" r="2"/>',d:'Free health coverage for adults. Limit: 138% of the poverty line.',ok:(p)=>p<=138},
+ {s:'SNAP',ic:'<path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>',d:'Grocery money, once called food stamps. Louisiana screens at 200% of the poverty line.',ok:(p)=>p<=200},
+ {s:'Kids’ health',ic:'<circle cx="12" cy="9.5" r="5.5"/><path d="M6 22a6 4.8 0 0 1 12 0"/><path d="M10.5 4.2c.3-1.6 2.6-1.9 3.2-.4"/>',kids:1,d:'LaCHIP health coverage for children. Free up to 217% of the line; low monthly premium up to 255%.',ok:(p)=>p<=255},
+ {s:'School meals',ic:'<path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"/><path d="M10 2c1 .5 2 2 2 5"/>',kids:1,d:'Free school meals up to 130% of the line; reduced-price up to 185%.',ok:(p)=>p<=185},
+ {s:'WIC',ic:'<path d="M10.5 2h3l.6 3h-4.2z"/><rect x="8" y="5" width="8" height="3" rx="1"/><path d="M8.5 8h7v12a2 2 0 0 1-2 2h-3a2 2 0 0 1-2-2z"/><path d="M8.5 12h3M8.5 16h3"/>',kids:1,d:'Healthy food for pregnant women and children under 5. Limit: 185% of the line.',ok:(p)=>p<=185},
+ {s:'Child care',ic:'<path d="M9 12h.01M15 12h.01"/><path d="M10 16c.5.3 1.2.5 2 .5s1.5-.2 2-.5"/><path d="M19 6.3a9 9 0 0 1 1.8 3.9 2 2 0 0 1 0 3.6 9 9 0 0 1-17.6 0 2 2 0 0 1 0-3.6A9 9 0 0 1 12 3c2 0 3.5 1.1 3.5 2.5s-.9 2.5-2 2.5c-.8 0-1.5-.4-1.5-1"/>',kids:1,d:'Help paying for child care. Limit: 85% of Louisiana’s median income for the family’s size.',ok:(p,v,cc)=>v<=cc}
 ];
+const ICO=g=>`<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${g.ic}</svg>`;
 /* District jobs (2026-27 salary schedules) matched to Labor Department occupations.
    W = BLS OEWS May 2025 via O*NET OnLine: [10th percentile, median, 90th percentile] annual pay by area; null = not published.
    hourly = BLS turns an hourly rate into a full-time, year-round figure. */
@@ -1298,17 +1312,22 @@ function addArea(a){ const msg=document.getElementById('lvamsg'); msg.textConten
 document.getElementById('lvmktnote').innerHTML='<b>* Why some jobs can&rsquo;t be compared:</b> for jobs paid by the hour, the Labor Department figure assumes someone working full time all year, about 2,080 hours. These district jobs are paid only for the school year, and the district doesn&rsquo;t publish their daily hours, so a side-by-side would mostly show the shorter calendar, not the pay rate. Teachers and teaching assistants are reported for the school year, so those rows compare fairly. <b>Why some figures repeat:</b> where a school district is most of the local market for a job, like teachers, aides and bus drivers, several points of that area&rsquo;s range can land on the same district pay step. <b>No data</b> means the Labor Department didn&rsquo;t publish that job for that area. Parish-to-area groupings are the Labor Department&rsquo;s May 2025 definitions. For all jobs together, the average St. Tammany job paid <b>$59,351</b> in 2024. District pay is base pay from the 2026-27 salary schedules: starting pay is Level 0 for support staff and the Level 2 placement for new teachers, mid-career is the middle of the scale, and the top is Level 45. Sources: U.S. Bureau of Labor Statistics, Occupational Employment and Wage Statistics, May 2025 (via O*NET OnLine), and Quarterly Census of Employment and Wages, 2024.';
 
 /* program key */
-document.getElementById('lvkey').innerHTML=PROG.map((p,i)=>`<div><span class="chip c${i+1}">${p.s}</span><span class="pd">${p.d}</span></div>`).join('');
+document.getElementById('lvkey').innerHTML=PROG.map((p,i)=>`<div><span class="pkh"><span class="qsq c${i+1}">${ICO(p)}</span><b>${p.s}</b></span><span class="pd">${p.d}</span></div>`).join('');
 
 /* family table */
 
 const st2={ad:1,kd:2,ck:1,pt:'start'};
-function tb(id,items,cur,dis){ document.getElementById(id).innerHTML=items.map(([v,l])=>`<button type="button" data-v="${v}" aria-pressed="${String(v)===String(cur)}"${dis&&dis(v)?' disabled':''}>${l}</button>`).join(''); }
+/* household picker icons: unisex silhouettes, dollar signs */
+const SIL_A='<svg class="sil" viewBox="0 0 16 24" aria-hidden="true"><circle cx="8" cy="6" r="4.3" fill="currentColor"/><path d="M1 23v-3.3C1 15.6 4.2 13 8 13s7 2.6 7 6.7V23z" fill="currentColor"/></svg>';
+const SIL_K='<svg class="sil" viewBox="0 0 16 24" aria-hidden="true"><circle cx="8" cy="11.2" r="3.7" fill="currentColor"/><path d="M2.6 23v-2.4c0-3.2 2.4-5.1 5.4-5.1s5.4 1.9 5.4 5.1V23z" fill="currentColor"/></svg>';
+const DOL='<svg class="sil dol" viewBox="0 0 14 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 2v20"/><path d="M11.5 6H5.2a3.2 3.2 0 0 0 0 6.4h3.6a3.2 3.2 0 0 1 0 6.4H2.5"/></svg>';
+const rpt=(s,n)=>`<span class="sils">${s.repeat(n)}</span>`;
+function tb(id,items,cur,dis){ document.getElementById(id).innerHTML=items.map(([v,l,al])=>`<button type="button" data-v="${v}" aria-pressed="${String(v)===String(cur)}"${al?` aria-label="${al}" title="${al}"`:''}${dis&&dis(v)?' disabled':''}>${l}</button>`).join(''); }
 function pickers(){
   if(st2.ad<2) st2.ck=1;
-  tb('lvadults',[[1,'1'],[2,'2']],st2.ad);
-  tb('lvkids',[0,1,2,3,4,5,6].map(n=>[n,String(n)]),st2.kd);
-  tb('lvchecks',[[1,'1'],[2,'2']],st2.ck,v=>v===2&&st2.ad<2);
+  tb('lvadults',[[1,rpt(SIL_A,1),'1 adult'],[2,rpt(SIL_A,2),'2 adults']],st2.ad);
+  tb('lvkids',[[0,'None','No children']].concat([1,2,3,4].map(n=>[n,rpt(SIL_K,n),n+(n===1?' child':' children')])),st2.kd);
+  tb('lvchecks',[[1,rpt(DOL,1),'1 paycheck'],[2,rpt(DOL,2),'2 paychecks']],st2.ck,v=>v===2&&st2.ad<2);
   tb('lvptbar',PTS.map(p=>[p[0],p[1]]),st2.pt);
 }
 [['lvadults','ad',Number],['lvkids','kd',Number],['lvchecks','ck',Number],['lvptbar','pt',String]].forEach(([id,k,cv])=>{
@@ -1323,16 +1342,16 @@ function render(){
   const size=st2.ad+st2.kd, hh={kids:st2.kd,size}, pt=PTS.find(p=>p[0]===st2.pt), fpl=FPLn(size), al=ALICEB[st2.ad+'-'+st2.kd], cc=CCAPn(size), mult=st2.ck;
   let under=0, any=0, below=0, n=0, under0=0, any0=0, below0=0;
   const qual=(v,pct)=>PROG.some(g=>(!g.kids||hh.kids) && g.ok(pct,v,cc));
-  let h=`<thead><tr><th>Job</th><th class="num">${(mult===2?'Household pay':'Yearly pay')+(RAISE?' +'+RAISE+'%':'')}</th><th>vs. poverty line</th><th>Qualifies for (colored box = yes)</th></tr></thead><tbody>`;
+  let h=`<thead><tr><th>Job</th><th class="num">${(mult===2?'Household pay':'Yearly pay')+(RAISE?' +'+RAISE+'%':'')}</th><th>vs. poverty line</th><th>Qualifies for (colored = yes; see key below)</th></tr></thead><tbody>`;
   HHJOBS.forEach(([code,label,sub])=>{ const p=pay(code); if(!p) return; n++;
     const v0=p[pt[0]]*mult, v=Math.round(v0*RF()), pct=v/fpl*100, pct0=v0/fpl*100;
     if(al && v<al) under++; if(pct<100) below++;
     if(al && v0<al) under0++; if(pct0<100) below0++; if(qual(v0,pct0)) any0++;
     let q=0;
-    const chips=PROG.map((g,i)=>{ const yes=(!g.kids||hh.kids) && g.ok(pct,v,cc); if(yes) q++; return `<span class="chip ${yes?'c'+(i+1):'off'}" aria-label="${g.s}: ${yes?'qualifies':'does not qualify'}">${g.s}</span>`; }).join('');
+    const chips=PROG.map((g,i)=>{ const yes=(!g.kids||hh.kids) && g.ok(pct,v,cc); if(yes) q++; return `<span class="qsq ${yes?'c'+(i+1):'off'}" role="img" title="${g.s}: ${yes?'qualifies':'does not qualify'}" aria-label="${g.s}: ${yes?'qualifies':'does not qualify'}">${ICO(g)}</span>`; }).join('');
     if(q) any++;
     h+=`<tr><td><b>${label}</b><small class="sub">${/^[A-Z]-?\d/.test(sub)?'Pay grade '+sub:sub} &middot; ${p.days<261?p.days+' days':'Year-round'}</small></td><td class="num" data-l="Yearly pay"><b>${$(v)}</b>${wasTxt(v0)}</td>`+
-      `<td data-l="vs. poverty line">${pill(pct)}</td><td class="wide" data-l="Qualifies for (colored box = yes)"><div class="chips6">${chips}</div></td></tr>`; });
+      `<td data-l="vs. poverty line">${pill(pct)}</td><td class="wide" data-l="Qualifies for (colored = yes; see key below)"><div class="chips6">${chips}</div></td></tr>`; });
   document.getElementById('lvhht').innerHTML=h+'</tbody>';
   let s=RAISE?`For ${hhDesc()}${mult===2?', each paycheck':''} earning what ${pt[2]} makes (2026 poverty line: <b>${$(fpl)}</b>), here is what a <b>${RAISE}% raise</b> changes for these ${n} jobs:`:`For ${hhDesc()}${mult===2?', each paycheck':''} earning what ${pt[2]} makes, the 2026 poverty line is <b>${$(fpl)}</b>. `;
   if(!RAISE){
@@ -1601,6 +1620,24 @@ ul.dl li.tot .dn{ font-family:var(--display); font-weight:800; text-transform:up
 .ptxin:focus-within{ outline:3px solid var(--gold); outline-offset:1px; }
 .ptxh{ display:flex; align-items:center; gap:8px; font-weight:600; cursor:pointer; } .ptxh input{ width:20px; height:20px; accent-color:var(--navy); }
 .ptxlink{ display:flex; flex-wrap:wrap; align-items:center; gap:6px 12px; margin:10px 0 4px; } .ptxlink a{ font-family:var(--display); font-weight:700; text-transform:uppercase; letter-spacing:.04em; font-size:.95rem; color:#fff; background:var(--navy); border-radius:6px; padding:7px 14px; text-decoration:none; max-width:100%; text-align:center; line-height:1.2; } .ptxlink a:hover{ background:var(--gold); color:var(--navy); } .ptxlink span{ font-size:.88rem; color:var(--muted); flex:1 1 220px; }
+.phbox{ border-top:2px solid var(--line); margin-top:14px; padding-top:10px; }
+.phbox h6{ margin-top:0; }
+.ph3{ background:var(--zebra); border-radius:6px; padding:8px 12px; margin:6px 0 10px; font-size:.9rem; } .ph3 ul{ margin:4px 0 0; padding-left:18px; } .ph3 li{ margin:0 0 3px; }
+.phctl{ display:flex; flex-wrap:wrap; align-items:flex-end; gap:8px 18px; margin:6px 0 10px; }
+.phctl label{ display:flex; flex-direction:column; gap:4px; } .phctl label > span:first-child{ font-family:var(--display); font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--head); font-size:.85rem; }
+.phyear{ font:inherit; font-size:1rem; height:38px; padding:0 30px 0 10px; border:2px solid var(--navy); border-radius:6px; background-color:#fff; color:var(--ink); -webkit-appearance:none; appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%2316244F' stroke-width='1.6'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 11px center; }
+.phctl .phyear, .phctl .ptxin{ box-sizing:border-box; height:42px; }
+.phctl .ptxin input{ padding-top:0; padding-bottom:0; height:100%; }
+.phctl .phyear{ min-width:8.5em; }
+.phyear:focus-visible{ outline:3px solid var(--gold); outline-offset:1px; }
+.phres{ background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:10px 12px; }
+.phbig{ display:flex; flex-direction:column; gap:2px; }
+.phk{ font-family:var(--display); font-weight:700; text-transform:uppercase; letter-spacing:.04em; color:var(--head); font-size:.85rem; }
+.phv{ font-family:var(--display); font-weight:800; font-size:2.2rem; line-height:1; color:var(--accent); font-variant-numeric:tabular-nums; }
+.phs{ font-size:.85rem; color:var(--muted); }
+.phchart{ width:100%; height:110px; display:block; margin-top:10px; }
+.phyrs{ display:flex; justify-content:space-between; font-size:.8rem; color:var(--muted); margin-top:3px; font-variant-numeric:tabular-nums; }
+.phnone{ font-size:.9rem; color:var(--muted); }
 .ptxwarn{ background:var(--tint); border-left:5px solid var(--gold); border-radius:4px; padding:8px 12px; margin:10px 0 4px; font-size:.92rem; }
 .ptxsum{ margin:0 0 8px; } .ptxsum b.big{ font-family:var(--display); font-size:1.3rem; color:var(--head); }
 .dnote{ margin:8px 0 0; font-size:.88rem; line-height:1.45; }
@@ -2602,6 +2639,9 @@ ol.btime .dt{ display:block; font-family:var(--display); font-weight:800; text-t
 <section id="sources">
   <h2>Sources</h2>
   <ul class="plain src">
+    <li><a href="https://app.lla.la.gov/maximummillagereports/106926.pdf" target="_blank" rel="noopener">Louisiana Legislative Auditor, maximum millage reports for St. Tammany Parish, 2005-2026 reports</a> (school board millage levied each tax year, 2004-2025); <a href="https://stpao.org/wp-content/uploads/2025/04/STPAO_25_MILLAGE_INSERT-FINAL.pdf" target="_blank" rel="noopener">St. Tammany Assessor, 2025 millage insert</a> (public school millage, 2023 and 2024)</li>
+    <li><a href="https://fred.stlouisfed.org/series/ATNHPIUS22103A" target="_blank" rel="noopener">Federal Housing Finance Agency, All-Transactions House Price Index for St. Tammany Parish (annual, 2000 = 100)</a>, via FRED, Federal Reserve Bank of St. Louis</li>
+    <li><a href="https://regulations.justia.com/states/louisiana/title-61/part-v/chapter-3/section-v-303" target="_blank" rel="noopener">Louisiana Tax Commission rule LAC 61:V.303</a> (reappraisal years and valuation dates); Louisiana Constitution <a href="https://www.legis.la.gov/Legis/Law.aspx?d=206545" target="_blank" rel="noopener">Art. VII &sect;18</a> (10% assessment, reappraisal at least every four years) and <a href="https://www.legis.la.gov/Legis/Law.aspx?d=206550" target="_blank" rel="noopener">&sect;20</a> ($7,500 assessed-value homestead exemption)</li>
     <li><a href="https://www.onetonline.org/link/localwages/49-9071.00?st=LA" target="_blank" rel="noopener">U.S. Bureau of Labor Statistics, Occupational Employment and Wage Statistics, May 2025</a>, median wages for Louisiana, New Orleans-Metairie and Slidell-Mandeville-Covington, via O*NET OnLine (U.S. Department of Labor). St. Tammany is its own metro area in the May 2025 data: <a href="https://www.bls.gov/oes/2025/may/la_counties.htm" target="_blank" rel="noopener">BLS area definitions</a></li>
     <li><a href="https://admin.opportunitylouisiana.gov/wp-content/uploads/2026/03/HIP-Parish-Wages-3.16.26.pdf" target="_blank" rel="noopener">Louisiana Economic Development, Parish Wages (March 16, 2026)</a>: St. Tammany 2024 average annual wage, from BLS Quarterly Census of Employment and Wages</li>
     <li><a href="https://data.census.gov/table/ACSDT1Y2025.B19013?g=050XX00US22103" target="_blank" rel="noopener">U.S. Census Bureau, American Community Survey 2025 1-year estimates, table B19013</a>: median household income, St. Tammany ($91,492 &plusmn; $4,869) and Louisiana ($65,139 &plusmn; $1,183); <a href="https://data.census.gov/table/ACSDT1Y2025.B19125?g=050XX00US22103" target="_blank" rel="noopener">table B19125</a>: median family income for families with their own children under 18, St. Tammany ($115,061 &plusmn; $20,043) and Louisiana ($76,480 &plusmn; $3,335); <a href="https://data.census.gov/table/ACSDT1Y2025.B25010?g=050XX00US22103" target="_blank" rel="noopener">table B25010</a>: average household size, St. Tammany (2.55) and Louisiana (2.42)</li>
@@ -3719,7 +3759,36 @@ function ptxOut(v,h){ const av=Math.max(0,v*0.10-(h?7500:0)); const per=av/1000;
   const tot=PTXM.reduce((t,m)=>t+m[2]*per,0);
   return `<p class="ptxsum">Taxable value <b>${c(av).replace('.00','')}</b> &middot; each school mill costs you <b>${c(per)}</b> a year. All 58.14 school mills in 2026 come to <b class="big">${c(tot)}</b> a year, about <b>${c(tot/12)}</b> a month.</p>`+
    dl(PTXM.map(m=>[m[0],m[1],c(m[2]*per)]),['All school taxes',c(tot)]); }
-window.__ptx=function(box){ if(!box) return; const i=box.querySelector('.ptxin input'), h=box.querySelector('.ptxh input'); const v=+String(i.value).replace(/[^0-9.]/g,'')||0; box.querySelector('.ptxout').innerHTML=ptxOut(v,h.checked); };
+window.__ptx=function(box){ if(!box) return; const i=box.querySelector('.ptxin input'), h=box.querySelector('.ptxh input'); const v=+String(i.value).replace(/[^0-9.]/g,'')||0; box.querySelector('.ptxout').innerHTML=ptxOut(v,h.checked); if(window.__ptxh) window.__ptxh(box); };
+/* Backward estimator: school taxes paid since purchase.
+   Mills: total school millage levied by tax year (Legislative Auditor maximum millage reports, St. Tammany 1069YY; 2023-24 totals from the Assessor's 2025 millage insert; 2026 from the 2026-27 budget).
+   HPI: FHFA annual county house price index, St. Tammany Parish (2000=100), via FRED ATNHPIUS22103A.
+   Reappraisal years 2004-2024 every four years; each uses values as of January 1 of the year before. */
+const PHM={2004:74.59,2005:77.84,2006:77.84,2007:77.84,2008:69.45,2009:68.45,2010:68.45,2011:68.45,2012:68.18,2013:68.18,2014:68.18,2015:68.18,2016:66.41,2017:65.41,2018:64.41,2019:62.41,2020:62.00,2021:62.00,2022:62.00,2023:62.00,2024:58.34,2025:58.24,2026:58.14};
+const PHI={2000:100,2001:104.76,2002:108.34,2003:112.43,2004:119.53,2005:131.45,2006:156.96,2007:161.66,2008:156.09,2009:148.87,2010:141.72,2011:137.99,2012:137.18,2013:139.36,2014:141.46,2015:146.31,2016:150.72,2017:155.09,2018:158.26,2019:162.11,2020:167.18,2021:180.72,2022:206.67,2023:212.34,2024:214.49,2025:218.84};
+const PHR=[2004,2008,2012,2016,2020,2024];
+function phCalc(buy,paid,now,h){
+  if(!(buy>=2004)||!(paid>0)||!(now>0)) return null;
+  const B=Math.min(buy,2023), P0=buy>2023?now:paid;
+  const k=B<2023? now/(P0*PHI[2023]/PHI[B]) : now/P0;
+  const val=y=>{ if(y<B) return P0*PHI[y]/PHI[B]; if(y>=2023) return now; const t=(y-B)/(2023-B); return P0*(PHI[y]/PHI[B])*Math.pow(k,t); };
+  const rows=[]; let tot=0;
+  for(let y=buy;y<=2026;y++){ const r=PHR.filter(x=>x<=y).pop(); const mv=val(r-1); const av=Math.max(0,mv*0.10-(h?7500:0)); const t=av*PHM[y]/1000; rows.push([y,t,mv]); tot+=t; }
+  return {rows,tot};
+}
+function phHtml(buy,paid,now,h){
+  const r=phCalc(buy,paid,now,h); const c=n=>'$'+Math.round(n).toLocaleString('en-US');
+  if(!r) return '<p class="phnone">Enter the year you bought and what you paid to see the estimate.</p>';
+  const n=r.rows.length, mx=Math.max(...r.rows.map(x=>x[1]),1), W=600, H=120, pad=0, bw=(W-pad*2)/n;
+  const bars=r.rows.map((x,i)=>{ const bh=Math.max(1,(x[1]/mx)*(H-46)); const X=pad+i*bw+bw*.15, Y=H-6-bh; const lab='';
+    return `<rect x="${X.toFixed(1)}" y="${Y.toFixed(1)}" width="${(bw*.7).toFixed(1)}" height="${bh.toFixed(1)}" rx="2" fill="${i===n-1?'var(--gold)':'var(--navy)'}"><title>${x[0]}: about ${c(x[1])}</title></rect>${lab}`; }).join('');
+  return `<div class="phres"><div class="phbig"><span class="phk">Estimated school taxes paid, ${r.rows[0][0]} to 2026</span><span class="phv">${c(r.tot)}</span><span class="phs">${n} tax years &middot; about ${c(r.tot/n)} a year on average &middot; ${c(r.rows[0][1])} in ${r.rows[0][0]}, ${c(r.rows[n-1][1])} in 2026</span></div>`+
+    `<svg class="phchart" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Estimated school taxes by year">${bars}</svg>`+`<div class="phyrs"><span>${r.rows[0][0]}</span>${n>6?`<span>${r.rows[Math.floor(n/2)][0]}</span>`:''}<span>2026</span></div></div>`;
+}
+window.__ptxh=function(box){ if(!box) return; const v=+String(box.querySelector('.ptxin input').value).replace(/[^0-9.]/g,'')||0, h=box.querySelector('.ptxh input').checked;
+  const by=+box.querySelector('.phyear').value, pd=+String(box.querySelector('.phpaid input').value).replace(/[^0-9.]/g,'')||0;
+  box.querySelector('.phout').innerHTML=phHtml(by,pd,v,h); };
+
 const D={
  sales:()=>dk([['2','one-cent sales taxes'],['$79.5M','each, this year'],['$159.2M','both, with penalties'],['+6.5%','since 2024-25']])+
   `<h6>The two pennies</h6>`+dl([
@@ -3743,12 +3812,13 @@ const D={
   `<p>Under current law, that room is likely gone after the next reappraisal in 2028. Voters rejected Constitutional Amendment 2, which would have changed that rule, on Nov. 3, 2026, so the rule stands.</p>`+
   `<p class="pledge"><b>Where we stand:</b> not one more tax dollar until the budget is reviewed top to bottom. The roll-forward is on the list, and it’s last.</p></div>`+
   `<div class="dbox" id="ptxbox"><h6>What Your Home Pays the Schools</h6>`+
-  `<p>Enter your home's market value (the assessor's value on your notice, not what you paid). Louisiana assesses homes at 10% of market value, and the homestead exemption takes the first $75,000 of value off the top for a home you live in.</p>`+
-  `<div class="ptxctl"><label class="ptxv"><span>Market value</span><span class="ptxin">$<input type="text" inputmode="numeric" value="300,000" aria-label="Home market value" onblur="this.value=(+this.value.replace(/[^0-9]/g,'')||0).toLocaleString('en-US')" oninput="window.__ptx&&__ptx(this.closest('.dbox'))"></span></label>`+
+  `<p>Enter the market value the assessor lists for your home on your assessment notice. That is not what you paid, and it may not be what the home would sell for today. Louisiana taxes homes on 10% of the assessor&rsquo;s value, and the homestead exemption takes the first $75,000 of value off the top for a home you live in.</p>`+
+  `<div class="ptxctl"><label class="ptxv"><span>Assessor&rsquo;s value</span><span class="ptxin">$<input type="text" inputmode="numeric" value="300,000" aria-label="Assessor's value of your home" onblur="this.value=(+this.value.replace(/[^0-9]/g,'')||0).toLocaleString('en-US')" oninput="window.__ptx&&__ptx(this.closest('.dbox'))"></span></label>`+
   `<label class="ptxh"><input type="checkbox" checked onchange="window.__ptx&&__ptx(this.closest('.dbox'))"> I live here (homestead exemption)</label></div>`+
   `<div class="ptxout">${ptxOut(300000,true)}</div>`+
   `<p class="ptxwarn"><b>This is an estimate.</b> The calculator counts only the standard homestead exemption (the first $75,000 of value). It does not include any other exemption or special assessment you may have, such as the disabled veteran exemption or the senior assessment freeze, which would lower your bill. For your exact school taxes, check your actual assessment with the Assessor.</p>`+
   `<p class="ptxlink"><a href="https://arist.stassessor.org/propertysearch.html" target="_blank" rel="noopener">See your full assessment history &rsaquo;</a><span>Look up your address on the St. Tammany Assessor&rsquo;s site for your home&rsquo;s value and exemptions, year by year.</span></p>`+
+  `<div class="phbox"><h6>How Much Have You Paid Over the Years?</h6><p>Tell us when you bought and what you paid. Starting from that price and ending at the assessor&rsquo;s value above, we estimate the assessor&rsquo;s value for your home in each year from St. Tammany home price trends, apply each year&rsquo;s actual school tax rate, and add it up.</p><div class="ph3"><b>Three different numbers:</b><ul><li><b>What you paid</b> is the sale price when you bought. We use it only as a starting point.</li><li><b>What it would sell for today</b> is the market price. It can be higher or lower than the assessor&rsquo;s figure.</li><li><b>The assessor&rsquo;s value</b> is the assessor&rsquo;s estimate of your home&rsquo;s market value, updated only at reappraisal every four years. Your tax is figured on 10% of it, minus the homestead exemption; that smaller number is your <b>assessed value</b>.</li></ul></div><div class="phctl"><label><span>Year you bought</span><select class="phyear" aria-label="Year you bought" onchange="window.__ptxh&&__ptxh(this.closest('.dbox'))"><option value="2004">2004</option><option value="2005">2005</option><option value="2006">2006</option><option value="2007">2007</option><option value="2008">2008</option><option value="2009">2009</option><option value="2010" selected>2010</option><option value="2011">2011</option><option value="2012">2012</option><option value="2013">2013</option><option value="2014">2014</option><option value="2015">2015</option><option value="2016">2016</option><option value="2017">2017</option><option value="2018">2018</option><option value="2019">2019</option><option value="2020">2020</option><option value="2021">2021</option><option value="2022">2022</option><option value="2023">2023</option><option value="2024">2024</option><option value="2025">2025</option></select></label><label class="phpaid"><span>What you paid</span><span class="ptxin">$<input type="text" inputmode="numeric" value="180,000" aria-label="What you paid" onblur="this.value=(+this.value.replace(/[^0-9]/g,'')||0).toLocaleString('en-US')" oninput="window.__ptxh&&__ptxh(this.closest('.dbox'))"></span></label></div><div class="phout">${phHtml(2010,180000,300000,true)}</div><p class="ptxwarn"><b>This is strictly an estimate</b> based on the information you entered and estimated changes in home values over time. Your real value each year may have moved differently than parish-wide prices, and the estimate counts only the standard homestead exemption, not the disabled veteran exemption, the senior assessment freeze or any other. Estimates start in 2004, the earliest year with verified tax rates. <b>For your actual figures, get your full assessment history on the Assessor&rsquo;s website.</b></p><p class="dnote m">How it works: Louisiana updates assessments only at reappraisal (2004, 2008, 2012, 2016, 2020 and 2024, each using values from January 1 of the year before), at 10% of value minus the $7,500 homestead exemption. School tax rates come from the Legislative Auditor&rsquo;s millage reports; home price trends from the Federal Housing Finance Agency&rsquo;s index for St. Tammany Parish.</p></div>`+
   `<p class="dnote">Parishwide, the schools receive about <b>46 cents of every property tax dollar</b> collected (St. Tammany Assessor, 2025 tax year). The rest of your bill goes to fire districts, parish government, the Sheriff, your city or town and others, and that part depends on where you live, so it isn't shown here.</p>`+
   `<p class="dnote m">The board points out that it has rolled rates back 28.86 mills since 1992 (16.66 operating, 12.2 debt), which it says saves taxpayers $89.6 million a year at 2024 values.</p></div>`,
  debt:()=>dk([['13.6','mills in 2026'],['$44.08M','this year, with penalties'],['$37.1M','in bond payments'],['No cap','rate set each year to cover payments']])+
