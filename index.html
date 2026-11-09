@@ -1633,7 +1633,11 @@ ul.dl .dn small{ display:block; font-weight:400; color:var(--muted); font-size:.
 ul.dl .dv{ font-family:var(--display); font-weight:800; color:var(--head); font-size:1.02rem; font-variant-numeric:tabular-nums; text-align:right; white-space:nowrap; }
 ul.dl li.tot{ border-top:2px solid var(--navy); background:var(--tint); border-radius:0 0 6px 6px; }
 ul.dl li.tot .dn{ font-family:var(--display); font-weight:800; text-transform:uppercase; letter-spacing:.03em; }
-.ptxctl{ display:flex; flex-wrap:wrap; align-items:center; gap:8px 18px; margin:6px 0 10px; }
+.ptxctl{ display:grid; grid-template-columns:max-content max-content minmax(0,1fr); align-items:center; gap:8px 14px; margin:6px 0 10px; }
+.ptxctl .ptxv{ display:contents; }
+.ptxctl .ptxin{ box-sizing:border-box; height:42px; } .ptxctl .ptxin input{ width:8.5em; }
+.ptxoxh{ font-size:.82rem; color:var(--muted); line-height:1.3; }
+@media (max-width:600px){ .ptxctl{ grid-template-columns:minmax(0,1fr); gap:6px; } .ptxctl .ptxv > span:first-child{ margin-top:4px; } .ptxctl .ptxin{ width:100%; } .ptxctl .ptxin input{ flex:1; width:auto; min-width:0; } .ptxctl .ptxh{ font-size:.92rem; white-space:nowrap; margin:2px 0 4px; } }
 .ptxv{ display:flex; align-items:center; gap:8px; } .ptxv > span:first-child{ font-family:var(--display); font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--head); font-size:.9rem; }
 .ptxin{ display:inline-flex; align-items:center; gap:2px; border:2px solid var(--navy); border-radius:6px; background:#fff; padding:0 8px; font-weight:700; color:var(--head); }
 .ptxin input{ font:inherit; font-size:1.05rem; width:8.5em; border:0; outline:0; padding:6px 2px; background:transparent; color:var(--ink); font-variant-numeric:tabular-nums; }
@@ -1642,7 +1646,15 @@ ul.dl li.tot .dn{ font-family:var(--display); font-weight:800; text-transform:up
 .ptxlink{ display:flex; flex-wrap:wrap; align-items:center; gap:6px 12px; margin:10px 0 4px; } .ptxlink a{ font-family:var(--display); font-weight:700; text-transform:uppercase; letter-spacing:.04em; font-size:.95rem; color:#fff; background:var(--navy); border-radius:6px; padding:7px 14px; text-decoration:none; max-width:100%; text-align:center; line-height:1.2; } .ptxlink a:hover{ background:var(--gold); color:var(--navy); } .ptxlink span{ font-size:.88rem; color:var(--muted); flex:1 1 220px; }
 .phbox{ border-top:2px solid var(--line); margin-top:14px; padding-top:10px; }
 .phbox h6{ margin-top:0; }
-.ph3{ background:var(--zebra); border-radius:6px; padding:8px 12px; margin:6px 0 10px; font-size:.9rem; } .ph3 ul{ margin:4px 0 0; padding-left:18px; } .ph3 li{ margin:0 0 3px; }
+.ph3{ background:var(--zebra); border-radius:6px; padding:10px 12px; margin:6px 0 10px; font-size:.9rem; }
+.ph3h{ display:block; color:var(--head); margin-bottom:6px; }
+.ph3g{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:6px; }
+.ph3g > div{ display:flex; flex-direction:column; gap:4px; background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:8px 10px; }
+.ph3t{ font-weight:700; color:var(--head); white-space:nowrap; }
+.ph3x{ align-self:flex-start; width:13.5em; text-align:center; font-size:.74rem; font-weight:700; border-radius:4px; padding:2px 0; white-space:nowrap; }
+.ph3x.no{ background:#E8EAEF; color:#5A6275; } .ph3x.yes{ background:#2E7D32; color:#fff; }
+.ph3d{ font-size:.85rem; color:var(--muted); line-height:1.35; }
+@media (max-width:600px){ .ph3g{ grid-template-columns:minmax(0,1fr); } }
 .phctl{ display:flex; flex-wrap:wrap; align-items:flex-end; gap:8px 18px; margin:6px 0 10px; }
 .phctl label{ display:flex; flex-direction:column; gap:4px; } .phctl label > span:first-child{ font-family:var(--display); font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--head); font-size:.85rem; }
 .phyear{ font:inherit; font-size:1rem; height:38px; padding:0 30px 0 10px; border:2px solid var(--navy); border-radius:6px; background-color:#fff; color:var(--ink); -webkit-appearance:none; appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%2316244F' stroke-width='1.6'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 11px center; }
@@ -1655,7 +1667,26 @@ ul.dl li.tot .dn{ font-family:var(--display); font-weight:800; text-transform:up
 .phk{ font-family:var(--display); font-weight:700; text-transform:uppercase; letter-spacing:.04em; color:var(--head); font-size:.85rem; }
 .phv{ font-family:var(--display); font-weight:800; font-size:2.2rem; line-height:1; color:var(--accent); font-variant-numeric:tabular-nums; }
 .phs{ font-size:.85rem; color:var(--muted); }
-.phchart{ width:100%; height:110px; display:block; margin-top:10px; }
+.phtap{ margin:8px 0 0; font-size:.85rem; font-weight:700; color:var(--head); }
+.phbars{ display:flex; align-items:flex-end; gap:3px; height:158px; margin-top:6px; }
+.phb{ all:unset; box-sizing:border-box; flex:1 1 0; min-width:0; height:100%; display:flex; flex-direction:column; justify-content:flex-end; align-items:center; cursor:pointer; }
+.phb .phbr{ display:block; width:80%; background:var(--navy); border-radius:2px 2px 0 0; transition:opacity .12s; }
+.phb .amt{ writing-mode:vertical-rl; transform:rotate(180deg); font-size:.66rem; line-height:1; font-weight:700; color:var(--muted); white-space:nowrap; margin-bottom:4px; font-variant-numeric:tabular-nums; }
+.phb:hover .phbr{ opacity:.75; }
+.phb:focus-visible .phbr{ outline:3px solid var(--gold); outline-offset:1px; }
+.phb[aria-pressed="true"] .phbr{ background:var(--gold); }
+.phb[aria-pressed="true"] .amt{ color:var(--accent); }
+@media (max-width:600px){ .phbars{ gap:2px; } .phb .amt{ font-size:.6rem; } }
+.phdet{ margin-top:10px; border-top:1px solid var(--line); padding-top:8px; }
+.phdh{ font-family:var(--display); font-weight:700; text-transform:uppercase; letter-spacing:.04em; color:var(--head); font-size:.85rem; margin-bottom:4px; }
+.phdh b{ color:var(--accent); font-size:1rem; }
+.phsteps{ list-style:none; margin:0; padding:0; counter-reset:ps; }
+.phsteps li{ display:grid; grid-template-columns:15.5em 7em minmax(0,1fr); gap:2px 12px; align-items:baseline; padding:6px 0; border-bottom:1px solid var(--line); font-size:.88rem; }
+.phsteps .pl{ font-weight:700; color:var(--head); white-space:nowrap; }
+.phsteps .pn{ text-align:right; font-weight:700; font-variant-numeric:tabular-nums; white-space:nowrap; color:var(--ink); }
+.phsteps .pw{ color:var(--muted); font-size:.82rem; line-height:1.35; }
+.phsteps li.tot{ border-bottom:0; } .phsteps li.tot .pl, .phsteps li.tot .pn{ color:var(--accent); }
+@media (max-width:600px){ .phsteps li{ grid-template-columns:minmax(0,1fr) auto; } .phsteps .pw{ grid-column:1 / -1; } }
 .phyrs{ display:flex; justify-content:space-between; font-size:.8rem; color:var(--muted); margin-top:3px; font-variant-numeric:tabular-nums; }
 .phnone{ font-size:.9rem; color:var(--muted); }
 .ptxwarn{ background:var(--tint); border-left:5px solid var(--gold); border-radius:4px; padding:8px 12px; margin:10px 0 4px; font-size:.92rem; }
@@ -3775,11 +3806,11 @@ function opsTable(){ let mx=0, lv=0, amt=0, room=0;
   return `<div class="tbl millwide"><table class="mill"><thead><tr><th>The five taxes</th><th class="num">Allowed</th><th class="num">Charged 2026</th><th class="num">Not charged</th><th class="num">Brings in 2026-27</th></tr></thead><tbody>${rows}<tr class="total"><td>All five (mills)</td><td class="num">${mx.toFixed(2)}</td><td class="num">${lv.toFixed(2)}</td><td class="num room">${(mx-lv).toFixed(2)}<small>${M2(room)} a year</small></td><td class="num">${M2(amt)}</td></tr></tbody></table></div>`+
    `<ul class="dl millcards">${cards}<li class="tot"><span class="dn">All five: ${lv.toFixed(2)} of ${mx.toFixed(2)} mills charged<small style="color:var(--ink)">Not charged: ${(mx-lv).toFixed(2)} mills = ${M2(room)} a year</small></span><span class="dv">${M2(amt)}</span></li></ul>`; }
 const PTXM=[['Operations','42.78 mills',42.78],['Bond payments','13.6 mills',13.6],['School security','1.76 mills',1.76]];
-function ptxOut(v,h){ const av=Math.max(0,v*0.10-(h?7500:0)); const per=av/1000; const c=n=>'$'+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+function ptxOut(v,h,ox){ const a10=Math.round(v*0.10); const av=Math.max(0,a10-(h?7500:0)-(ox||0)); const per=av/1000; const c=n=>'$'+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
   const tot=PTXM.reduce((t,m)=>t+m[2]*per,0);
   return `<p class="ptxsum">Taxable value <b>${c(av).replace('.00','')}</b> &middot; each school mill costs you <b>${c(per)}</b> a year. All 58.14 school mills in 2026 come to <b class="big">${c(tot)}</b> a year, about <b>${c(tot/12)}</b> a month.</p>`+
    dl(PTXM.map(m=>[m[0],m[1],c(m[2]*per)]),['All school taxes',c(tot)]); }
-window.__ptx=function(box){ if(!box) return; const i=box.querySelector('.ptxin input'), h=box.querySelector('.ptxh input'); const v=+String(i.value).replace(/[^0-9.]/g,'')||0; box.querySelector('.ptxout').innerHTML=ptxOut(v,h.checked); if(window.__ptxh) window.__ptxh(box); };
+window.__ptx=function(box){ if(!box) return; const i=box.querySelector('.ptxin input'), h=box.querySelector('.ptxh input'); const v=+String(i.value).replace(/[^0-9.]/g,'')||0, ox=+String(box.querySelector('.ptxox input').value).replace(/[^0-9.]/g,'')||0; box.querySelector('.ptxout').innerHTML=ptxOut(v,h.checked,ox); if(window.__ptxh) window.__ptxh(box); };
 /* Backward estimator: school taxes paid since purchase.
    Mills: total school millage levied by tax year (Legislative Auditor maximum millage reports, St. Tammany 1069YY; 2023-24 totals from the Assessor's 2025 millage insert; 2026 from the 2026-27 budget).
    HPI: FHFA annual county house price index, St. Tammany Parish (2000=100), via FRED ATNHPIUS22103A.
@@ -3787,27 +3818,47 @@ window.__ptx=function(box){ if(!box) return; const i=box.querySelector('.ptxin i
 const PHM={2004:74.59,2005:77.84,2006:77.84,2007:77.84,2008:69.45,2009:68.45,2010:68.45,2011:68.45,2012:68.18,2013:68.18,2014:68.18,2015:68.18,2016:66.41,2017:65.41,2018:64.41,2019:62.41,2020:62.00,2021:62.00,2022:62.00,2023:62.00,2024:58.34,2025:58.24,2026:58.14};
 const PHI={2000:100,2001:104.76,2002:108.34,2003:112.43,2004:119.53,2005:131.45,2006:156.96,2007:161.66,2008:156.09,2009:148.87,2010:141.72,2011:137.99,2012:137.18,2013:139.36,2014:141.46,2015:146.31,2016:150.72,2017:155.09,2018:158.26,2019:162.11,2020:167.18,2021:180.72,2022:206.67,2023:212.34,2024:214.49,2025:218.84};
 const PHR=[2004,2008,2012,2016,2020,2024];
-function phCalc(buy,paid,now,h){
-  if(!(buy>=2004)||!(paid>0)||!(now>0)) return null;
-  const B=Math.min(buy,2023), P0=buy>2023?now:paid;
-  const k=B<2023? now/(P0*PHI[2023]/PHI[B]) : now/P0;
-  const val=y=>{ if(y<B) return P0*PHI[y]/PHI[B]; if(y>=2023) return now; const t=(y-B)/(2023-B); return P0*(PHI[y]/PHI[B])*Math.pow(k,t); };
+function phCalc(buy,paid,now,h,ox){
+  if(!(buy>=2004)||!(paid>0)||!(now>0)) return null; ox=ox||0;
+  const B=Math.min(buy,2023), nr=PHR.find(z=>z>buy)||2100;
+  const k=B<2023? now/(paid*PHI[2023]/PHI[B]) : 1;
+  const val=y=>{ if(y>=2023) return now; const t=(y-B)/(2023-B); return paid*(PHI[y]/PHI[B])*Math.pow(k,t); };
   const rows=[]; let tot=0;
-  for(let y=buy;y<=2026;y++){ const r=PHR.filter(x=>x<=y).pop(); const mv=val(r-1); const av=Math.max(0,mv*0.10-(h?7500:0)); const t=av*PHM[y]/1000; rows.push([y,t,mv]); tot+=t; }
-  return {rows,tot};
+  for(let y=buy;y<=2026;y++){ const r=PHR.filter(x=>x<=y).pop();
+    let mv,src; if(buy>=2024||r>=2024){ mv=Math.round(now); src='now'; } else if(y<nr){ mv=Math.round(paid); src='paid'; } else { mv=Math.round(val(r-1)); src='path'; }
+    const av=Math.round(mv*0.10); const ex=h?Math.min(7500,av):0; const oe=y>=2024?Math.min(ox,av-ex):0; const tx=av-ex-oe; const t=Math.round(tx*PHM[y]/10)/100;
+    rows.push({y,t,mv,r,av,ex,oe,tx,m:PHM[y],src}); tot+=t; }
+  return {rows,tot,buy,paid,h,ox,nr};
 }
-function phHtml(buy,paid,now,h){
-  const r=phCalc(buy,paid,now,h); const c=n=>'$'+Math.round(n).toLocaleString('en-US');
-  if(!r) return '<p class="phnone">Enter the year you bought and what you paid to see the estimate.</p>';
-  const n=r.rows.length, mx=Math.max(...r.rows.map(x=>x[1]),1), W=600, H=120, pad=0, bw=(W-pad*2)/n;
-  const bars=r.rows.map((x,i)=>{ const bh=Math.max(1,(x[1]/mx)*(H-46)); const X=pad+i*bw+bw*.15, Y=H-6-bh; const lab='';
-    return `<rect x="${X.toFixed(1)}" y="${Y.toFixed(1)}" width="${(bw*.7).toFixed(1)}" height="${bh.toFixed(1)}" rx="2" fill="${i===n-1?'var(--gold)':'var(--navy)'}"><title>${x[0]}: about ${c(x[1])}</title></rect>${lab}`; }).join('');
-  return `<div class="phres"><div class="phbig"><span class="phk">Estimated school taxes paid, ${r.rows[0][0]} to 2026</span><span class="phv">${c(r.tot)}</span><span class="phs">${n} tax years &middot; about ${c(r.tot/n)} a year on average &middot; ${c(r.rows[0][1])} in ${r.rows[0][0]}, ${c(r.rows[n-1][1])} in 2026</span></div>`+
-    `<svg class="phchart" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Estimated school taxes by year">${bars}</svg>`+`<div class="phyrs"><span>${r.rows[0][0]}</span>${n>6?`<span>${r.rows[Math.floor(n/2)][0]}</span>`:''}<span>2026</span></div></div>`;
+const phC=n=>'$'+Math.round(n).toLocaleString('en-US'), phC2=n=>'$'+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+function phDet(R,i){
+  const x=R.rows[i], d=x.r-1, nx=PHR.find(z=>z>x.r); let st=x.r, end=nx?Math.min(nx-1,2026):2026, basis;
+  if(x.src==='now'){ st=Math.max(R.buy,2024); end=2026; basis=`The assessor&rsquo;s value you entered above, from the 2024 reappraisal (January 1, 2023 values).`; }
+  else if(x.src==='paid'){ st=R.buy; end=Math.min(R.nr-1,2026); basis=`What you paid. We assume the assessor&rsquo;s value matched your price when you bought and use it until the next reappraisal in ${R.nr}. Your actual first-year value may have been different.`; }
+  else basis=`Set at the ${x.r} reappraisal from January 1, ${d} values. We took your price (${phC(R.paid)} in ${R.buy}), grew it with St. Tammany home price changes, and adjusted the path so it ends at the assessor&rsquo;s value you entered.`;
+  const mills=x.m.toFixed(2);
+  return `<div class="phdet"><div class="phdh">${x.y} estimate: <b>${phC2(x.t)}</b></div><ol class="phsteps">`+
+   `<li><span class="pl">Assessor&rsquo;s value</span><span class="pn">${phC(x.mv)}</span><span class="pw">${x.src==="now"?"":"<b>Our estimate.</b> "}${basis} Used for tax years ${st}${end>st?'&ndash;'+end:''}.</span></li>`+
+   `<li><span class="pl">Assessed value</span><span class="pn">${phC(x.av)}</span><span class="pw">10% of ${phC(x.mv)}. Louisiana taxes homes on 10% of the assessor&rsquo;s value.</span></li>`+
+   `<li><span class="pl">Homestead exemption</span><span class="pn">${R.h?'&minus; '+phC(x.ex):'None'}</span><span class="pw">${R.h?'Takes $7,500 off the assessed value, the same as the first $75,000 of the assessor&rsquo;s value.':'You unchecked &ldquo;I live here,&rdquo; so no homestead exemption.'}</span></li>`+
+   (x.oe>0?`<li><span class="pl">Other exemptions</span><span class="pn">&minus; ${phC(x.oe)}</span><span class="pw">The amount you entered above. Applied to 2024&ndash;2026 only; earlier years count just the homestead exemption.</span></li>`:'')+
+   `<li><span class="pl">Taxable value</span><span class="pn">${phC(x.tx)}</span><span class="pw">${phC(x.av)}${R.h?' &minus; '+phC(x.ex):''}${x.oe>0?' &minus; '+phC(x.oe):''}</span></li>`+
+   `<li><span class="pl">School tax rate, ${x.y}</span><span class="pn">${mills} mills</span><span class="pw">A mill is $1 of tax for every $1,000 of taxable value. This is the total of every school millage levied for ${x.y}.</span></li>`+
+   `<li class="tot"><span class="pl">School taxes, ${x.y}</span><span class="pn">${phC2(x.t)}</span><span class="pw">${phC(x.tx)} &times; ${mills} &divide; 1,000</span></li></ol></div>`;
 }
-window.__ptxh=function(box){ if(!box) return; const v=+String(box.querySelector('.ptxin input').value).replace(/[^0-9.]/g,'')||0, h=box.querySelector('.ptxh input').checked;
-  const by=+box.querySelector('.phyear').value, pd=+String(box.querySelector('.phpaid input').value).replace(/[^0-9.]/g,'')||0;
-  box.querySelector('.phout').innerHTML=phHtml(by,pd,v,h); };
+function phHtml(buy,paid,now,h,sel,ox){
+  const R=phCalc(buy,paid,now,h,ox);
+  if(!R) return '<p class="phnone">Enter the year you bought and what you paid to see the estimate.</p>';
+  const n=R.rows.length, mx=Math.max(...R.rows.map(x=>x.t),1); if(!(sel>=0&&sel<n)) sel=n-1;
+  const bars=R.rows.map((x,i)=>`<button type="button" class="phb" data-i="${i}" aria-pressed="${i===sel}" aria-label="${x.y}: about ${phC(x.t)}. Show the math." title="${x.y}: about ${phC(x.t)}" onclick="window.__phsel&&__phsel(this)"><span class="amt">${phC(x.t)}</span><span class="phbr" style="height:${Math.max(2,Math.round(x.t/mx*100))}px"></span></button>`).join('');
+  return `<div class="phres"><div class="phbig"><span class="phk">Estimated school taxes paid, ${R.rows[0].y} to 2026</span><span class="phv">${phC(R.tot)}</span><span class="phs">${n} tax years &middot; about ${phC(R.tot/n)} a year on average &middot; ${phC(R.rows[0].t)} in ${R.rows[0].y}, ${phC(R.rows[n-1].t)} in 2026</span></div>`+
+    `<p class="phtap">Tap any bar to see how we figured that year.</p><div class="phbars${n>14?' many':''}">${bars}</div><div class="phyrs"><span>${R.rows[0].y}</span>${n>6?`<span>${R.rows[Math.floor(n/2)].y}</span>`:''}<span>2026</span></div>${phDet(R,sel)}</div>`;
+}
+function phArgs(box){ return [+box.querySelector('.phyear').value, +String(box.querySelector('.phpaid input').value).replace(/[^0-9.]/g,'')||0, +String(box.querySelector('.ptxin input').value).replace(/[^0-9.]/g,'')||0, box.querySelector('.ptxh input').checked, +String(box.querySelector('.ptxox input').value).replace(/[^0-9.]/g,'')||0]; }
+window.__ptxh=function(box){ if(!box) return; const [by,pd,v,h,ox]=phArgs(box); box.querySelector('.phout').innerHTML=phHtml(by,pd,v,h,undefined,ox); };
+window.__phsel=function(btn){ const box=btn.closest('.dbox'); if(!box) return; const [by,pd,v,h,ox]=phArgs(box); const R=phCalc(by,pd,v,h,ox); if(!R) return; const i=+btn.dataset.i;
+  btn.parentNode.querySelectorAll('.phb').forEach(b=>b.setAttribute('aria-pressed',String(b===btn)));
+  const old=box.querySelector('.phdet'); if(old) old.outerHTML=phDet(R,i); };
 
 const D={
  sales:()=>dk([['2','one-cent sales taxes'],['$79.5M','each, this year'],['$159.2M','both, with penalties'],['+6.5%','since 2024-25']])+
@@ -3832,13 +3883,15 @@ const D={
   `<p>Under current law, that room is likely gone after the next reappraisal in 2028. Voters rejected Constitutional Amendment 2, which would have changed that rule, on Nov. 3, 2026, so the rule stands.</p>`+
   `<p class="pledge"><b>Where we stand:</b> not one more tax dollar until the budget is reviewed top to bottom. The roll-forward is on the list, and it’s last.</p></div>`+
   `<div class="dbox" id="ptxbox"><h6>What Your Home Pays the Schools</h6>`+
-  `<p>Enter the market value the assessor lists for your home on your assessment notice. That is not what you paid, and it may not be what the home would sell for today. Louisiana taxes homes on 10% of the assessor&rsquo;s value, and the homestead exemption takes the first $75,000 of value off the top for a home you live in.</p>`+
+  `<p>Enter your home&rsquo;s <b>Total Fair Market Value</b> from your assessment notice or the Assessor&rsquo;s website. We call it the assessor&rsquo;s value. It is not what you paid, and it may not be what the home would sell for today. Louisiana taxes homes on 10% of the assessor&rsquo;s value, and the homestead exemption takes the first $75,000 of value off the top for a home you live in.</p>`+
   `<div class="ptxctl"><label class="ptxv"><span>Assessor&rsquo;s value</span><span class="ptxin">$<input type="text" inputmode="numeric" value="300,000" aria-label="Assessor's value of your home" onblur="this.value=(+this.value.replace(/[^0-9]/g,'')||0).toLocaleString('en-US')" oninput="window.__ptx&&__ptx(this.closest('.dbox'))"></span></label>`+
-  `<label class="ptxh"><input type="checkbox" checked onchange="window.__ptx&&__ptx(this.closest('.dbox'))"> I live here (homestead exemption)</label></div>`+
+  `<label class="ptxh"><input type="checkbox" checked onchange="window.__ptx&&__ptx(this.closest('.dbox'))"> I live here (homestead exemption)</label>`+
+  `<label class="ptxv"><span>Other exemptions</span><span class="ptxin ptxox">$<input type="text" inputmode="numeric" value="0" aria-label="Other exemptions, assessed amount" onblur="this.value=(+this.value.replace(/[^0-9]/g,'')||0).toLocaleString('en-US')" oninput="window.__ptx&&__ptx(this.closest('.dbox'))"></span></label>`+
+  `<span class="ptxoxh">From your notice&rsquo;s &ldquo;Other Exemptions Value,&rdquo; such as a disabled veteran exemption. Most homes: $0.</span></div>`+
   `<div class="ptxout">${ptxOut(300000,true)}</div>`+
-  `<p class="ptxwarn"><b>This is an estimate.</b> The calculator counts only the standard homestead exemption (the first $75,000 of value). It does not include any other exemption or special assessment you may have, such as the disabled veteran exemption or the senior assessment freeze, which would lower your bill. For your exact school taxes, check your actual assessment with the Assessor.</p>`+
+  `<p class="ptxwarn"><b>This is an estimate.</b> The calculator counts the homestead exemption and any other exemption amount you enter. It does not account for the senior assessment freeze or any special assessment, which could change your bill. For your exact school taxes, check your actual assessment with the Assessor.</p>`+
   `<p class="ptxlink"><a href="https://arist.stassessor.org/propertysearch.html" target="_blank" rel="noopener">See your full assessment history &rsaquo;</a><span>Look up your address on the St. Tammany Assessor&rsquo;s site for your home&rsquo;s value and exemptions, year by year.</span></p>`+
-  `<div class="phbox"><h6>How Much Have You Paid Over the Years?</h6><p>Tell us when you bought and what you paid. Starting from that price and ending at the assessor&rsquo;s value above, we estimate the assessor&rsquo;s value for your home in each year from St. Tammany home price trends, apply each year&rsquo;s actual school tax rate, and add it up.</p><div class="ph3"><b>Three different numbers:</b><ul><li><b>What you paid</b> is the sale price when you bought. We use it only as a starting point.</li><li><b>What it would sell for today</b> is the market price. It can be higher or lower than the assessor&rsquo;s figure.</li><li><b>The assessor&rsquo;s value</b> is the assessor&rsquo;s estimate of your home&rsquo;s market value, updated only at reappraisal every four years. Your tax is figured on 10% of it, minus the homestead exemption; that smaller number is your <b>assessed value</b>.</li></ul></div><div class="phctl"><label><span>Year you bought</span><select class="phyear" aria-label="Year you bought" onchange="window.__ptxh&&__ptxh(this.closest('.dbox'))"><option value="2004">2004</option><option value="2005">2005</option><option value="2006">2006</option><option value="2007">2007</option><option value="2008">2008</option><option value="2009">2009</option><option value="2010" selected>2010</option><option value="2011">2011</option><option value="2012">2012</option><option value="2013">2013</option><option value="2014">2014</option><option value="2015">2015</option><option value="2016">2016</option><option value="2017">2017</option><option value="2018">2018</option><option value="2019">2019</option><option value="2020">2020</option><option value="2021">2021</option><option value="2022">2022</option><option value="2023">2023</option><option value="2024">2024</option><option value="2025">2025</option></select></label><label class="phpaid"><span>What you paid</span><span class="ptxin">$<input type="text" inputmode="numeric" value="180,000" aria-label="What you paid" onblur="this.value=(+this.value.replace(/[^0-9]/g,'')||0).toLocaleString('en-US')" oninput="window.__ptxh&&__ptxh(this.closest('.dbox'))"></span></label></div><div class="phout">${phHtml(2010,180000,300000,true)}</div><p class="ptxwarn"><b>This is strictly an estimate</b> based on the information you entered and estimated changes in home values over time. Your real value each year may have moved differently than parish-wide prices, and the estimate counts only the standard homestead exemption, not the disabled veteran exemption, the senior assessment freeze or any other. Estimates start in 2004, the earliest year with verified tax rates. <b>For your actual figures, get your full assessment history on the Assessor&rsquo;s website.</b></p><p class="dnote m">How it works: Louisiana updates assessments only at reappraisal (2004, 2008, 2012, 2016, 2020 and 2024, each using values from January 1 of the year before), at 10% of value minus the $7,500 homestead exemption. School tax rates come from the Legislative Auditor&rsquo;s millage reports; home price trends from the Federal Housing Finance Agency&rsquo;s index for St. Tammany Parish.</p></div>`+
+  `<div class="phbox"><h6>How Much Have You Paid Over the Years?</h6><p>Tell us when you bought and what you paid. We use your price as the assessor&rsquo;s value until the next reappraisal, estimate each later reappraisal from St. Tammany home price trends so the line ends at the assessor&rsquo;s value above, apply each year&rsquo;s actual school tax rate, and add it up.</p><div class="ph3"><b class="ph3h">Which number is your tax based on?</b><div class="ph3g"><div><span class="ph3t">What you paid</span><span class="ph3x no">Our starting point</span><span class="ph3d">The price on your closing papers. Your tax isn&rsquo;t figured on it. The estimate below uses it as the starting point for the assessor&rsquo;s value.</span></div><div><span class="ph3t">What it would sell for today</span><span class="ph3x no">Not used for your tax</span><span class="ph3d">What a buyer would pay now. It can be higher or lower than the assessor&rsquo;s value. It does not set your tax.</span></div><div><span class="ph3t">The assessor&rsquo;s value</span><span class="ph3x yes">Your tax starts here</span><span class="ph3d">The assessor&rsquo;s estimate of your home&rsquo;s market value, listed as &ldquo;Total Fair Market Value&rdquo; on your notice. It changes at reappraisal, every four years.</span></div><div><span class="ph3t">Assessed value</span><span class="ph3x yes">Your tax is figured on this</span><span class="ph3d">10% of the assessor&rsquo;s value. Take off the homestead exemption and what&rsquo;s left is the taxable value the school tax rate is applied to.</span></div></div></div><div class="phctl"><label><span>Year you bought</span><select class="phyear" aria-label="Year you bought" onchange="window.__ptxh&&__ptxh(this.closest('.dbox'))"><option value="2004">2004</option><option value="2005">2005</option><option value="2006">2006</option><option value="2007">2007</option><option value="2008">2008</option><option value="2009">2009</option><option value="2010" selected>2010</option><option value="2011">2011</option><option value="2012">2012</option><option value="2013">2013</option><option value="2014">2014</option><option value="2015">2015</option><option value="2016">2016</option><option value="2017">2017</option><option value="2018">2018</option><option value="2019">2019</option><option value="2020">2020</option><option value="2021">2021</option><option value="2022">2022</option><option value="2023">2023</option><option value="2024">2024</option><option value="2025">2025</option></select></label><label class="phpaid"><span>What you paid</span><span class="ptxin">$<input type="text" inputmode="numeric" value="180,000" aria-label="What you paid" onblur="this.value=(+this.value.replace(/[^0-9]/g,'')||0).toLocaleString('en-US')" oninput="window.__ptxh&&__ptxh(this.closest('.dbox'))"></span></label></div><div class="phout">${phHtml(2010,180000,300000,true)}</div><p class="ptxwarn"><b>This is strictly an estimate</b> based on the information you entered and estimated changes in home values over time. Your real value each year may have moved differently than parish-wide prices, and the estimate counts the homestead exemption every year but any other exemption you entered only for 2024&ndash;2026, and it does not account for the senior assessment freeze. Estimates start in 2004, the earliest year with verified tax rates. <b>For your actual figures, get your full assessment history on the Assessor&rsquo;s website.</b></p><p class="dnote m">How it works: in the year you bought we use your purchase price, and after that Louisiana updates assessments at reappraisal (2004, 2008, 2012, 2016, 2020 and 2024, each using values from January 1 of the year before), at 10% of value minus the $7,500 homestead exemption. School tax rates come from the Legislative Auditor&rsquo;s millage reports, the Assessor&rsquo;s millage insert and the 2026-27 budget; home price trends from the Federal Housing Finance Agency&rsquo;s index for St. Tammany Parish.</p></div>`+
   `<p class="dnote">Parishwide, the schools receive about <b>46 cents of every property tax dollar</b> collected (St. Tammany Assessor, 2025 tax year). The rest of your bill goes to fire districts, parish government, the Sheriff, your city or town and others, and that part depends on where you live, so it isn't shown here.</p>`+
   `<p class="dnote m">The board points out that it has rolled rates back 28.86 mills since 1992 (16.66 operating, 12.2 debt), which it says saves taxpayers $89.6 million a year at 2024 values.</p></div>`,
  debt:()=>dk([['13.6','mills in 2026'],['$44.08M','this year, with penalties'],['$37.1M','in bond payments'],['No cap','rate set each year to cover payments']])+
