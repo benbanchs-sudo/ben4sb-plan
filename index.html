@@ -921,66 +921,91 @@ table.blines thead th small.thsub{ margin-top:2px; }
   <div class="tbl"><table class="sched" id="alltable"></table></div>
   <p class="src">Source: St. Tammany Parish School Board Salary Schedules, 2026-27. Start is Level 0 for support staff and Level 2 for new teachers; top is Level 45. Raised amounts are calculated from the district's figures. A percentage raise keeps every schedule in proportion; flat dollar amounts belong in one-time stipends, not the pay scale.</p>
 <style>
-/* Making ends meet: district pay vs. market wages, household income, poverty line and ALICE survival budgets */
+/* Making ends meet: district pay vs. local wages, the poverty line and assistance income limits. Built for lay readers: plain questions, one chip size, one state color. */
 #living .lvtiles{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin:16px 0 8px; }
 #living .lvtiles > div{ background:var(--navy); border-top:4px solid var(--gold); border-radius:8px; padding:12px; color:#fff; }
 #living .lvtiles .n{ font-family:var(--display); font-weight:800; color:var(--gold); font-size:2rem; line-height:1; font-variant-numeric:tabular-nums; }
 #living .lvtiles .l{ font-family:var(--display); font-weight:700; text-transform:uppercase; letter-spacing:.04em; font-size:.92rem; margin-top:6px; line-height:1.15; }
 #living .lvtiles .d{ font-size:.82rem; color:#C9CFE0; margin-top:3px; line-height:1.3; }
 @media (max-width:720px){ #living .lvtiles{ grid-template-columns:repeat(2,minmax(0,1fr)); } #living .lvtiles .n{ font-size:1.6rem; } }
-#living .lvctl{ display:grid; gap:8px; margin:12px 0 6px; }
-#living .lvctl .row{ display:flex; flex-wrap:wrap; align-items:center; gap:6px 10px; }
-#living .lvctl .lbl{ font-family:var(--display); font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--head); min-width:7.5em; }
-#living .lvctl .seg{ margin:0; }
-#living .lvctl .seg button{ font-size:.95rem; padding:5px 12px; }
-#living table.lvt td, #living table.lvt th{ vertical-align:middle; }
-#living table.lvt td:first-child{ min-width:11em; }
-#living table.lvt th{ white-space:normal; line-height:1.15; padding:7px 8px; } #living table.lvt td{ padding:8px; }
-#living table.lvt thead tr:first-child th[colspan]{ text-align:center; border-bottom:1px solid rgba(255,255,255,.25); }
-#living table.lvt td small{ display:block; color:var(--muted); font-size:.78rem; line-height:1.25; }
-#living .pf{ display:inline-block; min-width:4.2em; text-align:center; font-weight:700; border-radius:9px; padding:2px 8px; font-variant-numeric:tabular-nums; white-space:nowrap; }
-#living .pf.r{ background:#F9D6D2; color:#8A1C12; } #living .pf.o{ background:#FBE1CF; color:#8A3510; } #living .pf.y{ background:#FBF0C9; color:#6B4E00; } #living .pf.g{ background:#DCEFE2; color:#1D5B33; }
-#living .bdg{ display:inline-block; font-size:.78rem; font-weight:700; line-height:1.2; border-radius:4px; padding:2px 6px; margin:1px 3px 1px 0; background:var(--navy); color:#fff; white-space:nowrap; }
-#living .bdg.k{ background:#2F5D8A; } #living .bdg.f{ background:#8A5A00; } #living .bdg.w{ background:#5B6274; } #living .bdg.c{ background:#1E6F6A; }
-#living .none{ color:var(--muted); font-size:.85rem; }
-#living .nc{ color:var(--muted); font-size:.82rem; white-space:normal; }
-#living .gapc{ font-weight:700; white-space:nowrap; } #living .gapc.neg{ color:#B3261E; } #living .gapc.pos{ color:#1D5B33; }
-#living .sy{ display:inline-block; font-family:var(--display); font-weight:700; font-size:.7rem; letter-spacing:.05em; text-transform:uppercase; background:var(--tint); color:var(--accent); border-radius:3px; padding:0 5px; margin-left:4px; vertical-align:1px; white-space:nowrap; }
-#living .lvhead{ font-size:1.05rem; margin:12px 0 8px; }
-#living .lvkey{ display:flex; flex-wrap:wrap; gap:4px 12px; font-size:.82rem; color:var(--muted); margin:4px 0 2px; }
+#living .howto{ background:var(--tint); border-left:6px solid var(--gold); border-radius:4px; padding:10px 16px 8px; margin:10px 0 12px; }
+#living .howto h5{ font-family:var(--display); font-weight:800; text-transform:uppercase; letter-spacing:.04em; color:var(--head); font-size:1rem; margin:0 0 4px; }
+#living .howto ul{ margin:0; padding-left:20px; } #living .howto li{ margin:0 0 5px; font-size:.95rem; }
+/* pills: one width, one height */
+#living .pill{ display:inline-flex; flex-direction:column; align-items:center; justify-content:center; width:9.2em; min-height:2.9em; border-radius:6px; padding:3px 6px; line-height:1.15; text-align:center; font-weight:700; font-size:.88rem; }
+#living .pill small{ display:block; font-weight:600; font-size:.74rem; opacity:.85; }
+#living .pill.r{ background:#F9D6D2; color:#8A1C12; } #living .pill.o{ background:#FBE1CF; color:#8A3510; } #living .pill.y{ background:#FBF0C9; color:#6B4E00; } #living .pill.g{ background:#DCEFE2; color:#1D5B33; } #living .pill.n{ background:var(--zebra); color:var(--muted); border:1px dashed var(--line); }
+/* market table */
+#living table.mkt td, #living table.mkt th{ vertical-align:middle; padding:8px; }
+#living table.mkt th{ white-space:normal; line-height:1.15; }
+#living table.mkt thead tr:first-child th[colspan]{ text-align:center; border-bottom:1px solid rgba(255,255,255,.25); }
+#living table.mkt td:first-child{ min-width:11em; }
+#living td small.sub{ display:block; color:var(--muted); font-size:.78rem; line-height:1.25; font-weight:400; margin-top:1px; }
+/* question bar */
+#living .lvq{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px 16px; background:var(--surface); border:1px solid var(--line); border-top:3px solid var(--navy); border-radius:8px; padding:12px 14px; margin:12px 0 10px; }
+#living .lvq label{ display:block; font-family:var(--display); font-weight:700; text-transform:uppercase; letter-spacing:.05em; font-size:.82rem; color:var(--head); margin:0 0 5px; }
+#living .lvq select{ display:block; width:100%; height:40px; font:inherit; font-size:.98rem; color:var(--ink); background-color:var(--surface); border:2px solid var(--navy); border-radius:6px; padding:0 34px 0 10px; cursor:pointer; -webkit-appearance:none; appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%2316244F' stroke-width='1.6'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 12px center; }
+#living .lvq select:focus-visible{ outline:3px solid var(--gold); outline-offset:1px; }
+@media (max-width:560px){ #living .lvq{ grid-template-columns:1fr; } }
+#living .lvsum{ font-size:1.05rem; margin:4px 0 10px; }
+/* program key and chips: six boxes, same order, same size everywhere */
+#living .pkey{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; margin:8px 0 12px; }
+#living .pkey > div{ display:grid; grid-template-columns:6.4em minmax(0,1fr); gap:8px; align-items:center; background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:7px 9px; }
+#living .pkey .pd{ font-size:.82rem; color:var(--muted); line-height:1.3; }
+@media (max-width:720px){ #living .pkey{ grid-template-columns:repeat(2,minmax(0,1fr)); } } @media (max-width:480px){ #living .pkey{ grid-template-columns:1fr; } }
+#living .chip{ display:flex; align-items:center; justify-content:center; height:2.6em; border-radius:5px; font-size:.76rem; font-weight:700; line-height:1.1; text-align:center; padding:0 3px; background:var(--navy); color:#fff; }
+#living .chips6{ display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:4px; min-width:31em; }
+#living .chips6 .chip.off{ background:transparent; color:var(--muted); border:1px dashed var(--line); font-weight:600; opacity:.7; }
+#living table.hh td, #living table.hh th{ vertical-align:middle; padding:8px; }
+#living table.hh th{ white-space:normal; line-height:1.15; }
+#living table.hh td:first-child{ min-width:9em; }
 @media (max-width:640px){
   #living table.lvt thead{ display:none; }
   #living table.lvt, #living table.lvt tbody{ display:block; }
-  #living table.lvt tr{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:3px 10px; padding:9px 10px; border-top:1px solid var(--line); }
+  #living table.lvt tr{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:6px 10px; padding:10px; border-top:1px solid var(--line); }
   #living table.lvt tbody tr:nth-child(even){ background:var(--zebra); }
-  #living table.lvt td{ border:0; padding:0; background:none !important; text-align:left !important; font-size:.86rem; }
-  #living table.lvt td:first-child{ grid-column:1/-1; min-width:0; font-weight:700; }
+  #living table.lvt td{ border:0; padding:0 !important; background:none !important; text-align:left !important; font-size:.88rem; white-space:normal; min-width:0; }
+  #living table.lvt td:first-child{ grid-column:1/-1; min-width:0; }
   #living table.lvt td.wide{ grid-column:1/-1; }
-  #living table.lvt td[data-l]::before{ content:attr(data-l); display:block; font-family:var(--display); font-weight:700; font-size:.68rem; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); }
-  #living .tbl{ border:1px solid var(--line); }
+  #living table.lvt td[data-l]::before{ content:attr(data-l); display:block; font-family:var(--display); font-weight:700; font-size:.68rem; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); margin-bottom:2px; }
+  #living .chips6{ grid-template-columns:repeat(3,minmax(0,1fr)); min-width:0; }
 }
 </style>
 <div class="part" id="living">
   <h3 class="parth">Can a District Paycheck Cover the Basics?</h3>
-  <p>The pay schedules show what the district pays. Here is what that pay is worth in the real world: how it compares with what the same kinds of jobs pay in St. Tammany and across Louisiana, with what households here earn, and with what it takes to get by.</p>
+  <p>The pay schedules show what the district pays. Here is what that pay is worth in the real world: how it stacks up against what the same kinds of jobs pay around here, and against what it costs a family to get by.</p>
   <div class="lvtiles" role="list" id="lvtiles"></div>
   <p>Four in ten St. Tammany households (40%) earn less than it takes to cover basic costs, by the United Way&rsquo;s ALICE measure. That count includes families below the poverty line and the working families just above it.</p>
 
-  <h4 class="tt">What the Same Jobs Pay Elsewhere</h4>
-  <p>District pay next to the median pay for the same kind of work. The U.S. Bureau of Labor Statistics now counts St. Tammany as its own metro area, Slidell-Mandeville-Covington, so the St. Tammany column is local pay for that kind of job. The median is the middle worker: half earn more, half earn less.</p>
-  <div class="tbl"><table class="lvt" id="lvmkt"></table></div>
+  <h4 class="tt">What the Same Kind of Work Pays Around Here</h4>
+  <div class="howto">
+    <h5>How to read this table</h5>
+    <ul>
+      <li>For each district job, we found the closest job the U.S. Department of Labor tracks, and what the <b>typical worker</b> in that job earns. Typical means the middle worker: half earn more, half earn less. It counts every employer, not just schools.</li>
+      <li><b>In St. Tammany</b> means our parish alone. The Labor Department now tracks St. Tammany as its own area.</li>
+      <li>The last column compares the district&rsquo;s <b>starting pay</b> with the typical St. Tammany worker. &ldquo;Below&rdquo; means the district starts new hires under the local going rate.</li>
+    </ul>
+  </div>
+  <div class="tbl"><table class="lvt mkt" id="lvmkt"></table></div>
   <p class="fine" id="lvmktnote"></p>
 
-  <h4 class="tt">If This Paycheck Supports the Household</h4>
-  <p>Pick a household and a point on the pay scale. Each row shows where that district paycheck lands against the 2026 federal poverty line and the ALICE survival budget, and which assistance programs a household with that income would qualify for, judged on income alone.</p>
-  <div class="lvctl">
-    <div class="row"><span class="lbl">Household</span><div class="seg" id="lvhh" role="group" aria-label="Household"></div></div>
-    <div class="row"><span class="lbl">Pay</span><div class="seg" id="lvpt" role="group" aria-label="Point on the pay scale"></div></div>
+  <h4 class="tt">If This Paycheck Supports a Family</h4>
+  <div class="howto">
+    <h5>How to read this table</h5>
+    <ul>
+      <li>Answer the two questions below. Every row then shows one district job&rsquo;s yearly pay as if it were the family&rsquo;s <b>only income</b>.</li>
+      <li><b>Compared with the poverty line</b> uses the government&rsquo;s 2026 poverty line for that size family. &ldquo;98% of the line&rdquo; means the paycheck falls just short of it.</li>
+      <li>Each program has an income limit. A <b>filled box</b> means a family living on that paycheck is under the limit. An empty box means it earns too much for that program.</li>
+    </ul>
   </div>
-  <p class="lvhead" id="lvhead"></p>
-  <div class="tbl"><table class="lvt" id="lvhht"></table></div>
-  <div class="lvkey"><span>Share of the poverty line:</span><span><i class="pf r">under 100%</i> below it</span><span><i class="pf o">100&ndash;137%</i></span><span><i class="pf y">138&ndash;199%</i></span><span><i class="pf g">200% or more</i></span></div>
-  <div class="callout"><p><b>Qualifying is not the same as receiving.</b> We have no information on whether any district employee receives assistance, and we don&rsquo;t claim any does. These rows show only what a household with this one paycheck and no other income would qualify for under each program&rsquo;s published income limit. Programs also look at things like assets, expenses, citizenship and work rules, so actual eligibility can differ. Pay here is base pay from the 2026-27 salary schedules; stipends, supplements, bus route allowances and a second earner&rsquo;s income are not counted.</p></div>
+  <div class="pkey" id="lvkey"></div>
+  <div class="lvq">
+    <div><label for="lvhhsel">Who does this paycheck support?</label><select id="lvhhsel"></select></div>
+    <div><label for="lvptsel">Where on the pay scale?</label><select id="lvptsel"></select></div>
+  </div>
+  <p class="lvsum" id="lvhead"></p>
+  <div class="tbl"><table class="lvt hh" id="lvhht"></table></div>
+  <div class="callout"><p><b>Qualifying is not the same as receiving.</b> We have no information on whether any district employee receives assistance, and we don&rsquo;t claim any does. These rows show only what a family with this one paycheck and no other income would qualify for under each program&rsquo;s published income limit. Programs also look at things like savings, expenses, citizenship and work rules, so actual eligibility can differ. Pay here is base pay from the 2026-27 salary schedules; stipends, supplements, bus route allowances and a second earner&rsquo;s income are not counted.</p></div>
   <p class="fine" id="lvsrc"></p>
 </div>
 <script>
@@ -990,88 +1015,95 @@ const FPL={1:15960,2:21640,3:27320,4:33000}; /* HHS 2026 poverty guidelines, 48 
 const ALICE={1:30708,4:81912}; /* United For ALICE, Louisiana Household Survival Budget, 2024 costs (2026 report) */
 const CCAP={3:62076,4:73896};  /* Louisiana CCAP: 85% of state median income ($5,173 / $6,158 a month) */
 const HH=[
- {k:'1',l:'Single adult',size:1,kids:0},
- {k:'2',l:'Single parent, 1 child',size:2,kids:1},
- {k:'3',l:'Single parent, 2 children',size:3,kids:2},
- {k:'4',l:'Two parents, 2 children, one paycheck',size:4,kids:2}
+ {k:'1',l:'One adult, no children',s:'a single adult',size:1,kids:0},
+ {k:'2',l:'A single parent and 1 child',s:'a single parent of one',size:2,kids:1},
+ {k:'3',l:'A single parent and 2 children',s:'a single parent of two',size:3,kids:2},
+ {k:'4',l:'Two parents and 2 children (one paycheck)',s:'a family of four on one paycheck',size:4,kids:2}
 ];
-/* Programs judged by income only. lo/hi are percent of the 2026 poverty line. */
+const PTS=[['start','A new hire (starting pay)','a new hire'],['mid','Mid-career (middle of the scale)','a mid-career employee'],['top','Top of the scale','an employee at the top of the scale']];
+/* Six programs, always in this order. Income limits are percent of the 2026 poverty line unless noted. */
 const PROG=[
- {s:'Medicaid (adults)',t:'Louisiana Medicaid expansion: adults 19 to 64 up to 138% of the poverty line',hi:138},
- {s:'SNAP',cls:'w',t:'SNAP food assistance: Louisiana screens gross income at 200% of the poverty line; a net income test also applies',hi:200},
- {s:'LaCHIP (kids)',cls:'k',kids:1,t:'LaCHIP children’s Medicaid, up to 217% of the poverty line',hi:217},
- {s:'LaCHIP Affordable Plan',cls:'k',kids:1,t:'LaCHIP Affordable Plan (monthly premium), 217% to 255% of the poverty line',lo:217,hi:255},
- {s:'Free school meals',cls:'f',kids:1,t:'Free school meals, 2026-27: up to 130% of the poverty line',hi:130},
- {s:'Reduced-price meals',cls:'f',kids:1,t:'Reduced-price school meals, 2026-27: 130% to 185% of the poverty line',lo:130,hi:185},
- {s:'WIC (child under 5)',cls:'f',kids:1,t:'WIC, 2026-27: up to 185% of the poverty line, for pregnant women and children under 5',hi:185},
- {s:'Child care help',cls:'c',kids:1,t:'Louisiana Child Care Assistance Program: up to 85% of state median income (amounts published for families of 3 and 4)',ccap:1}
+ {s:'Medicaid',d:'Free health coverage for adults. Limit: 138% of the poverty line.',ok:(p)=>p<=138},
+ {s:'SNAP',d:'Grocery money, once called food stamps. Louisiana screens at 200% of the poverty line.',ok:(p)=>p<=200},
+ {s:'Kids’ health',kids:1,d:'LaCHIP health coverage for children. Free up to 217% of the line; low monthly premium up to 255%.',ok:(p)=>p<=255},
+ {s:'School meals',kids:1,d:'Free school meals up to 130% of the line; reduced-price up to 185%.',ok:(p)=>p<=185},
+ {s:'WIC',kids:1,d:'Healthy food for pregnant women and children under 5. Limit: 185% of the line.',ok:(p)=>p<=185},
+ {s:'Child care',kids:1,d:'Help paying for child care. Limit: 85% of Louisiana’s median income (published for families of 3 and 4).',ok:(p,v,cc)=>cc? v<=cc : false}
 ];
-/* District jobs (2026-27 salary schedules) matched to BLS occupations. Medians from BLS OEWS May 2025, via O*NET OnLine.
-   la = Louisiana, no = New Orleans-Metairie, st = Slidell-Mandeville-Covington (St. Tammany). hourly = BLS annualizes an hourly rate over a full year. */
+/* District jobs (2026-27 salary schedules) matched to Labor Department occupations. Medians: BLS OEWS May 2025, via O*NET OnLine.
+   st = Slidell-Mandeville-Covington (St. Tammany), no = New Orleans-Metairie, la = Louisiana. hourly = BLS turns an hourly rate into a full-time, year-round figure. */
 const MKT=[
- {code:'Teacher, bachelor',label:'Teacher (bachelor’s degree)',occ:'Elementary school teachers',la:58770,no:60350,st:59850},
- {code:'A-09',label:'Classroom paraprofessional (A-09)',occ:'Teaching assistants',la:27400,no:28560,st:28330},
- {code:'B-02',label:'Bus operator (B-02)',occ:'School bus drivers',la:29450,no:47570,st:33620,hourly:1},
- {code:'L-12',label:'Lunch technician (L-12)',occ:'Cooks, institution and cafeteria',la:25490,no:29370,st:30410,hourly:1},
- {code:'J-08',label:'Custodian, 8 hours (J-08)',occ:'Janitors and cleaners',la:28930,no:30020,st:29620},
- {code:'S-04',label:'School clerk (S-04)',occ:'Office clerks, general',la:32480,no:33860,st:31760,hourly:1},
- {code:'S-05',label:'School secretary I (S-05)',occ:'Secretaries and administrative assistants',la:38790,no:42830,st:37660,hourly:1},
- {code:'C-02',label:'Clerk typist I (C-02)',occ:'Office clerks, general',la:32480,no:33860,st:31760},
- {code:'M-01',label:'Maintenance (M-01)',occ:'Maintenance and repair workers, general',la:43960,no:45260,st:38940},
- {code:'M-08',label:'Licensed skilled trade (M-08)',occ:'Electricians',la:61540,no:62490,st:56670}
+ {code:'Teacher, bachelor',label:'Teacher',sub:'Bachelor’s degree',occ:'elementary school teachers',la:58770,no:60350,st:59850},
+ {code:'A-09',label:'Classroom paraprofessional',sub:'Pay grade A-09',occ:'teaching assistants',la:27400,no:28560,st:28330},
+ {code:'B-02',label:'Bus operator',sub:'Pay grade B-02',occ:'school bus drivers',la:29450,no:47570,st:33620,hourly:1},
+ {code:'L-12',label:'Lunch technician',sub:'Pay grade L-12',occ:'school and institution cooks',la:25490,no:29370,st:30410,hourly:1},
+ {code:'J-08',label:'Custodian, 8 hours',sub:'Pay grade J-08',occ:'janitors',la:28930,no:30020,st:29620},
+ {code:'S-04',label:'School clerk',sub:'Pay grade S-04',occ:'office clerks',la:32480,no:33860,st:31760,hourly:1},
+ {code:'S-05',label:'School secretary',sub:'Pay grade S-05',occ:'secretaries',la:38790,no:42830,st:37660,hourly:1},
+ {code:'C-02',label:'Clerk typist, central office',sub:'Pay grade C-02',occ:'office clerks',la:32480,no:33860,st:31760},
+ {code:'M-01',label:'Maintenance worker',sub:'Pay grade M-01',occ:'maintenance and repair workers',la:43960,no:45260,st:38940},
+ {code:'M-08',label:'Licensed skilled trade',sub:'Pay grade M-08',occ:'electricians',la:61540,no:62490,st:56670}
 ];
-const HHJOBS=[['Teacher, bachelor','Teacher (bachelor’s degree)'],['A-09','Classroom paraprofessional (A-09)'],['B-02','Bus operator (B-02)'],['B-03','Bus attendant (B-03)'],['L-12','Lunch technician (L-12)'],['J-07','Custodian, 7 hours (J-07)'],['J-08','Custodian, 8 hours (J-08)'],['S-04','School clerk (S-04)'],['C-02','Clerk typist I (C-02)'],['M-01','Maintenance (M-01)'],['M-08','Licensed skilled trade (M-08)']];
+const HHJOBS=[['Teacher, bachelor','Teacher','Bachelor’s degree'],['A-09','Classroom paraprofessional','A-09'],['B-02','Bus operator','B-02'],['B-03','Bus attendant','B-03'],['L-12','Lunch technician','L-12'],['J-07','Custodian, 7 hours','J-07'],['J-08','Custodian, 8 hours','J-08'],['S-04','School clerk','S-04'],['C-02','Clerk typist, central office','C-02'],['M-01','Maintenance worker','M-01'],['M-08','Licensed skilled trade','M-08']];
 const $=n=>'$'+Math.round(n).toLocaleString('en-US');
 const JL=window.__JOBS||[];
 function pay(code){ const j=JL.find(x=>x.n.startsWith(code)); if(!j) return null; const st=j.lv[j.s], tp=j.lv[j.lv.length-1]; return {days:+j.d,start:st,top:tp,mid:Math.round((st+tp)/2)}; }
+const yearTxt=d=>d<261?`${d}-day school year`:'Year-round';
 
 document.getElementById('lvtiles').innerHTML=[
  ['$91,492','Typical St. Tammany household income','Median household income, 2025 (U.S. Census Bureau)'],
  ['$65,139','Typical Louisiana household income','Median household income, 2025 (U.S. Census Bureau)'],
- ['$81,912','What a family of four needs to get by','ALICE survival budget, Louisiana: two adults, an infant and a preschooler (2024 costs)'],
- ['$33,000','Poverty line, family of four','2026 federal poverty guideline']
+ ['$81,912','What a family of four needs to get by','United Way ALICE budget for Louisiana: two adults, an infant and a preschooler (2024 costs)'],
+ ['$33,000','Poverty line, family of four','2026 federal poverty line']
 ].map(t=>`<div role="listitem"><div class="n">${t[0]}</div><div class="l">${t[1]}</div><div class="d">${t[2]}</div></div>`).join('');
 
+/* market table */
 (function(){
-  let h=`<thead><tr><th rowspan="2">Job</th><th class="num" colspan="2">District pay</th><th class="num" colspan="3">Median pay, this kind of work</th><th class="num" rowspan="2">Start vs. St. Tammany</th></tr><tr><th class="num">Start</th><th class="num">Top</th><th class="num">St. Tammany</th><th class="num">New Orleans area</th><th class="num">Louisiana</th></tr></thead><tbody>`;
+  let h=`<thead><tr><th rowspan="2">Job</th><th class="num" colspan="2">District pay</th><th class="num" colspan="3">What a typical worker in this kind of job earns</th><th class="num" rowspan="2">District starting pay vs. St. Tammany</th></tr><tr><th class="num">Starts at</th><th class="num">Tops out at</th><th class="num">In St. Tammany</th><th class="num">New Orleans area</th><th class="num">Louisiana</th></tr></thead><tbody>`;
   MKT.forEach(m=>{ const p=pay(m.code); if(!p) return;
-    const g=(p.start/m.st-1)*100;
-    const gc=m.hourly&&p.days<261?'<span class="nc">Not comparable&dagger;</span>':`<span class="gapc ${g<0?'neg':'pos'}">${g>0?'+':g<0?'&minus;':''}${Math.abs(Math.round(g))}%</span>`;
-    h+=`<tr><td><b>${m.label}</b>${p.days<261?'<span class="sy">'+p.days+' days</span>':''}<small>Compared with: ${m.occ}</small></td>`+
+    const g=Math.round((p.start/m.st-1)*100);
+    const pill=m.hourly&&p.days<261?'<span class="pill n">Can&rsquo;t compare<small>see note *</small></span>':g<0?`<span class="pill r">${-g}% below</span>`:g>0?`<span class="pill g">${g}% above</span>`:'<span class="pill y">About even</span>';
+    h+=`<tr><td><b>${m.label}</b><small class="sub">${m.sub} &middot; ${yearTxt(p.days)}</small><small class="sub">Compared with ${m.occ}</small></td>`+
       `<td class="num" data-l="District start">${$(p.start)}</td><td class="num" data-l="District top">${$(p.top)}</td>`+
-      `<td class="num" data-l="St. Tammany median"><b>${$(m.st)}</b></td><td class="num" data-l="New Orleans area median">${$(m.no)}</td><td class="num" data-l="Louisiana median">${$(m.la)}</td>`+
-      `<td class="num" data-l="Start vs. St. Tammany">${gc}</td></tr>`; });
+      `<td class="num" data-l="Typical, St. Tammany"><b>${$(m.st)}</b></td><td class="num" data-l="Typical, New Orleans area">${$(m.no)}</td><td class="num" data-l="Typical, Louisiana">${$(m.la)}</td>`+
+      `<td class="num wide" data-l="District starting pay vs. St. Tammany">${pill}</td></tr>`; });
   document.getElementById('lvmkt').innerHTML=h+'</tbody>';
-  document.getElementById('lvmktnote').innerHTML='Medians are for all employers, not just schools. For teachers and teaching assistants the Bureau of Labor Statistics reports school-year pay, so those rows compare directly. &dagger;For jobs paid by the hour, the Bureau multiplies the hourly rate by a full 2,080-hour year; these district jobs are paid for 177 to 199 days, so an annual gap would mostly reflect the shorter calendar, not the pay rate. The district doesn&rsquo;t publish daily hours for them, so we don&rsquo;t compare. For all jobs together, the average St. Tammany job paid <b>$59,351</b> in 2024 (Bureau of Labor Statistics, Quarterly Census of Employment and Wages). District figures are base pay from the 2026-27 salary schedules: start is Level 0 for support staff and the Level 2 placement for new teachers; top is Level 45. Wages: BLS Occupational Employment and Wage Statistics, May 2025.';
+  document.getElementById('lvmktnote').innerHTML='<b>* Why some rows can&rsquo;t be compared:</b> for jobs paid by the hour, the Labor Department figure assumes someone working full time all year, about 2,080 hours. These district jobs are paid only for the school year, and the district doesn&rsquo;t publish their daily hours, so putting the two side by side would mostly show the shorter calendar, not the pay rate. Teachers and teaching assistants are reported for the school year, so those rows compare fairly. For all jobs together, the average St. Tammany job paid <b>$59,351</b> in 2024. District pay is base pay from the 2026-27 salary schedules (new teachers start at Level 2, support staff at Level 0; the top is Level 45). Sources: U.S. Bureau of Labor Statistics, Occupational Employment and Wage Statistics, May 2025, and Quarterly Census of Employment and Wages, 2024.';
 })();
 
-const st={hh:'3',pt:'start'};
-const PTS=[['start','Starting pay'],['mid','Middle of the scale'],['top','Top of the scale']];
-function seg(id,items,cur,cb){ const el=document.getElementById(id); el.innerHTML=items.map(([k,l])=>`<button type="button" data-k="${k}" aria-pressed="${k===cur}">${l}</button>`).join(''); el.onclick=e=>{ const b=e.target.closest('button'); if(b) cb(b.dataset.k); }; }
-function pfc(p){ return p<100?'r':p<138?'o':p<200?'y':'g'; }
+/* program key */
+document.getElementById('lvkey').innerHTML=PROG.map(p=>`<div><span class="chip">${p.s}</span><span class="pd">${p.d}</span></div>`).join('');
+
+/* family table */
+const hs=document.getElementById('lvhhsel'), ps=document.getElementById('lvptsel');
+hs.innerHTML=HH.map(h=>`<option value="${h.k}"${h.k==='3'?' selected':''}>${h.l}</option>`).join('');
+ps.innerHTML=PTS.map(p=>`<option value="${p[0]}">${p[1]}</option>`).join('');
+function pill(pct){ const t=Math.round(pct);
+  if(pct<100) return `<span class="pill r">Below poverty<small>${t}% of the line</small></span>`;
+  if(pct<138) return `<span class="pill o">Near poverty<small>${t}% of the line</small></span>`;
+  if(pct<200) return `<span class="pill y">Low income<small>${t}% of the line</small></span>`;
+  return `<span class="pill g">Above low income<small>${t}% of the line</small></span>`; }
 function render(){
-  seg('lvhh',HH.map(h=>[h.k,h.l]),st.hh,k=>{st.hh=k;render();});
-  seg('lvpt',PTS,st.pt,k=>{st.pt=k;render();});
-  const hh=HH.find(h=>h.k===st.hh), fpl=FPL[hh.size], al=ALICE[hh.size], cc=CCAP[hh.size];
-  let under=0, anyProg=0, n=0;
-  let h=`<thead><tr><th>Job</th><th class="num">Yearly pay</th><th class="num">Share of poverty line</th>${al?'<th class="num">vs. ALICE budget</th>':''}<th>Would qualify for, on income</th></tr></thead><tbody>`;
-  HHJOBS.forEach(([code,label])=>{ const p=pay(code); if(!p) return; n++;
-    const v=p[st.pt], pct=v/fpl*100;
-    if(al && v<al) under++;
-    const b=PROG.filter(g=>{ if(g.kids&&!hh.kids) return false; if(g.ccap) return cc? v<=cc : false; return pct<=g.hi && (g.lo==null || pct>g.lo); }).map(g=>`<span class="bdg ${g.cls||''}" title="${g.t}">${g.s}</span>`);
-    if(b.length) anyProg++;
-    h+=`<tr><td><b>${label}</b><small>${p.days} days a year</small></td><td class="num" data-l="Yearly pay">${$(v)}</td>`+
-      `<td class="num" data-l="Share of poverty line"><span class="pf ${pfc(pct)}">${Math.round(pct)}%</span></td>`+
-      (al?`<td class="num" data-l="vs. ALICE budget"><span class="gapc ${v<al?'neg':'pos'}">${v<al?'&minus;':'+'}${$(Math.abs(v-al))}</span></td>`:'')+
-      `<td class="wide" data-l="Would qualify for, on income">${b.length?b.join(''):'<span class="none">None of these on income alone</span>'}</td></tr>`; });
+  const hh=HH.find(h=>h.k===hs.value), pt=PTS.find(p=>p[0]===ps.value), fpl=FPL[hh.size], al=ALICE[hh.size], cc=CCAP[hh.size];
+  let under=0, any=0, below=0, n=0;
+  let h=`<thead><tr><th>Job</th><th class="num">Yearly pay</th><th>Compared with the poverty line</th><th>Would this family qualify? (filled box = yes)</th></tr></thead><tbody>`;
+  HHJOBS.forEach(([code,label,sub])=>{ const p=pay(code); if(!p) return; n++;
+    const v=p[pt[0]], pct=v/fpl*100;
+    if(al && v<al) under++; if(pct<100) below++;
+    let q=0;
+    const chips=PROG.map(g=>{ const yes=(!g.kids||hh.kids) && g.ok(pct,v,cc); if(yes) q++; return `<span class="chip${yes?'':' off'}" aria-label="${g.s}: ${yes?'qualifies':'does not qualify'}">${g.s}</span>`; }).join('');
+    if(q) any++;
+    h+=`<tr><td><b>${label}</b><small class="sub">${/^[A-Z]-?\d/.test(sub)?'Pay grade '+sub:sub} &middot; ${yearTxt(p.days)}</small></td><td class="num" data-l="Yearly pay"><b>${$(v)}</b></td>`+
+      `<td data-l="Compared with the poverty line">${pill(pct)}</td><td class="wide" data-l="Would this family qualify? (filled box = yes)"><div class="chips6">${chips}</div></td></tr>`; });
   document.getElementById('lvhht').innerHTML=h+'</tbody>';
-  const pl=PTS.find(p=>p[0]===st.pt)[1].toLowerCase();
-  let head=`<b>${hh.l}:</b> the 2026 poverty line is <b>${$(fpl)}</b>`+(al?` and the ALICE survival budget is <b>${$(al)}</b>`:'')+`. At ${pl}, `+
-   (al?`<b>${under} of ${n}</b> of these jobs pay less than that budget, and `:'')+`<b>${anyProg} of ${n}</b> would qualify this household for at least one of these programs.`;
-  document.getElementById('lvhead').innerHTML=head;
+  let s=`For ${hh.s} earning what ${pt[2]} makes, the 2026 poverty line is <b>${$(fpl)}</b>. `;
+  if(below) s+=`<b>${below} of these ${n} jobs</b> pay less than that. `;
+  s+=`<b>${any} of ${n}</b> would qualify the family for at least one program.`;
+  if(al) s+=` The United Way says this family needs <b>${$(al)}</b> a year to get by; <b>${under} of ${n}</b> of these jobs pay less.`;
+  document.getElementById('lvhead').innerHTML=s;
 }
-render();
-document.getElementById('lvsrc').innerHTML='Poverty line: U.S. Department of Health and Human Services, 2026 poverty guidelines. ALICE: United For ALICE, 2026 Louisiana report (2024 costs); it publishes statewide budgets for a single adult and for two adults with an infant and a preschooler, so other households show no ALICE figure. Program limits: USDA school meal and WIC income guidelines for July 2026 to June 2027; USDA SNAP limits for October 2026 to September 2027 and Louisiana&rsquo;s 200% gross income screen (Louisiana Department of Health); Louisiana Medicaid and LaCHIP limits (LDH chart Z-200, March 2026); Louisiana Child Care Assistance Program limit of 85% of state median income (federal Office of Child Care). Household income: U.S. Census Bureau, American Community Survey 2025 1-year estimates.';
+hs.onchange=render; ps.onchange=render; render();
+document.getElementById('lvsrc').innerHTML='Poverty line: U.S. Department of Health and Human Services, 2026 poverty guidelines. Getting-by budget: United For ALICE, 2026 Louisiana report (2024 costs); it publishes statewide budgets for a single adult and for two adults with an infant and a preschooler only. Program limits: USDA school meal and WIC income guidelines for July 2026 to June 2027; USDA SNAP limits for October 2026 to September 2027 and Louisiana&rsquo;s 200% gross income screen (Louisiana Department of Health); Louisiana Medicaid and LaCHIP limits (LDH chart Z-200, March 2026); Louisiana Child Care Assistance Program limit of 85% of state median income (federal Office of Child Care). Household income: U.S. Census Bureau, American Community Survey 2025 1-year estimates.';
 });
 </script>
 </section>
