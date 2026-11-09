@@ -996,6 +996,21 @@ table.blines thead th small.thsub{ margin-top:2px; }
 #living .mp{ display:inline-block; width:7.4em; text-align:center; border-radius:5px; padding:1px 4px; margin-top:2px; font-size:.74rem; font-weight:700; white-space:nowrap; }
 #living .mp.r{ background:#F9D6D2; color:#8A1C12; } #living .mp.g{ background:#DCEFE2; color:#1D5B33; } #living .mp.y{ background:#FBF0C9; color:#6B4E00; } #living .mp.n{ background:var(--zebra); color:var(--muted); border:1px dashed var(--line); }
 #living table.mkt th .adot{ margin-right:5px; vertical-align:-1px; }
+/* raise slider */
+#living .rbox{ background:var(--surface); border:1px solid var(--line); border-top:6px solid var(--gold); border-radius:8px; padding:12px 16px 12px; margin:14px 0 6px; }
+#living .rbox .rtop{ display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:4px 12px; }
+#living .rbox h5{ font-family:var(--display); font-weight:800; text-transform:uppercase; letter-spacing:.04em; color:var(--head); font-size:1.1rem; margin:0; white-space:nowrap; }
+#living .rbox .rval{ font-family:var(--display); font-weight:800; font-size:2rem; line-height:1; color:var(--accent); font-variant-numeric:tabular-nums; white-space:nowrap; }
+#living .rbox p{ font-size:.9rem; color:var(--muted); margin:4px 0 8px; }
+#living .rticks{ display:flex; flex-wrap:wrap; gap:8px; margin:6px 0 2px; }
+#living .rticks button{ font-family:var(--display); font-weight:700; font-size:1.05rem; letter-spacing:.03em; padding:6px 16px; border-radius:6px; border:2px solid var(--navy); background:var(--surface); color:var(--head); cursor:pointer; }
+#living .rticks button[aria-pressed="true"]{ background:var(--navy); color:#fff; }
+#living small.was{ display:block; font-weight:400; color:var(--muted); font-size:.74rem; white-space:nowrap; }
+#living .rsum{ display:grid; grid-template-columns:repeat(auto-fit,minmax(11em,1fr)); gap:8px; margin:10px 0 0; }
+#living .rsum > div{ background:var(--zebra); border-radius:6px; padding:8px 10px; }
+#living .rsum .k{ font-size:.8rem; color:var(--muted); line-height:1.25; }
+#living .rsum .v{ font-family:var(--display); font-weight:800; font-size:1.35rem; color:var(--head); line-height:1.15; white-space:nowrap; }
+#living .rsum .v .ar{ color:var(--accent); margin:0 4px; }
 /* icon pickers */
 #living .pick{ margin:12px 0 4px; }
 #living .pick .plab{ font-family:var(--display); font-weight:700; text-transform:uppercase; letter-spacing:.05em; font-size:.85rem; color:var(--head); margin:0 0 6px; }
@@ -1037,6 +1052,11 @@ table.blines thead th small.thsub{ margin-top:2px; }
   <div class="lvtiles" role="list" id="lvtiles"></div>
   <p>Four in ten St. Tammany households (40%) earn less than it takes to cover basic costs, by the United Way&rsquo;s ALICE measure. That count includes families below the poverty line and the working families just above it.</p>
 
+  <div class="rbox" id="lvraise">
+    <div class="rtop"><h5>Test a raise</h5><span class="rval" id="lvrval">No raise</span></div>
+    <p>Pick a raise to see what it would do. It changes every district paycheck in both tables below, as a percentage of each person&rsquo;s pay.</p>
+    <div class="rticks" id="lvrticks" role="group" aria-label="Raise size"></div>
+  </div>
   <h4 class="tt">What the Same Kind of Work Pays Around Here</h4>
   <div class="howto">
     <h5>How to read this table</h5>
@@ -1128,6 +1148,12 @@ document.getElementById('lvtiles').innerHTML=[
  ['$33,000','Poverty line, family of four','2026 federal poverty line']
 ].map(t=>`<div role="listitem"><div class="n">${t[0]}</div><div class="l">${t[1]}</div><div class="d">${t[2]}</div></div>`).join('');
 
+/* raise */
+let RAISE=0, FAMREADY=false; const RF=()=>1+RAISE/100;
+const wasTxt=b=>RAISE?`<small class="was">was ${$(b)}</small>`:'';
+function setRaise(r){ RAISE=r; document.getElementById('lvrval').textContent=r?'+'+r+'%':'No raise';
+  document.getElementById('lvrticks').innerHTML=[0,5,10,15,20,25].map(x=>`<button type="button" data-r="${x}" aria-pressed="${x===r}">${x?x+'%':'None'}</button>`).join('');
+  renderMkt(); if(FAMREADY) render(); }
 /* market table */
 const AREA={st:['St. Tammany','Slidell-Mandeville-Covington metro'],no:['New Orleans area','New Orleans-Metairie metro'],br:['Baton Rouge area','Baton Rouge metro'],hm:['Hammond area','Hammond metro'],ho:['Houma-Thibodaux area','Houma-Bayou Cane-Thibodaux metro'],lf:['Lafayette area','Lafayette metro'],lc:['Lake Charles area','Lake Charles metro'],al:['Alexandria area','Alexandria metro'],mo:['Monroe area','Monroe metro'],sh:['Shreveport area','Shreveport-Bossier City metro'],ce:['Central La. rural','Central Louisiana rural parishes'],ne:['Northeast La. rural','Northeast Louisiana rural parishes'],sw:['Southwest La. rural','Southwest Louisiana rural parishes'],la:['All of Louisiana','Statewide']};
 const ACOL=['#2F6FB5','#8A4FB0','#1E8C5A'], HOME='#E79B03';
@@ -1140,12 +1166,12 @@ function mp(d,m,nc){ if(m==null) return ''; if(nc) return '<span class="mp n">Ca
 function colOf(a){ return a==='st'?HOME:ACOL[asel.indexOf(a)]; }
 function renderMkt(){
   const cols=['st'].concat(asel);
-  let h=`<thead><tr><th>Pay level</th><th class="num">District pay</th>${cols.map(a=>`<th class="num"><i class="adot" style="background:${colOf(a)}"></i>${AREA[a][0]}</th>`).join('')}</tr></thead>`;
+  let h=`<thead><tr><th>Pay level</th><th class="num">${RAISE?'District pay +'+RAISE+'%':'District pay'}</th>${cols.map(a=>`<th class="num"><i class="adot" style="background:${colOf(a)}"></i>${AREA[a][0]}</th>`).join('')}</tr></thead>`;
   MKT.forEach(m=>{ const p=pay(m.code); if(!p) return; const nc=m.hourly&&p.days<261;
     h+='<tbody>';
-    LVLS.forEach((L,i)=>{ const d=p[L[0]];
+    LVLS.forEach((L,i)=>{ const d0=p[L[0]], d=Math.round(d0*RF());
       h+=(i===0?`<tr class="jrow"><td class="job" colspan="${2+cols.length}"><b>${m.label}</b><span class="jsub">${/^[A-Z]-?\d/.test(m.sub)?'Pay grade '+m.sub:m.sub} &middot; ${p.days<261?p.days+' days':'Year-round'} &middot; compared with ${m.occ}</span></td></tr>`:'')+'<tr>'+
-        `<td class="lvc"><b>${L[1]}</b><small class="lvl">${L[2]}</small></td><td class="num" data-l="District"><b>${$(d)}</b></td>`+
+        `<td class="lvc"><b>${L[1]}</b><small class="lvl">${L[2]}</small></td><td class="num" data-l="District"><b>${$(d)}</b>${wasTxt(d0)}</td>`+
         cols.map(a=>{ const r=W[m.w][a], mv=r?r[L[3]]:null; return `<td class="num ac" data-l="${AREA[a][0]}"><span class="amt">${mv==null?'No data':$(mv)}</span>${mp(d,mv,nc)}</td>`; }).join('')+'</tr>'; });
     h+='</tbody>'; });
   document.getElementById('lvmkt').innerHTML=h;
@@ -1180,7 +1206,8 @@ function addArea(a){ const msg=document.getElementById('lvamsg'); msg.textConten
   document.getElementById('lvla').onclick=()=>addArea('la');
   document.getElementById('lvclr').onclick=()=>{ asel=[]; document.getElementById('lvamsg').textContent=''; renderMkt(); };
   document.getElementById('lvareasel').onchange=e=>{ addArea(e.target.value); };
-  renderMkt();
+  document.getElementById('lvrticks').addEventListener('click',e=>{ const b=e.target.closest('button[data-r]'); if(b) setRaise(+b.dataset.r); });
+  setRaise(0);
 })();
 document.getElementById('lvmktnote').innerHTML='<b>* Why some jobs can&rsquo;t be compared:</b> for jobs paid by the hour, the Labor Department figure assumes someone working full time all year, about 2,080 hours. These district jobs are paid only for the school year, and the district doesn&rsquo;t publish their daily hours, so a side-by-side would mostly show the shorter calendar, not the pay rate. Teachers and teaching assistants are reported for the school year, so those rows compare fairly. <b>Why some figures repeat:</b> where a school district is most of the local market for a job, like teachers, aides and bus drivers, several points of that area&rsquo;s range can land on the same district pay step. <b>No data</b> means the Labor Department didn&rsquo;t publish that job for that area. Parish-to-area groupings are the Labor Department&rsquo;s May 2025 definitions. For all jobs together, the average St. Tammany job paid <b>$59,351</b> in 2024. District pay is base pay from the 2026-27 salary schedules: starting pay is Level 0 for support staff and the Level 2 placement for new teachers, mid-career is the middle of the scale, and the top is Level 45. Sources: U.S. Bureau of Labor Statistics, Occupational Employment and Wage Statistics, May 2025 (via O*NET OnLine), and Quarterly Census of Employment and Wages, 2024.';
 
@@ -1208,24 +1235,33 @@ function pill(pct){ const t=Math.round(pct);
   return `<span class="pill g">Above low income<small>${t}% of the line</small></span>`; }
 function render(){
   const hh=HH.find(h=>h.k===st2.hh), pt=PTS.find(p=>p[0]===st2.pt), fpl=FPL[hh.size], al=ALICE[hh.size], cc=CCAP[hh.size];
-  let under=0, any=0, below=0, n=0;
-  let h=`<thead><tr><th>Job</th><th class="num">Yearly pay</th><th>vs. poverty line</th><th>Qualifies for (colored box = yes)</th></tr></thead><tbody>`;
+  let under=0, any=0, below=0, n=0, under0=0, any0=0, below0=0;
+  const qual=(v,pct)=>PROG.some(g=>(!g.kids||hh.kids) && g.ok(pct,v,cc));
+  let h=`<thead><tr><th>Job</th><th class="num">${RAISE?'Yearly pay +'+RAISE+'%':'Yearly pay'}</th><th>vs. poverty line</th><th>Qualifies for (colored box = yes)</th></tr></thead><tbody>`;
   HHJOBS.forEach(([code,label,sub])=>{ const p=pay(code); if(!p) return; n++;
-    const v=p[pt[0]], pct=v/fpl*100;
+    const v0=p[pt[0]], v=Math.round(v0*RF()), pct=v/fpl*100, pct0=v0/fpl*100;
     if(al && v<al) under++; if(pct<100) below++;
+    if(al && v0<al) under0++; if(pct0<100) below0++; if(qual(v0,pct0)) any0++;
     let q=0;
     const chips=PROG.map((g,i)=>{ const yes=(!g.kids||hh.kids) && g.ok(pct,v,cc); if(yes) q++; return `<span class="chip ${yes?'c'+(i+1):'off'}" aria-label="${g.s}: ${yes?'qualifies':'does not qualify'}">${g.s}</span>`; }).join('');
     if(q) any++;
-    h+=`<tr><td><b>${label}</b><small class="sub">${/^[A-Z]-?\d/.test(sub)?'Pay grade '+sub:sub} &middot; ${p.days<261?p.days+' days':'Year-round'}</small></td><td class="num" data-l="Yearly pay"><b>${$(v)}</b></td>`+
+    h+=`<tr><td><b>${label}</b><small class="sub">${/^[A-Z]-?\d/.test(sub)?'Pay grade '+sub:sub} &middot; ${p.days<261?p.days+' days':'Year-round'}</small></td><td class="num" data-l="Yearly pay"><b>${$(v)}</b>${wasTxt(v0)}</td>`+
       `<td data-l="vs. poverty line">${pill(pct)}</td><td class="wide" data-l="Qualifies for (colored box = yes)"><div class="chips6">${chips}</div></td></tr>`; });
   document.getElementById('lvhht').innerHTML=h+'</tbody>';
-  let s=`For ${hh.s} earning what ${pt[2]} makes, the 2026 poverty line is <b>${$(fpl)}</b>. `;
-  if(below) s+=`<b>${below} of these ${n} jobs</b> pay less than that. `;
-  s+=`<b>${any} of ${n}</b> would qualify the family for at least one program.`;
-  if(al) s+=` The United Way says this family needs <b>${$(al)}</b> a year to get by; <b>${under} of ${n}</b> of these jobs pay less.`;
+  let s=RAISE?`For ${hh.s} earning what ${pt[2]} makes (2026 poverty line: <b>${$(fpl)}</b>), here is what a <b>${RAISE}% raise</b> changes for these ${n} jobs:`:`For ${hh.s} earning what ${pt[2]} makes, the 2026 poverty line is <b>${$(fpl)}</b>. `;
+  if(!RAISE){
+    if(below) s+=`<b>${below} of these ${n} jobs</b> pay less than that. `;
+    s+=`<b>${any} of ${n}</b> would qualify the family for at least one program.`;
+    if(al) s+=` The United Way says this family needs <b>${$(al)}</b> a year to get by; <b>${under} of ${n}</b> of these jobs pay less.`;
+    s+=' Use <b>Test a raise</b> above to see what a raise would change.';
+  } else {
+    s+=`<div class="rsum"><div><div class="k">Below the poverty line</div><div class="v">${below0}<span class="ar">&rarr;</span>${below}</div></div>`+
+       (al?`<div><div class="k">Short of the United Way&rsquo;s getting-by budget (${$(al)})</div><div class="v">${under0}<span class="ar">&rarr;</span>${under}</div></div>`:'')+
+       `<div><div class="k">Qualify for at least one program</div><div class="v">${any0}<span class="ar">&rarr;</span>${any}</div></div></div>`;
+  }
   document.getElementById('lvhead').innerHTML=s;
 }
-pickers(); render();
+pickers(); FAMREADY=true; render();
 document.getElementById('lvsrc').innerHTML='Poverty line: U.S. Department of Health and Human Services, 2026 poverty guidelines. Getting-by budget: United For ALICE, 2026 Louisiana report (2024 costs); it publishes statewide budgets for a single adult and for two adults with an infant and a preschooler only. Program limits: USDA school meal and WIC income guidelines for July 2026 to June 2027; USDA SNAP limits for October 2026 to September 2027 and Louisiana&rsquo;s 200% gross income screen (Louisiana Department of Health); Louisiana Medicaid and LaCHIP limits (LDH chart Z-200, March 2026); Louisiana Child Care Assistance Program limit of 85% of state median income (federal Office of Child Care). Household income: U.S. Census Bureau, American Community Survey 2025 1-year estimates.';
 });
 </script>
