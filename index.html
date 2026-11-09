@@ -1055,9 +1055,26 @@ table.blines thead th small.thsub{ margin-top:2px; }
 #living .hhctl{ display:grid; grid-template-columns:6.2em minmax(0,26em); align-items:center; gap:10px; }
 #living .hhctl .tbar{ display:grid; width:100%; grid-auto-flow:column; grid-auto-columns:minmax(0,1fr); }
 #living .hhctl .tbar button{ min-height:2.7em; padding-top:4px; padding-bottom:4px; }
-#living .sils{ display:inline-flex; align-items:flex-end; gap:2px; }
-#living .sil{ display:block; height:1.5em; width:auto; }
-#living .sil.dol{ height:1.35em; }
+#living .sqbar{ display:flex; flex-wrap:wrap; gap:0; align-items:flex-start; margin-left:-.8rem; }
+#living .sqbar button{ all:unset; box-sizing:border-box; width:4.6rem; display:flex; flex-direction:column; align-items:center; gap:4px; cursor:pointer; }
+#living .sqbar .sq{ box-sizing:border-box; width:3rem; height:3rem; display:flex; align-items:center; justify-content:center; border:1.5px solid #C3C8D2; border-radius:6px; background:#fff; color:var(--head); font-size:1rem; font-weight:700; transition:background .12s; }
+#living .sqbar button:hover .sq{ background:#EEF1F6; }
+#living .sqbar button[aria-pressed="true"] .sq{ background:var(--head); border-color:var(--head); color:#fff; }
+#living .sqbar button:focus-visible .sq{ outline:3px solid var(--gold); outline-offset:2px; }
+#living .sqbar button:disabled{ cursor:not-allowed; }
+#living .sqbar button:disabled .sq{ background:transparent; border-style:dashed; color:#C3C8D2; }
+#living .sqbar .sq{ font-size:.72rem; }
+#living .sqbar .cap{ font-size:.74rem; font-weight:700; color:var(--head); white-space:nowrap; }
+#living .sils{ display:flex; align-items:flex-end; justify-content:center; gap:2px; }
+#living .sils.g3, #living .sils.g4{ flex-wrap:wrap; width:1.75rem; gap:1px 3px; }
+#living .sil{ display:block; height:1.7rem; width:auto; }
+#living .sils.g2 .sil{ height:1.5rem; }
+#living .sils.g3 .sil, #living .sils.g4 .sil{ height:1.12rem; }
+#living .sil.dol{ height:1.5rem; }
+#living .sils.g2 .sil.dol{ height:1.4rem; }
+#living .sil.bars{ height:1.7rem; }
+@media (max-width:600px){ #living .sqbar{ margin-left:-.3rem; } #living .sqbar button{ width:3.6rem; } #living #lvptbar{ margin-left:-.8rem; } #living #lvptbar button{ width:4.6rem; } }
+@media (min-width:601px){ #living .hhctl:has(#lvptbar){ align-items:start; } #living .hhctl:has(#lvptbar) .hhk{ padding-top:.95em; } }
 @media (max-width:600px){ #living .hhctl{ grid-template-columns:minmax(0,1fr); gap:3px; } #living .hhk{ font-size:.82rem; } }
 #living .hhk{ font-weight:700; font-size:.9rem; color:var(--head); white-space:nowrap; }
 /* bars below share the page's option-bar look */
@@ -1176,12 +1193,12 @@ table.blines thead th small.thsub{ margin-top:2px; }
   </div>
   <div class="hhpick">
     <div class="hhrow"><span class="hhlab">Who does this paycheck support?</span>
-      <div class="hhctl"><span class="hhk">Adults</span><div class="tbar" id="lvadults" role="group" aria-label="Adults in the household"></div></div>
-      <div class="hhctl"><span class="hhk">Children</span><div class="tbar" id="lvkids" role="group" aria-label="Children in the household"></div></div>
-      <div class="hhctl"><span class="hhk">Paychecks</span><div class="tbar" id="lvchecks" role="group" aria-label="Paychecks in the household"></div></div>
+      <div class="hhctl"><span class="hhk">Adults</span><div class="sqbar" id="lvadults" role="group" aria-label="Adults in the household"></div></div>
+      <div class="hhctl"><span class="hhk">Children</span><div class="sqbar" id="lvkids" role="group" aria-label="Children in the household"></div></div>
+      <div class="hhctl"><span class="hhk">Paychecks</span><div class="sqbar" id="lvchecks" role="group" aria-label="Paychecks in the household"></div></div>
     </div>
     <div class="hhrow"><span class="hhlab">Where on the pay scale?</span>
-      <div class="hhctl"><span class="hhk">Pay level</span><div class="tbar" id="lvptbar" role="group" aria-label="Where on the pay scale"></div></div>
+      <div class="hhctl"><span class="hhk">Pay level</span><div class="sqbar" id="lvptbar" role="group" aria-label="Where on the pay scale"></div></div>
     </div>
   </div>
   <p class="lvsum" id="lvhead"></p>
@@ -1321,14 +1338,15 @@ const st2={ad:1,kd:2,ck:1,pt:'start'};
 const SIL_A='<svg class="sil" viewBox="0 0 16 24" aria-hidden="true"><circle cx="8" cy="6" r="4.3" fill="currentColor"/><path d="M1 23v-3.3C1 15.6 4.2 13 8 13s7 2.6 7 6.7V23z" fill="currentColor"/></svg>';
 const SIL_K='<svg class="sil" viewBox="0 0 16 24" aria-hidden="true"><circle cx="8" cy="11.2" r="3.7" fill="currentColor"/><path d="M2.6 23v-2.4c0-3.2 2.4-5.1 5.4-5.1s5.4 1.9 5.4 5.1V23z" fill="currentColor"/></svg>';
 const DOL='<svg class="sil dol" viewBox="0 0 14 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 2v20"/><path d="M11.5 6H5.2a3.2 3.2 0 0 0 0 6.4h3.6a3.2 3.2 0 0 1 0 6.4H2.5"/></svg>';
-const rpt=(s,n)=>`<span class="sils">${s.repeat(n)}</span>`;
-function tb(id,items,cur,dis){ document.getElementById(id).innerHTML=items.map(([v,l,al])=>`<button type="button" data-v="${v}" aria-pressed="${String(v)===String(cur)}"${al?` aria-label="${al}" title="${al}"`:''}${dis&&dis(v)?' disabled':''}>${l}</button>`).join(''); }
+const rpt=(s,n)=>`<span class="sils g${n}">${s.repeat(n)}</span>`;
+const BARS=n=>`<svg class="sil bars" viewBox="0 0 24 24" aria-hidden="true">${[[3,14,6],[9.5,9,11],[16,4,16]].map((r,i)=>`<rect x="${r[0]}" y="${r[1]}" width="5" height="${r[2]}" rx="1" fill="currentColor"${i<n?'':' opacity=".28"'}/>`).join('')}</svg>`;
+function tb(id,items,cur,dis){ document.getElementById(id).innerHTML=items.map(([v,l,al,cap])=>`<button type="button" data-v="${v}" aria-pressed="${String(v)===String(cur)}"${al?` aria-label="${al}" title="${al}"`:''}${dis&&dis(v)?' disabled':''}><span class="sq">${l}</span>${cap?`<span class="cap">${cap}</span>`:''}</button>`).join(''); }
 function pickers(){
   if(st2.ad<2) st2.ck=1;
   tb('lvadults',[[1,rpt(SIL_A,1),'1 adult'],[2,rpt(SIL_A,2),'2 adults']],st2.ad);
   tb('lvkids',[[0,'None','No children']].concat([1,2,3,4].map(n=>[n,rpt(SIL_K,n),n+(n===1?' child':' children')])),st2.kd);
   tb('lvchecks',[[1,rpt(DOL,1),'1 paycheck'],[2,rpt(DOL,2),'2 paychecks']],st2.ck,v=>v===2&&st2.ad<2);
-  tb('lvptbar',PTS.map(p=>[p[0],p[1]]),st2.pt);
+  tb('lvptbar',PTS.map((p,i)=>[p[0],BARS(i+1),p[1],p[1]]),st2.pt);
 }
 [['lvadults','ad',Number],['lvkids','kd',Number],['lvchecks','ck',Number],['lvptbar','pt',String]].forEach(([id,k,cv])=>{
   document.getElementById(id).addEventListener('click',e=>{ const b=e.target.closest('button[data-v]'); if(!b||b.disabled) return; st2[k]=cv(b.dataset.v); pickers(); render(); }); });
