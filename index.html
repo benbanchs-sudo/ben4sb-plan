@@ -1009,6 +1009,12 @@ table.blines thead th small.thsub{ margin-top:2px; }
 #living .rsum .k{ font-size:.8rem; color:var(--muted); line-height:1.25; }
 #living .rsum .v{ font-family:var(--display); font-weight:800; font-size:1.35rem; color:var(--head); line-height:1.15; white-space:nowrap; }
 #living .rsum .v .ar{ color:var(--accent); margin:0 4px; }
+/* what these numbers mean */
+#living .whatgrid{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px 16px; }
+#living .whatgrid > div{ background:var(--zebra); border-radius:6px; padding:10px 12px; }
+#living .whatgrid h5{ font-family:var(--display); font-weight:800; text-transform:uppercase; letter-spacing:.04em; color:var(--head); font-size:.95rem; margin:0 0 4px; }
+#living .whatgrid p{ font-size:.92rem; margin:0 0 6px; } #living .whatgrid p:last-child{ margin:0; }
+@media (max-width:640px){ #living .whatgrid{ grid-template-columns:1fr; } }
 /* accordions */
 #living details.acc{ margin:14px 0 0; border:1px solid var(--line); border-left:5px solid var(--gold); border-radius:6px; background:var(--surface); }
 #living details.acc > summary{ list-style:none; cursor:pointer; display:flex; align-items:center; gap:10px; padding:12px 14px; }
@@ -1082,6 +1088,27 @@ table.blines thead th small.thsub{ margin-top:2px; }
   <h3 class="parth">Can a District Paycheck Cover the Basics?</h3>
   <p>The pay schedules show what the district pays. Here is what that pay is worth in the real world: how it stacks up against what the same kinds of jobs pay around here, and against what it costs a family to get by.</p>
   <div class="lvtiles" role="list" id="lvtiles"></div>
+  <details class="acc" id="accwhat">
+    <summary><span class="acct">What These Numbers Mean</span><span class="acch">Tap to open</span></summary>
+    <div class="whatgrid">
+      <div><h5>Typical household income</h5>
+        <p>Line up every household from the lowest income to the highest. The one in the middle is the <b>median</b>, the &ldquo;typical&rdquo; household: half earn more, half earn less.</p>
+        <p>A <b>household</b> is everyone living in one home, counted together: a single person, a retired couple, roommates or a family with children. Its income is everything everyone in the home brings in before taxes: every paycheck, plus Social Security, retirement and other income. So it isn&rsquo;t one worker or one kind of family. The average St. Tammany household has <b>2.55 people</b>; the Louisiana average is <b>2.42</b>.</p>
+      </div>
+      <div><h5>Families raising children</h5>
+        <p>For families with children under 18, the typical income is <b>$115,061</b> in St. Tammany and <b>$76,480</b> statewide. Like household income, this counts every earner in the family together.</p>
+        <p>All Census figures here are survey estimates for 2025, so each one has some room for error.</p>
+      </div>
+      <div><h5>The poverty line</h5>
+        <p>The federal government sets it every year. For 2026 it starts at <b>$15,960</b> for one person and adds <b>$5,680</b> for each additional person, so a family of four is <b>$33,000</b>.</p>
+        <p>It&rsquo;s the same everywhere in the lower 48 states and isn&rsquo;t adjusted for local costs. Assistance programs use it as a yardstick, which is why the family table below measures each paycheck against it.</p>
+      </div>
+      <div><h5>What it takes to get by</h5>
+        <p>The United Way&rsquo;s <b>ALICE</b> budget (Asset Limited, Income Constrained, Employed) adds up the bare-bones cost of living: housing, child care, food, transportation, health care, a basic cell phone plan and taxes, with nothing set aside for savings.</p>
+        <p>For two adults with an infant and a preschooler in Louisiana, that comes to <b>$81,912</b> a year, about two and a half times the poverty line. Families between the two lines earn too much to count as poor but still can&rsquo;t cover the basics.</p>
+      </div>
+    </div>
+  </details>
   <p>Four in ten St. Tammany households (40%) earn less than it takes to cover basic costs, by the United Way&rsquo;s ALICE measure. That count includes families below the poverty line and the working families just above it.</p>
 
   <div class="rbox" id="lvraise">
@@ -1574,6 +1601,7 @@ ul.dl li.tot .dn{ font-family:var(--display); font-weight:800; text-transform:up
 .ptxin:focus-within{ outline:3px solid var(--gold); outline-offset:1px; }
 .ptxh{ display:flex; align-items:center; gap:8px; font-weight:600; cursor:pointer; } .ptxh input{ width:20px; height:20px; accent-color:var(--navy); }
 .ptxlink{ display:flex; flex-wrap:wrap; align-items:center; gap:6px 12px; margin:10px 0 4px; } .ptxlink a{ font-family:var(--display); font-weight:700; text-transform:uppercase; letter-spacing:.04em; font-size:.95rem; color:#fff; background:var(--navy); border-radius:6px; padding:7px 14px; text-decoration:none; max-width:100%; text-align:center; line-height:1.2; } .ptxlink a:hover{ background:var(--gold); color:var(--navy); } .ptxlink span{ font-size:.88rem; color:var(--muted); flex:1 1 220px; }
+.ptxwarn{ background:var(--tint); border-left:5px solid var(--gold); border-radius:4px; padding:8px 12px; margin:10px 0 4px; font-size:.92rem; }
 .ptxsum{ margin:0 0 8px; } .ptxsum b.big{ font-family:var(--display); font-size:1.3rem; color:var(--head); }
 .dnote{ margin:8px 0 0; font-size:.88rem; line-height:1.45; }
 .dnote.m{ color:var(--muted); font-size:.82rem; }
@@ -2576,7 +2604,7 @@ ol.btime .dt{ display:block; font-family:var(--display); font-weight:800; text-t
   <ul class="plain src">
     <li><a href="https://www.onetonline.org/link/localwages/49-9071.00?st=LA" target="_blank" rel="noopener">U.S. Bureau of Labor Statistics, Occupational Employment and Wage Statistics, May 2025</a>, median wages for Louisiana, New Orleans-Metairie and Slidell-Mandeville-Covington, via O*NET OnLine (U.S. Department of Labor). St. Tammany is its own metro area in the May 2025 data: <a href="https://www.bls.gov/oes/2025/may/la_counties.htm" target="_blank" rel="noopener">BLS area definitions</a></li>
     <li><a href="https://admin.opportunitylouisiana.gov/wp-content/uploads/2026/03/HIP-Parish-Wages-3.16.26.pdf" target="_blank" rel="noopener">Louisiana Economic Development, Parish Wages (March 16, 2026)</a>: St. Tammany 2024 average annual wage, from BLS Quarterly Census of Employment and Wages</li>
-    <li><a href="https://data.census.gov/table/ACSDT1Y2025.B19013?g=050XX00US22103" target="_blank" rel="noopener">U.S. Census Bureau, American Community Survey 2025 1-year estimates, table B19013</a>: median household income, St. Tammany ($91,492 &plusmn; $4,869) and Louisiana ($65,139 &plusmn; $1,183)</li>
+    <li><a href="https://data.census.gov/table/ACSDT1Y2025.B19013?g=050XX00US22103" target="_blank" rel="noopener">U.S. Census Bureau, American Community Survey 2025 1-year estimates, table B19013</a>: median household income, St. Tammany ($91,492 &plusmn; $4,869) and Louisiana ($65,139 &plusmn; $1,183); <a href="https://data.census.gov/table/ACSDT1Y2025.B19125?g=050XX00US22103" target="_blank" rel="noopener">table B19125</a>: median family income for families with their own children under 18, St. Tammany ($115,061 &plusmn; $20,043) and Louisiana ($76,480 &plusmn; $3,335); <a href="https://data.census.gov/table/ACSDT1Y2025.B25010?g=050XX00US22103" target="_blank" rel="noopener">table B25010</a>: average household size, St. Tammany (2.55) and Louisiana (2.42)</li>
     <li><a href="https://aspe.hhs.gov/topics/poverty-economic-mobility/poverty-guidelines" target="_blank" rel="noopener">U.S. Department of Health and Human Services, 2026 Poverty Guidelines</a></li>
     <li><a href="https://www.unitedwaysela.org/wp-content/uploads/2026/06/26_state-of-alice-report-louisiana-2.pdf" target="_blank" rel="noopener">United For ALICE, 2026 State of ALICE in Louisiana</a> (Household Survival Budgets, 2024 costs) and <a href="https://unitedwaysela.org/ALICE" target="_blank" rel="noopener">United Way of Southeast Louisiana, ALICE</a> (St. Tammany: 40% of households below the ALICE threshold)</li>
     <li><a href="https://www.fna.usda.gov/schoolmeals/fr-040926" target="_blank" rel="noopener">USDA Child Nutrition Income Eligibility Guidelines, July 1, 2026 to June 30, 2027</a>; <a href="https://www.usda.gov/sites/default/files/guidance-documents/wic-ieg2026-2027.pdf" target="_blank" rel="noopener">USDA WIC Income Eligibility Guidelines, 2026-27</a></li>
@@ -3719,8 +3747,9 @@ const D={
   `<div class="ptxctl"><label class="ptxv"><span>Market value</span><span class="ptxin">$<input type="text" inputmode="numeric" value="300,000" aria-label="Home market value" onblur="this.value=(+this.value.replace(/[^0-9]/g,'')||0).toLocaleString('en-US')" oninput="window.__ptx&&__ptx(this.closest('.dbox'))"></span></label>`+
   `<label class="ptxh"><input type="checkbox" checked onchange="window.__ptx&&__ptx(this.closest('.dbox'))"> I live here (homestead exemption)</label></div>`+
   `<div class="ptxout">${ptxOut(300000,true)}</div>`+
+  `<p class="ptxwarn"><b>This is an estimate.</b> The calculator counts only the standard homestead exemption (the first $75,000 of value). It does not include any other exemption or special assessment you may have, such as the disabled veteran exemption or the senior assessment freeze, which would lower your bill. For your exact school taxes, check your actual assessment with the Assessor.</p>`+
   `<p class="ptxlink"><a href="https://arist.stassessor.org/propertysearch.html" target="_blank" rel="noopener">See your full assessment history &rsaquo;</a><span>Look up your address on the St. Tammany Assessor&rsquo;s site for your home&rsquo;s value and exemptions, year by year.</span></p>`+
-  `<p class="dnote">Parishwide, the schools receive about <b>46 cents of every property tax dollar</b> collected (St. Tammany Assessor, 2025 tax year). The rest of your bill goes to fire districts, parish government, the Sheriff, your city or town and others, and that part depends on where you live, so it isn't shown here. Other exemptions, like the senior assessment freeze and the disabled veteran exemption, lower the bill further and aren't counted. Your exact assessment is on the <a href="https://arist.stassessor.org/propertysearch.html" target="_blank" rel="noopener">Assessor's property search</a>.</p>`+
+  `<p class="dnote">Parishwide, the schools receive about <b>46 cents of every property tax dollar</b> collected (St. Tammany Assessor, 2025 tax year). The rest of your bill goes to fire districts, parish government, the Sheriff, your city or town and others, and that part depends on where you live, so it isn't shown here.</p>`+
   `<p class="dnote m">The board points out that it has rolled rates back 28.86 mills since 1992 (16.66 operating, 12.2 debt), which it says saves taxpayers $89.6 million a year at 2024 values.</p></div>`,
  debt:()=>dk([['13.6','mills in 2026'],['$44.08M','this year, with penalties'],['$37.1M','in bond payments'],['No cap','rate set each year to cover payments']])+
   `<h6>Which bonds the tax pays for</h6>`+dl([
